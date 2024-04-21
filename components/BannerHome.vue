@@ -97,10 +97,10 @@ gsap.config({
 
 let nuxtApp = ref()
 
-function solucaoDetalhe(linhaID) {
+async function solucaoDetalhe(linhaID) {
 
 
-  nuxtApp.value.$fb.track("track","Click banner "+ linhaID)
+  await nuxtApp.value.$fb.track("track","Click banner "+ linhaID)
   console.log(" nuxtApp.$fb");
 
   window.location.assign("/solucoes?linha=" + linhaID);
@@ -110,7 +110,7 @@ onMounted(() => {
 
 //TSTE FACEBOOK
  nuxtApp.value = useNuxtApp()
-nuxtApp.value.$fb.enable()
+//nuxtApp.value.$fb.enable()
 nuxtApp.value.$fb.init()
 console.log("nuxtApp.$fb",nuxtApp.value.$fb)
 //nuxtApp.$fb('track', 'Purchase', {currency: "USD", value: 30.00});
