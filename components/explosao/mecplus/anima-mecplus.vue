@@ -14,7 +14,7 @@
 
     <!-- ANIMACAO AQUI -->
     <div class="  flex flex-row items-center justify-center ">
-      <div class="animatedimage w-[400px] h-[400px] 2xl:w-[500px] 2xl:h-[500px] rotate-[0deg] flex flex-row items-center justify-center scale-[1.2] md:scale-[1.3]">
+      <div class="animatedimage w-[400px] h-[400px] 2xl:w-[500px] 2xl:h-[500px] rotate-[0deg] flex flex-row items-center justify-center scale-[1.2] md:scale-[1.5]">
         <img
           class="anima-a"
           v-for="(item, index) in 50"
@@ -23,7 +23,7 @@
         />
       </div>
     </div>
-    <!-- ANIMACAO AQUI --> sUDePaOfgBKrzs
+    <!-- ANIMACAO AQUI --> 
 
     <div
       id="P-textoDirID"
