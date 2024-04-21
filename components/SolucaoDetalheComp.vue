@@ -197,16 +197,6 @@
               <div></div>
             </div>
           </div>
-<<<<<<< HEAD
-
-          <!-- botão DWG -->
-          <div
-            class="zlg:mt-[70px] zxl:mt-[116px] mb-[2.5rem] mt-20 flex h-[50px] w-[360px] cursor-pointer flex-row items-center justify-center space-x-14 bg-[#72df43] text-xl text-[#115125] sm:w-[390px] lg:mt-[0px] xl:mt-[0px]"
-          >
-            <div
-              @click="dwgAmostra = !dwgAmostra"
-              class="flex h-[50px] flex-row place-items-center text-lg text-[#006236] md:text-xl"
-=======
           <div
           id="baixar_catalogoID"
             class="mb-[2.5rem] mt-20 flex h-[50px] w-[360px] cursor-pointer flex-row items-center justify-center space-x-14 bg-[#00b1ef] text-xl text-white sm:w-[390px] lg:mt-[70px] xl:mt-[116px]"
@@ -214,7 +204,6 @@
             <div
               @click="catalogosAmostra = !catalogosAmostra"
               class="flex h-[50px] flex-row place-items-center text-lg text-white md:text-xl hover:text-[#0c1a25]"
->>>>>>> c7f64e7 (animacoes)
             >
               {{ $t("baixeodwg") }}
             </div>

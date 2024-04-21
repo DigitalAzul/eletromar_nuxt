@@ -85,6 +85,7 @@
 </template>
 
 <script setup>
+  import { useNuxtApp } from '#app';
 import { onMounted } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -93,13 +94,30 @@ gsap.config({
   nullTargetWarn: false,
   trialWarn: false,
 });
+
+let nuxtApp = ref()
+
 function solucaoDetalhe(linhaID) {
-  //const POST = JSON.stringify(post);
+
+
+  nuxtApp.value.$fb.track("track","Click banner "+ linhaID)
+  console.log(" nuxtApp.$fb");
 
   window.location.assign("/solucoes?linha=" + linhaID);
 }
 
 onMounted(() => {
+
+//TSTE FACEBOOK
+ nuxtApp.value = useNuxtApp()
+nuxtApp.value.$fb.enable()
+nuxtApp.value.$fb.init()
+console.log("nuxtApp.$fb",nuxtApp.value.$fb)
+//nuxtApp.$fb('track', 'Purchase', {currency: "USD", value: 30.00});
+
+
+
+
 
   // SET VIDEO CONTENT
   const video_inst = ref(document.getElementById("proj_vid-1"))

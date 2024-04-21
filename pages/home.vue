@@ -2,11 +2,11 @@
   <div>
     <TopoSite />
     <BannerHome />
-    <Conteudo />
+    <!-- <Conteudo />
     <Representantes />
     <NoticiasHome />
     <NewsLetter />
-    <Rodape />
+    <Rodape /> -->
   </div>
 </template>
   

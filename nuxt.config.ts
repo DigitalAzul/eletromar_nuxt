@@ -5,6 +5,7 @@ import { colors } from "@indielayer/ui";
 
 const isDev = false;
 export default defineNuxtConfig({
+  debug: true,
   mode: "universal",
   target: "static",
   loading: true,
@@ -60,7 +61,16 @@ export default defineNuxtConfig({
     ],
     "nuxt-vue3-google-signin",
     "vue-recaptcha/nuxt",
+    "nuxt3-meta-pixel",
   ],
+  facebook: {
+    /* module options */
+    track: "PageView",
+    pixelId: "1083901202666335",
+    autoPageView: true,
+    disabled: false,
+  },
+
   googleSignIn: {
     clientId:
       "471700107010-eekuq4mud578tjum8cd7pr10qc2ddpj6.apps.googleusercontent.com",

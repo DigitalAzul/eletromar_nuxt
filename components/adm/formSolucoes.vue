@@ -150,10 +150,6 @@
                       </p>
                     </div>
                   </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> c7f64e7 (animacoes)
                   <div class="p-4 bg-slate-400">
                     <span class="font-semibold">Arquivo DWG</span>
                     <div
@@ -165,10 +161,6 @@
                         type="file"
                         accept="image/x-dwg, image/x-dxf, drawing/x-dwf, application/pdf"
                       />
-<<<<<<< HEAD
-=======
-                      />
->>>>>>> c7f64e7 (animacoes)
                       <p
                         @click="resetProdFORM(6)"
                         class="cursor-pointer text-3xl hover:text-red-400"
