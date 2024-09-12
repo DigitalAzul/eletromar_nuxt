@@ -265,25 +265,28 @@ gsap.registerPlugin(ScrollTrigger);
 import { useI18n } from "vue-i18n";
 const i18nLocale = useI18n();
 
-import { useRecaptchaProvider } from "vue-recaptcha";
-import { useChallengeV2 } from "vue-recaptcha";
-useRecaptchaProvider();
-const { root, widgetID, execute, onVerify, onExpired, onError, reset } =
-  useChallengeV2({
-    options: {
-      size: "normal",
-    },
-  });
 
-const captchaValido = ref(false);
-onVerify(async (response) => {
-  captchaValido.value = true;
-});
 
-onExpired(() => {
-  reset();
-  captchaValido.value = false;
-});
+// REMOVIDO 10-09-2024--21-27 PARA TESTE,  ESTA DANDO ERRO
+//import { useRecaptchaProvider } from "vue-recaptcha";
+//import { useChallengeV2 } from "vue-recaptcha";
+//useRecaptchaProvider();
+//const { root, widgetID, execute, onVerify, onExpired, onError, reset } =
+//  useChallengeV2({
+//    options: {
+//      size: "normal",
+//    },
+//  });
+
+//const captchaValido = ref(false);
+//onVerify(async (response) => {
+//  captchaValido.value = true;
+//});
+
+//onExpired(() => {
+//  reset();
+//  captchaValido.value = false;
+//});
 
 components: {
   PhWhatsappLogo;
@@ -328,7 +331,6 @@ function setUf(event) {
   formContato.value.uf = event.target.value;
 }
 
-
 let formContatoValido = ref({
   mensagem: false,
   cidade: false,
@@ -348,11 +350,8 @@ const modalContatoTXT = ref("");
 function ValidaformContato() {
   let RTX = false;
 
-  
-  if (formContato.value.nome.length > 8)
-    formContatoValido.value.nome = true;
+  if (formContato.value.nome.length > 8) formContatoValido.value.nome = true;
   else formContatoValido.value.nome = false;
-
 
   if (formContato.value.empresa.length > 8)
     formContatoValido.value.empresa = true;
@@ -374,21 +373,15 @@ function ValidaformContato() {
     formContatoValido.value.cnpj = true;
   else formContatoValido.value.cnpj = false;
 
-  if (formContato.value.uf.length > 3)
-    formContatoValido.value.uf = true;
+  if (formContato.value.uf.length > 3) formContatoValido.value.uf = true;
   else formContatoValido.value.uf = false;
 
   Object.keys(formContatoValido.value).forEach((key) => {
-
     if (formContatoValido.value[key] == false) RTX = false;
     else RTX = true;
   });
   return RTX;
 }
-
-
-
-
 
 const formContatoBody = new FormData();
 async function enviaContato() {
@@ -400,7 +393,7 @@ async function enviaContato() {
 
   const V = ValidaformContato();
   console.log(V);
-  if( V == false){
+  if (V == false) {
     modalContato.value = true;
     modalContatoTXT.value = "Preencha os campos Requeridos!";
     return;

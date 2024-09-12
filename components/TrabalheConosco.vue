@@ -263,25 +263,26 @@ components: {
   XModal;
 }
 
-import { useRecaptchaProvider } from "vue-recaptcha";
-import { useChallengeV2 } from "vue-recaptcha";
-useRecaptchaProvider();
-const { root, widgetID, execute, onVerify, onExpired, onError, reset } =
-  useChallengeV2({
-    options: {
-      size: "normal",
-    },
-  });
+// REMOVIDO 10-09-2024--21-27 PARA TESTE,  ESTA DANDO ERRO
+//import { useRecaptchaProvider } from "vue-recaptcha";
+//import { useChallengeV2 } from "vue-recaptcha";
+//useRecaptchaProvider();
+//const { root, widgetID, execute, onVerify, onExpired, onError, reset } =
+//  useChallengeV2({
+//    options: {
+//      size: "normal",
+//    },
+//  });
 
-const captchaValido = ref(false);
-onVerify(async (response) => {
-  captchaValido.value = true;
-});
+//const captchaValido = ref(false);
+//onVerify(async (response) => {
+//  captchaValido.value = true;
+//});
 
-onExpired(() => {
-  reset();
-  captchaValido.value = false;
-});
+//onExpired(() => {
+//  reset();
+//  captchaValido.value = false;
+//});
 
 components: {
   PhWhatsappLogo;

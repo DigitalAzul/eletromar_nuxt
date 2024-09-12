@@ -1,25 +1,26 @@
 <template>
   <div class="x-top-16 relative flex md:flex-row flex-col items-center justify-center">
     <div
-      id="P-textoEsqID-RAPID"
+      id="P-textoEsqID-Terceiro"
       class="textoDescricao absolute ztop-[calc(100vh-600px)] text-white md:relative md:top-0 hidden md:block"
     >
       {{titulo_esquerdo}}
     </div>
     <!-- ANIMACAO AQUI -->
     <div class="h-screen w-screen flex flex-row items-center justify-center">
-      <div class="animatedimage w-[600px] h-[600px] 2xl:w-[500px] 2xl:h-[500px]   rotate-[0deg] flex flex-row items-center justify-center">
+      <div 
+      class="animatedimage w-[600px] h-[600px] 2xl:w-[500px] 2xl:h-[500px]   rotate-[0deg] flex flex-row items-center justify-center">
         <img
-          class="anima-b "
+          class="anima-terceiro"
           v-for="(item, index) in 29"
           :key="index"
-          :src="'anima/'+pasta+'/' + item + '.webp'"
+          :src="'media/anima/atual/3/' + index + '.webp'"
         />
       </div>
     </div>
     <!-- ANIMACAO AQUI -->
     <div
-      id="P-textoDirID-RAPID"
+      id="P-textoDirID-Terceiro"
       class="textoDescricao absolute -top-6 pt-4 text-white md:relative md:top-0 md:block hidden"
     >
       {{titulo_direito}}
@@ -31,75 +32,64 @@
 <script setup>
 
 
-   const ANIMACOES = defineProps({animacoes:Object})
-
-   const titulo_esquerdo = ref()
-   const titulo_direito = ref()
-   const pasta = ref()
-
+const props = defineProps(['titulo_esquerdo','titulo_direito'])
+console.log(props);
+const titulo_esquerdo = ref(props.titulo_esquerdo)
 
 onMounted(() => {
 
-console.log('zorro',ANIMACOES.animacoes.ANIMACOES[0].titulo_esquerdo);
 
+  let titEsq3 = document.getElementById("P-textoEsqID-Terceiro");
+  let titDir3 = document.getElementById("P-textoDirID-Terceiro");
 
-    titulo_esquerdo.value = ANIMACOES.animacoes.ANIMACOES[0].titulo_esquerdo
-    titulo_direito.value = ANIMACOES.animacoes.ANIMACOES[0].titulo_direito
-    pasta.value = ANIMACOES.animacoes.ANIMACOES[0].pasta
-
-
-
-  let titEsq = document.getElementById("P-textoEsqID-RAPID");
-  let titDir = document.getElementById("P-textoDirID-RAPID");
-
- titEsq.style.left = 30.03 + "%";
- titDir.style.right = 30.03 + "%";
+ titEsq3.style.left = 30.03 + "%";
+ titDir3.style.right = 30.03 + "%";
 
 
 
 
 let expande = true;
-const seq = document.querySelectorAll(".anima-b");
+const seq3 = document.querySelectorAll(".anima-terceiro");
 
 // INICIA COIM O PRIMEIRO VISIVEL
-seq[0].style.visibility = "visible";
+seq3[0].style.visibility = "visible";
 
 
-let anime2 = null;
+let anime3 = null;
 
 let X = 0;
 let lastScroll = 0;
 
 window.addEventListener("scrollend", () => {
-  clearInterval(anime2);
-  anime2 = null;
-  console.log("scroll end", anime2);
+  clearInterval(anime3);
+  anime3 = null;
+  console.log("scroll end", anime3);
 },true);
 
 window.addEventListener("scroll", () => {
   let { scrollY } = window;
   // console.log(Math.round(scrollY) / 100);
 
-  if (anime2 == null) {
-    anime2 = setInterval(() => {
-      seq.forEach((el) => {
+  if (anime3 == null) {
+    anime3 = setInterval(() => {
+      seq3.forEach((el) => {
         el.style.visibility = "hidden";
       });
 
-      seq[X].style.visibility = "visible";
+      seq3[X].style.visibility = "visible";
       //seg[X].style.visibility = 'hidden';
       if (expande) {
         if (X > 25) {
           X = 25;
-          clearInterval(anime2);
-          anime2 = null;
+          clearInterval(anime3);
+          anime3 = null;
         }
         X += 1;
       } else {
         if (X < 2) {
            X = 2;
-          clearInterval(anime2);
-          anime2 = null;
+          clearInterval(anime3);
+          anime3 = null;
         }
         X -= 1;
       }
@@ -126,14 +116,14 @@ window.addEventListener("scroll", () => {
 
 
   if (scrollY == 0) {
-    titEsq.style.left = 30.03 + "%";
-    titDir.style.right = 30.03 + "%";
+    titEsq3.style.left = 30.03 + "%";
+    titDir3.style.right = 30.03 + "%";
   } else {
     if (scrollY < 300) {
-      titEsq.style.left = 30.03 - (0.01 * scrollY) + "%";
-      titDir.style.right = 30.03 - (0.01 * scrollY) + "%";
-      // titEsq.style.left = -0.4 * scrollY + "px";
-      // titDir.style.right = -0.6 * scrollY + "px";
+      titEsq3.style.left = 30.03 - (0.01 * scrollY) + "%";
+      titDir3.style.right = 30.03 - (0.01 * scrollY) + "%";
+      // titEsq3.style.left = -0.4 * scrollY + "px";
+      // titDir3.style.right = -0.6 * scrollY + "px";
 
     }
   }
@@ -150,8 +140,8 @@ window.addEventListener("scroll", () => {
 //   let NAP = document.getElementById("P-NIVEL-Ar");
 //   let NBP = document.getElementById("P-NIVEL-Br");
 //   let NCP = document.getElementById("P-NIVEL-Cr");
-//   let titEsq = document.getElementById("P-textoEsqID-RAPID");
-//   let titDir = document.getElementById("P-textoDirID-RAPID");
+//   let titEsq3 = document.getElementById("P-textoEsqID-RAPID");
+//   let titDir3 = document.getElementById("P-textoDirID-RAPID");
 
 //   NAP.style.top = 0 + "px";
 //   NAP.style.left = 0 + "px";
@@ -160,8 +150,8 @@ window.addEventListener("scroll", () => {
 //   NCP.style.top = 40 + "px";
 //   NCP.style.left = 0 + "px";
 
-//   titEsq.style.left = -0.03 + "%";
-//   titDir.style.right = -0.03 + "%";
+//   titEsq3.style.left = -0.03 + "%";
+//   titDir3.style.right = -0.03 + "%";
 
 //   window.addEventListener("scroll", () => {
 //     let { scrollY } = window;
@@ -185,10 +175,10 @@ window.addEventListener("scroll", () => {
 //       NCP.style.left = 0 + "px";
 //     } else {
 //       if (scrollY < 300) {
-//         titEsq.style.left = -0.03 * scrollY + "%";
-//         titDir.style.right = -0.03 * scrollY + "%";
-//         // titEsq.style.left = -0.4 * scrollY + "px";
-//         // titDir.style.right = -0.6 * scrollY + "px";
+//         titEsq3.style.left = -0.03 * scrollY + "%";
+//         titDir3.style.right = -0.03 * scrollY + "%";
+//         // titEsq3.style.left = -0.4 * scrollY + "px";
+//         // titDir3.style.right = -0.6 * scrollY + "px";
 
 //         NAP.style.top = aTop * scrollY + "px";
 //         NAP.style.left = aLeft * scrollY + "px";

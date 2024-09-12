@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     devProxy: {
       "/api": {
         target: "http://192.168.0.19/mec",
+        //target: "/api/",
         changeOrigin: true,
         prependPath: true,
       },

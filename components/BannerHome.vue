@@ -5,19 +5,23 @@
     <div class="wrapper">
       <div id="slider">
 
-        <div class="slide">
+        
+
+        <div class="slide flex flex-col items-center justify-center">
           <div class="slide-wrapper">
             <div class="img-wrapper">
               <img src="/img/bg_banner_1.jpg" alt="" />
             </div>
+
             <div
               class="envelopeAnima absolute 
               top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
             >
-              <explosao-mecplus-anima-mecplus />
+            <explosao-primeiro :titulo_esquerdo='titulo_esquerdo1' :titulo_direito='titulo_direito1'/>
+            
             </div>
             <div
-              @click="solucaoDetalhe(4)" 
+              @click="solucaoDetalhe(1)"
               class="seta right-[15%] ztop-[70%] lg:right-[25%] lg:bottom-[15%]"
             >
               <div></div>
@@ -26,6 +30,8 @@
             </div>
           </div>
         </div>
+
+
 
         <div class="slide flex flex-col items-center justify-center">
           <div class="slide-wrapper">
@@ -37,7 +43,7 @@
               class="envelopeAnima absolute 
               top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
             >
-            <explosao-rapid-anima-rapid />
+            <explosao-segundo :titulo_esquerdo='titulo_esquerdo2' :titulo_direito='titulo_direito2'/>
               <!-- <partes-millenium /> -->
             </div>
             <div
@@ -51,20 +57,23 @@
           </div>
         </div>
 
-         <div class="slide">
+
+        <div class="slide flex flex-col items-center justify-center">
           <div class="slide-wrapper">
             <div class="img-wrapper">
               <img src="/img/bg_banner_3.jpg" alt="" />
             </div>
+
             <div
               class="envelopeAnima absolute 
               top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
             >
-            <explosao-petra-anima-petra />
-              
+           
+            <explosao-terceiro :titulo_esquerdo='titulo_esquerdo3' :titulo_direito='titulo_direito3'/>
+              <!-- <partes-millenium /> -->
             </div>
             <div
-              @click="solucaoDetalhe(3)"
+              @click="solucaoDetalhe(1)"
               class="seta right-[15%] ztop-[70%] lg:right-[25%] lg:bottom-[15%]"
             >
               <div></div>
@@ -73,6 +82,9 @@
             </div>
           </div>
         </div>
+
+
+        
 
         <nav id="navigation">
           <div class="bullet"></div>
@@ -101,19 +113,58 @@ async function solucaoDetalhe(linhaID) {
 
 
   await nuxtApp.value.$fb.track("track","Click banner "+ linhaID)
-  console.log(" nuxtApp.$fb");
 
   window.location.assign("/solucoes?linha=" + linhaID);
 }
 
+
+let ANIMACOES = ref([]);
+let ANIMACOES1 = ref([]);
+let ANIMACOES2 = ref([]);
+let ANIMACOES3 = ref([]);
+
+const titulo_esquerdo1 = ref("")
+const titulo_direito1 = ref("")
+const titulo_esquerdo2 = ref("")
+const titulo_direito2 = ref("")
+const titulo_esquerdo3 = ref("")
+const titulo_direito3 = ref("")
+async function getAnimacoes() {
+  let R = await $fetch("/api/formAnima.php", {
+    method: "GET",
+    //    params: queryTagBlog.value,
+  }).then((R) => {
+    let r = JSON.parse(R);
+    console.log(r.dados);
+    if (r.dados.length > 0) {
+      ANIMACOES.value = r.dados;
+      ANIMACOES1.value = r.dados[0];
+      titulo_esquerdo1.value = ANIMACOES1.value.titulo_esquerdo
+      titulo_direito1.value = ANIMACOES1.value.titulo_direito
+      ANIMACOES2.value = r.dados[1];
+      titulo_esquerdo2.value = ANIMACOES2.value.titulo_esquerdo
+      titulo_direito2.value = ANIMACOES2.value.titulo_direito
+      ANIMACOES3.value = r.dados[2];
+      titulo_esquerdo3.value = ANIMACOES3.value.titulo_esquerdo
+      titulo_direito3.value = ANIMACOES3.value.titulo_direito
+    } else {
+      ANIMACOES.value = [];
+    }
+  });
+}
+
+onMounted(()=>{
+  getAnimacoes()
+})
+
 onMounted(() => {
 
-//TSTE FACEBOOK
- nuxtApp.value = useNuxtApp()
-//nuxtApp.value.$fb.enable()
-nuxtApp.value.$fb.init()
-console.log("nuxtApp.$fb",nuxtApp.value.$fb)
-//nuxtApp.$fb('track', 'Purchase', {currency: "USD", value: 30.00});
+  //TSTE FACEBOOK
+  nuxtApp.value = useNuxtApp()
+  //nuxtApp.value.$fb.enable()
+  nuxtApp.value.$fb.init()
+
+  //nuxtApp.$fb('track', 'Purchase', {currency: "USD", value: 30.00});
 
 
 

@@ -31,6 +31,12 @@
           <div NAV="" class="w-full space-y-3">
             <div
               class="h-[40px] w-full cursor-pointer border-1 pl-6 pt-2 hover:bg-slate-500 hover:text-white"
+              @click="ativarForm('FormAnimacoes')"
+            >
+              Animações da Home
+            </div>
+            <div
+              class="h-[40px] w-full cursor-pointer border-1 pl-6 pt-2 hover:bg-slate-500 hover:text-white"
               @click="ativarForm('FormBlog')"
             >
               BLOG - Inclui e edita posts para o blog
@@ -143,6 +149,7 @@
     </div>
 
     <div class="h-screen w-screen">
+      <div v-if="formAtivo == 'FormAnimacoes'"><AdmFormAnimacoes /></div>
       <div v-if="formAtivo == 'FormBlog'"><AdmFormBlog /></div>
       <div v-if="formAtivo == 'FormCat'"><AdmFormCategoriasBlog /></div>
       <div v-if="formAtivo == 'FormTags'"><AdmFormTags /></div>
@@ -186,7 +193,21 @@ function ativarForm(form) {
   formAtivo.value = form;
 }
 
-onMounted(() => {});
+onMounted(() => {
+  let urlParams = new URLSearchParams(window.location.search);
+
+
+  const component = urlParams.get('c')
+ 
+  switch (component) {
+  case 'anima':
+  formAtivo.value = "FormAnimacoes"
+    break;
+  default:
+    return
+}
+
+});
 
 function abrePainel() {
   painelEsquerdo.value = !painelEsquerdo.value;

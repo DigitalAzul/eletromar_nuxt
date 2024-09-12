@@ -13,9 +13,9 @@
   </div>
   <div>
     <VuePreloader
-      background-color="#006038"
+      background-color="#1b3346"
       transition-type="fade-up"
-      color="#72df42"
+      color="#00b1ef"
       :loading-speed="30"
       :transition-speed="600"
       @transition-is-over="loadingIsOver"
@@ -62,7 +62,7 @@ function loadingIsOver() {
   <style scoped>
 #logoMect {
   opacity: 1;
-  background: url("/img/mec_logo_verde_pdr.png");
+  background: url("/img/logo-eletromar.png");
   background-repeat: no-repeat;
   width: 345px;
   height: 90px;
