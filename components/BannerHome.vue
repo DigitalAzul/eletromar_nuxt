@@ -17,7 +17,7 @@
               class="envelopeAnima absolute 
               top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
             >
-            <explosao-primeiro :titulo_esquerdo='titulo_esquerdo1' :titulo_direito='titulo_direito1'/>
+            <explosao-primeiro :titulo_esquerdo='titulo_esquerdo1' :titulo_direito='titulo_direito1' :translateEsq1='translateEsq1' :translateDir1='translateDir1'/>
             
             </div>
             <div
@@ -43,7 +43,7 @@
               class="envelopeAnima absolute 
               top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
             >
-            <explosao-segundo :titulo_esquerdo='titulo_esquerdo2' :titulo_direito='titulo_direito2'/>
+            <explosao-segundo :titulo_esquerdo='titulo_esquerdo2' :titulo_direito='titulo_direito2' :translateEsq='translateEsq2' :translateDir='translateDir2'/>
               <!-- <partes-millenium /> -->
             </div>
             <div
@@ -69,7 +69,7 @@
               top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
             >
            
-            <explosao-terceiro :titulo_esquerdo='titulo_esquerdo3' :titulo_direito='titulo_direito3'/>
+            <explosao-terceiro :titulo_esquerdo='titulo_esquerdo3' :titulo_direito='titulo_direito3' :translateEsq='translateEsq3' :translateDir='translateDir3'/>
               <!-- <partes-millenium /> -->
             </div>
             <div
@@ -124,29 +124,49 @@ let ANIMACOES2 = ref([]);
 let ANIMACOES3 = ref([]);
 
 const titulo_esquerdo1 = ref("")
+const translateEsq1 = ref("")
 const titulo_direito1 = ref("")
+const translateDir1 = ref("")
+
 const titulo_esquerdo2 = ref("")
+const translateEsq2 = ref("")
+const translateDir2 = ref("")
 const titulo_direito2 = ref("")
+
 const titulo_esquerdo3 = ref("")
+const translateEsq3 = ref("")
 const titulo_direito3 = ref("")
+const translateDir3 = ref("")
+
 async function getAnimacoes() {
   let R = await $fetch("/api/formAnima.php", {
     method: "GET",
     //    params: queryTagBlog.value,
   }).then((R) => {
     let r = JSON.parse(R);
-    console.log(r.dados);
+   
     if (r.dados.length > 0) {
       ANIMACOES.value = r.dados;
       ANIMACOES1.value = r.dados[0];
       titulo_esquerdo1.value = ANIMACOES1.value.titulo_esquerdo
       titulo_direito1.value = ANIMACOES1.value.titulo_direito
+      translateEsq1.value = ANIMACOES1.value.translateEsq
+      translateDir1.value = ANIMACOES1.value.translateDir
+
       ANIMACOES2.value = r.dados[1];
       titulo_esquerdo2.value = ANIMACOES2.value.titulo_esquerdo
       titulo_direito2.value = ANIMACOES2.value.titulo_direito
+      translateEsq2.value = ANIMACOES1.value.translateEsq
+      translateDir2.value = ANIMACOES1.value.translateDir
+
       ANIMACOES3.value = r.dados[2];
+ 
       titulo_esquerdo3.value = ANIMACOES3.value.titulo_esquerdo
       titulo_direito3.value = ANIMACOES3.value.titulo_direito
+      translateEsq3.value = ANIMACOES3.value.translateEsq
+      translateDir3.value = ANIMACOES3.value.translateDir
+
+
     } else {
       ANIMACOES.value = [];
     }

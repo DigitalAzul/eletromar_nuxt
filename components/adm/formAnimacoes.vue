@@ -55,7 +55,7 @@
                 type="number"
               />
             </div>
-            <div  class="border p-3">
+            <div class="border p-3">
               <x-input
                 class="w-[90%]"
                 v-model="animForm.titulo_direito"
@@ -142,6 +142,16 @@
                 size="sm"
                 name="nome"
               />
+              <x-input
+                class="w-[70%] pt-2"
+                @keyup="translate_X_Esq()"
+                @change="translate_X_Esq()"
+                v-model="animForm.translateEsq"
+                label="AFASTAMENTO DO CENTRO (Texto Esquerdo)"
+                size="sm"
+                name="translateEsq"
+                type="number"
+              />
             </div>
             <div>
               <x-input
@@ -150,6 +160,16 @@
                 label="TEXTO LADO DIREITO"
                 size="sm"
                 name="nome"
+              />
+              <x-input
+                class="w-[70%] pt-2"
+                @keyup="translate_X_Dir()"
+                @change="translate_X_Dir()"
+                v-model="animForm.translateDir"
+                label="AFASTAMENTO DO CENTRO (Texto Direito)"
+                size="sm"
+                name="translateEsq"
+                type="number"
               />
             </div>
             <div>
@@ -189,22 +209,64 @@
       </div>
     </div>
 
-    <div class="relative flex h-screen w-full flex-col items-center overflow-scroll">
+    <div
+      class="relative flex h-screen w-full flex-col items-center overflow-scroll"
+    >
       <!-- TAB A COLUNA 2A -->
       <div COLUNA="1A" id="rolagem" class="zhidden h-[1200px] p-10">
-        <div class="w-full">
+        <div class="realtive w-full">
           <div
-            class=" flex h-[600px] w-[600px] flex-row items-center justify-center border-2 border-black"
+            class="flex h-[600px] w-[600px] flex-row items-center border-2 border-black"
           >
-          <div
-              id="P-textoEsqID-Form"
-              class="absolute top-[300px] z-[999] text-[40px] font-bold text-black "
+            <!-- ANIMACAO AQUI -->
+            <div
+              class="relative flex h-screen w-screen flex-row items-center justify-center"
             >
-              Dijuntor
+              <div
+              id="P-textoEsqID-Form"
+                class="textoDescricao ztop-[calc(100vh-600px)] zmd:relative zmd:top-0 zhidden zmd:block absolute z-[999] text-black"
+              >
+                {{ animForm.titulo_esquerdo }}
+              </div>
+              <div
+                class="animatedimage flex h-[600px] w-[600px] flex-row items-center justify-center pt-[55px]"
+              >
+                <img
+                  v-show="emEdicao == true"
+                  class="anima-e EDITA"
+                  v-for="(item, index) in 30"
+                  :key="index"
+                  :id="'ani_e' + index"
+                  :src="PATH + animForm.pasta + '\\' + index + '.webp'"
+                />
+
+                <img
+                  v-show="emEdicao == false"
+                  class="anima-b INSERT"
+                  v-for="(item, index) in 30"
+                  :key="index"
+                  :id="'ani_' + index"
+                />
+              </div>
+
+              <!-- ANIMACAO AQUI -->
+              <div
+              id="P-textoDirID-Form"
+                class="textoDescricao z-top-6 zmd:relative zmd:top-0 zmd:block zhidden absolute text-black z-[999]"
+              >
+              {{ animForm.titulo_direito }}
+              </div>
+            </div>
+
+            <!-- <div
+              id="P-textoEsqID-Form"
+              class="textoDescricao absolute top-[300px] z-[999]  text-black"
+            >
+              {{ animForm.titulo_esquerdo }}
             </div>
             <div
               v-if="remounta"
-              class="animatedimage flex h-[600px] w-[600px] rotate-[0deg] flex-row items-center justify-center 2xl:h-[500px] 2xl:w-[500px]"
+              class="animatedimage flex h-[600px] w-[600px]  flex-row items-center justify-center "
             >
               <img
                 v-show="emEdicao == true"
@@ -227,8 +289,8 @@
               id="P-textoDirID-Form"
               class="absolute top-[300px] z-[999] text-[40px] font-bold text-black"
             >
-              JDW
-            </div>
+              {{ animForm.titulo_direito }}
+            </div> -->
           </div>
           <div
             class="flex w-full flex-row items-center justify-start space-x-6 py-4"
@@ -263,7 +325,9 @@
               <th scope="col" class="px-6 py-4">Ordem</th>
               <th scope="col" class="px-6 py-4">Ativo</th>
               <th scope="col" class="px-6 py-4">Titulo Esquesdo</th>
+              <th scope="col" class="px-6 py-4">Tit. Esq. Eixo -X</th>
               <th scope="col" class="px-6 py-4">Titulo Direito</th>
+              <th scope="col" class="px-6 py-4">Tit. Dir. Eixo +X</th>
               <th scope="col" class="px-6 py-4">Pasta <br />media/anima/</th>
               <th scope="col" class="px-6 py-4">Ações</th>
             </tr>
@@ -273,6 +337,7 @@
               class="border-b text-black dark:border-neutral-500"
               v-for="(t, index) in ANIMACOES"
               :key="index"
+              :class="{ 'bg-slate-300': t.id === animFormCopy.id }"
             >
               <td class="whitespace-nowrap px-6 py-4 font-medium text-black">
                 {{ t.id }}
@@ -304,7 +369,13 @@
                 {{ t.titulo_esquerdo }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ t.translateEsq }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
                 {{ t.titulo_direito }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ t.translateDir }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">
                 / {{ t.pasta }}
@@ -350,43 +421,43 @@ let animForm = ref({
   pasta: "",
   titulo_direito: "",
   titulo_esquerdo: "",
-  translateEsq:0,
-  translateDir:0,
+  translateEsq: 0,
+  translateDir: 0,
+  emEdicao: false,
+});
+let animFormCopy = ref({
+  ativo: "",
+  id: "",
+  ordem: "",
+  pasta: "",
+  titulo_direito: "",
+  titulo_esquerdo: "",
+  translateEsq: 0,
+  translateDir: 0,
   emEdicao: false,
 });
 
-
-
 let titEsq1 = "";
 let titDir1 = "";
-const translate_X_Esq = ()=>{
-  console.log(animForm.value.translateEsq);
+const translate_X_Esq = () => {
   titEsq1 = document.getElementById("P-textoEsqID-Form");
- //titDir1 = document.getElementById("P-textoDirID-Form");
- titEsq1.style.transform = `translateX(-${animForm.value.translateEsq}px)`;
+  //titDir1 = document.getElementById("P-textoDirID-Form");
+  titEsq1.style.transform = `translateX(-${animForm.value.translateEsq}px)`;
 
- //titDir1.style.transform = `translateX(${animForm.translateDir.value}px)`;
-}
-const translate_X_Dir = ()=>{
-
+  //titDir1.style.transform = `translateX(${animForm.translateDir.value}px)`;
+};
+const translate_X_Dir = () => {
   titDir1 = document.getElementById("P-textoDirID-Form");
 
- titDir1.style.transform = `translateX(${animForm.value.translateDir}px)`;
-
-}
-
+  titDir1.style.transform = `translateX(${animForm.value.translateDir}px)`;
+};
 
 onMounted(() => {
-
-//  titEsq1 = document.getElementById("P-textoEsqID-Form");
-//  titDir1 = document.getElementById("P-textoDirID-Form");
-
-
-//  titEsq1.style.transform = `translateX(-${animForm.translateEsq.value}px)`;
-
-//  titDir1.style.transform = `translateX(${animForm.translateDir.value}px)`;
-})
-
+  //  titEsq1 = document.getElementById("P-textoEsqID-Form");
+  //  titDir1 = document.getElementById("P-textoDirID-Form");
+  //  titEsq1.style.transform = `translateX(-${animForm.translateEsq.value}px)`;
+  //  titDir1.style.transform = `translateX(${animForm.translateDir.value}px)`;
+});
 
 let queryNews = ref({
   q: "",
@@ -412,6 +483,9 @@ function editaAnima(a) {
   console.log(a);
   emEdicao.value = true;
   animForm.value = { ...a, emEdicao: true };
+  animFormCopy.value = { ...a };
+  translate_X_Esq();
+  translate_X_Dir();
   //ANIMACOES_SEL.value = { ...a }; // estava assim
   //tagsForm.value.emEdicao = true;
 }
@@ -562,8 +636,6 @@ function play() {
   }, 35);
 }
 
-
-
 function validaAnimaPosition() {
   let ativo1 = 0;
   let ativo2 = 0;
@@ -583,17 +655,19 @@ function validaAnimaPosition() {
   });
   console.log(animForm.value.ordem, ativo1, ativo2, ativo3);
 
-  if (ativo1 > 0 && animForm.value.ordem == 1) {
-    alert("Destaive uma animação na posição  ' 1 ' para inserir outra");
-    return false;
-  }
-  if (ativo2 > 0 && animForm.value.ordem == 2) {
-    alert("Destaive uma animação na posição  ' 2 ' para inserir outra");
-    return false;
-  }
-  if (ativo3 > 0 && animForm.value.ordem == 3) {
-    alert("Destaive uma animação na posição  ' 3 ' para inserir outra");
-    return false;
+  if (animForm.value.ordem != animFormCopy.value.ordem) {
+    if (ativo1 > 0 && animForm.value.ordem == 1) {
+      alert("Destaive uma animação na posição  ' 1 ' para inserir outra");
+      return false;
+    }
+    if (ativo2 > 0 && animForm.value.ordem == 2) {
+      alert("Destaive uma animação na posição  ' 2 ' para inserir outra");
+      return false;
+    }
+    if (ativo3 > 0 && animForm.value.ordem == 3) {
+      alert("Destaive uma animação na posição  ' 3 ' para inserir outra");
+      return false;
+    }
   }
 
   return true;
@@ -628,7 +702,9 @@ async function submitFormData() {
   }
 
   formDataAnima.append("titulo_esquerdo", animForm.value.titulo_esquerdo);
+  formDataAnima.append("translateEsq", animForm.value.translateEsq);
   formDataAnima.append("titulo_direito", animForm.value.titulo_direito);
+  formDataAnima.append("translateDir", animForm.value.translateDir);
   formDataAnima.append("ativo", animForm.value.ativo);
   if (animForm.value.ativo == 2) {
     formDataAnima.append("ordem", "9");
@@ -737,6 +813,8 @@ function resetFormTag() {
     pasta: "",
     titulo_direito: "",
     titulo_esquerdo: "",
+    translateEsq: 0,
+    translateDir: 0,
     emEdicao: false,
   };
   emEdicao.value = false;
@@ -760,7 +838,30 @@ function overLay() {
 
 
 <style scoped>
-animatedimage {
+@media screen and (max-width: 1000px) {
+  .textoDescricao {
+    font-size: 30pt;
+  }
+}
+
+.textoDescricao {
+  --font-size: 40pt;
+  letter-spacing: 1rem;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 1000px) {
+  .textoDescricao {
+    font-size: 30pt;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .textoDescricao {
+    font-size: 40pt;
+  }
+}
+
+.animatedimage {
   position: relative;
   display: inline-block;
   line-height: 0;
