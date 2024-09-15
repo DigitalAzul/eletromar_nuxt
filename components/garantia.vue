@@ -14,7 +14,7 @@
     </div>
 
     <div
-      class="bg_garantia relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#006038]"
+      class="bg_garantia relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#1b3346]"
     >
       <div
         id="txGarantiaID"
@@ -23,13 +23,13 @@
         {{ $t("termosgarantia") }}
       </div>
     </div>
-    <div class="bg-[#006038] pb-[60px]">
+    <div class="bg-[#1b3346] pb-[60px]">
       <div
         id="garantiaTitID"
         class="space-y-4 overflow-hidden pt-[230px] text-center"
       >
         <div class="H1Garantia">
-          <span class="text-3xl uppercase text-[#72df42]">{{
+          <span class="text-3xl uppercase text-[#00b1ef]">{{
             $t("saibamais")
           }}</span>
         </div>
@@ -73,11 +73,11 @@
           <div
             class="relative -left-[45px] flex min-h-[100px] w-auto flex-row items-center justify-center pt-20 text-start"
           >
-            <div class="pdf flex min-h-[140px] min-w-[130px]"></div>
+            <div class="pdf flex min-h-[80px] min-w-[80px] mt-6"></div>
             <div class="min-h-[140px] w-full pt-2">
               <p
                 id="baixar"
-                class="w-2 cursor-pointer pt-8 font-medium text-[#70dc40] sm:text-xl lg:text-2xl"
+                class="w-2 cursor-pointer pt-8 font-medium text-[#00b1ef] sm:text-xl lg:text-2xl"
               >
                 <a
                   v-if="Object.keys(garantia).length > 0"
@@ -290,10 +290,10 @@ body * {
   bottom: 0;
   width: 3px;
   height: 220px;
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 .pdf {
-  background-color: #006038;
+  background-color: #1b3346;
   background-image: url("/img/pdfOver.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -316,6 +316,6 @@ body * {
 .drawLineInnerContGaran {
   width: 2px;
   height: 100%;
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 </style>

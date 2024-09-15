@@ -13,7 +13,7 @@
       ></div>
     </div>
     <div
-      class="bg_politica relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#006038]"
+      class="bg_politica relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#1b3346]"
     >
       <div
         id="txPoliticaID"
@@ -22,13 +22,13 @@
         {{ $t("politicaqualidade") }}
       </div>
     </div>
-    <div class="bg-[#006038] pb-[60px]">
+    <div class="bg-[#1b3346] pb-[60px]">
       <div
         id="politicaTitID"
         class="space-y-4 overflow-hidden pt-[230px] text-center"
       >
         <div class="H1Politica">
-          <span class="text-3xl uppercase text-[#72df42]">{{
+          <span class="text-3xl uppercase text-[#00b1ef]">{{
             $t("saibamais")
           }}</span>
         </div>
@@ -62,7 +62,7 @@
             <div v-for="(g, index) in itemPolitica" :key="index">
               <div class="flex flex-row items-start justify-start space-x-3">
                 <div
-                  class="relative top-4 min-h-[18px] min-w-[18px] rounded-full bg-[#70dc40]"
+                  class="relative top-4 min-h-[18px] min-w-[18px] rounded-full bg-[#00b1ef]"
                 ></div>
                 <p>{{ g.texto }}</p>
               </div>
@@ -71,11 +71,11 @@
           <div
             class="relative -left-[45px] flex min-h-[100px] w-auto flex-row items-center justify-center pt-20 text-start"
           >
-            <div class="pdf flex min-h-[140px] min-w-[130px]"></div>
+            <div class="pdf flex min-h-[80px] min-w-[80px] mt-6"></div>
             <div class="min-h-[140px] w-full pt-2">
               <p
                 id="baixar"
-                class="w-2 cursor-pointer pt-8 font-medium text-[#70dc40] sm:text-xl lg:text-2xl"
+                class="w-2 cursor-pointer pt-8 font-medium text-[#00b1ef] sm:text-xl lg:text-2xl"
               >
                 <a
                   v-if="Object.keys(politica).length > 0"
@@ -291,7 +291,7 @@ body * {
   background-color: #70df3f;
 }
 .pdf {
-  background-color: #006038;
+  background-color: #1b3346;
   background-image: url("/img/pdfOver.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -314,6 +314,6 @@ body * {
 .drawLineInnerContPol {
   width: 2px;
   height: 100%;
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 </style>

@@ -14,7 +14,7 @@
     </div>
 
     <div
-      class="bg_faq relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#006038]"
+      class="bg_faq relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#1b3346]"
     >
       <div
         id="txfaqID"
@@ -23,13 +23,13 @@
         FAQ
       </div>
     </div>
-    <div class="bg-[#006038] pb-[60px]">
+    <div class="bg-[#1b3346] pb-[60px]">
       <div
         id="faqTitID"
         class="space-y-4 overflow-hidden pt-[230px] text-center"
       >
         <div class="H1faq">
-          <span class="text-3xl text-[#72df42]">{{ $t("saibamais") }}</span>
+          <span class="text-3xl text-[#00b1ef]">{{ $t("saibamais") }}</span>
         </div>
         <div class="H2faq">
           <span class="text-4xl font-bold uppercase text-white">{{
@@ -64,7 +64,7 @@
               <div v-for="(g, index) in itemFaq" :key="index">
                 <div class="flex flex-row items-start justify-start space-x-3">
                   <div
-                    class="relative top-4 min-h-[18px] min-w-[18px] rounded-full bg-[#70dc40]"
+                    class="relative top-4 min-h-[18px] min-w-[18px] rounded-full bg-[#00b1ef]"
                   ></div>
                   <p>{{ g.texto }}</p>
                 </div>
@@ -74,11 +74,11 @@
           <div
             class="relative -left-[45px] flex min-h-[100px] w-auto flex-row items-center justify-center pt-20 text-start"
           >
-            <div class="pdf flex min-h-[140px] min-w-[130px]"></div>
+            <div class="pdf flex min-h-[80px] min-w-[80px] mt-6"></div>
             <div class="min-h-[140px] w-full pt-2">
               <p
                 id="baixar"
-                class="w-2 cursor-pointer pt-8 font-medium text-[#70dc40] sm:text-xl lg:text-2xl"
+                class="w-2 cursor-pointer pt-8 font-medium text-[#00b1ef] sm:text-xl lg:text-2xl"
               >
                 <a
                   v-if="Object.keys(faq).length > 0"
@@ -287,10 +287,10 @@ body * {
   bottom: 0;
   width: 3px;
   height: 220px;
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 .pdf {
-  background-color: #006038;
+  background-color: #1b3346;
   background-image: url("/img/pdfOver.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -312,6 +312,6 @@ body * {
 .drawLineInnerContFaq {
   width: 2px;
   height: 100%;
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 </style>

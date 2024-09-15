@@ -14,7 +14,7 @@
     </div>
 
     <div
-      class="bg_pSociais relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#006038]"
+      class="bg_pSociais relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#1b3346]"
     >
       <div
         id="txSocialID"
@@ -23,13 +23,13 @@
         {{ $t("programassociais") }}
       </div>
     </div>
-    <div class="bg-[#006038] pb-[60px]">
+    <div class="bg-[#1b3346] pb-[60px]">
       <div
         id="socialTitID"
         class="space-y-4 overflow-hidden pt-[230px] text-center"
       >
         <div class="H1Social">
-          <span class="text-3xl uppercase text-[#72df42]">{{
+          <span class="text-3xl uppercase text-[#00b1ef]">{{
             $t("saibamais")
           }}</span>
         </div>
@@ -66,7 +66,7 @@
               <div v-for="(g, index) in itempSocial" :key="index">
                 <div class="flex flex-row items-start justify-start space-x-3">
                   <div
-                    class="relative top-4 min-h-[18px] min-w-[18px] rounded-full bg-[#70dc40]"
+                    class="relative top-4 min-h-[18px] min-w-[18px] rounded-full bg-[#00b1ef]"
                   ></div>
                   <p>{{ g.texto }}</p>
                 </div>
@@ -80,7 +80,7 @@
             <div class="min-h-[140px] w-full pt-2">
               <p
                 id="baixar"
-                class="w-2 cursor-pointer pt-8 font-medium text-[#70dc40] sm:text-xl lg:text-2xl"
+                class="w-2 cursor-pointer pt-8 font-medium text-[#00b1ef] sm:text-xl lg:text-2xl"
               >
                 <a
                   v-if="Object.keys(psocial).length > 0"
@@ -282,7 +282,7 @@ body * {
 }
 
 .pdf {
-  background-color: #006038;
+  background-color: #1b3346;
   background-image: url("/img/pdfOver.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -304,6 +304,6 @@ body * {
 .drawLineInnerContSoc {
   width: 2px;
   height: 100%;
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 </style>

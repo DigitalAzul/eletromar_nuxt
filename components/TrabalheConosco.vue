@@ -13,7 +13,7 @@
       ></div>
     </div>
     <div
-      class="bg_trabalheConosco relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#006038]"
+      class="bg_trabalheConosco relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#1b3346]"
     >
       <div
         id="txTrabalheID"
@@ -22,9 +22,9 @@
         {{ $t("trabalheconosco") }}
       </div>
     </div>
-    <div class="bg-[#006038] py-[60px]">
+    <div class="bg-[#1b3346] py-[60px]">
       <div class="space-y-4 pt-[130px] text-center">
-        <p class="text-3xl uppercase text-[#70df3f]">
+        <p class="text-3xl uppercase text-[#00b1ef]">
           {{ $t("enviesuamensagem") }}
         </p>
         <p class="text-4xl font-bold uppercase text-white">
@@ -41,7 +41,7 @@
               class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
             >
               <div
-                class="sublnCont absolute mr-8 w-full border-b border-[#70df3f]"
+                class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef]"
               >
                 <input
                   class="h-10 w-full bg-transparent"
@@ -56,7 +56,7 @@
               class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
             >
               <div
-                class="sublnCont absolute mr-8 w-full border-b border-[#70df3f]"
+                class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef]"
               >
                 <input
                   class="h-10 w-full bg-transparent"
@@ -73,7 +73,7 @@
                 class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
               >
                 <div
-                  class="sublnCont absolute mr-8 w-full border-b border-[#70df3f] py-4"
+                  class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
                 >
                   <div class="selectdiv h-[10px] w-full">
                     <select class="w-full" @change="setSelect($event, 'setor')">
@@ -104,7 +104,7 @@
                 class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
               >
                 <div
-                  class="sublnCont absolute mr-8 w-full border-b border-[#70df3f] py-4"
+                  class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
                 >
                   <div class="selectdiv h-[10px] w-full">
                     <select class="w-full" @change="setSelect($event, 'uf')">
@@ -132,7 +132,7 @@
                 class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
               >
                 <div
-                  class="sublnCont absolute mr-8 w-full border-b border-[#70df3f]"
+                  class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef]"
                 >
                   <input
                     class="h-10 w-full bg-transparent"
@@ -144,7 +144,7 @@
               </div>
               <!--Colocar para aceitar documentos no Anexar curriculo-->
               <div
-                class="lnCont justify-around' relative flex h-16 w-full flex-row overflow-hidden border-b border-[#70df3f] py-10 pb-11"
+                class="lnCont justify-around' relative flex h-16 w-full flex-row overflow-hidden border-b border-[#00b1ef] py-10 pb-11"
               >
                 <label
                   for="curriculoID"
@@ -171,7 +171,7 @@
             >
               <div class="sublnCont absolute mr-8 w-full">
                 <div
-                  class="my-10 flex h-[210px] w-full flex-row border border-[#70df3f]"
+                  class="my-10 flex h-[210px] w-full flex-row border border-[#00b1ef]"
                 >
                   <textarea
                     name=""
@@ -179,7 +179,7 @@
                     cols="30"
                     rows="10"
                     :placeholder="$t('seucomentario')"
-                    class="h-48 w-full border-none border-[#70df3f] bg-transparent p-4 text-white"
+                    class="h-48 w-full border-none border-[#00b1ef] bg-transparent p-4 text-white"
                     v-model="formTrabalheConosco.comentario"
                   ></textarea>
                 </div>
@@ -209,10 +209,10 @@
                       {{ contato.fone2 }}
                     </p>
                     <p class="relative -top-4 hidden md:block">
-                      <ph-whatsapp-logo :size="52" class="text-[#70df3f]" />
+                      <ph-whatsapp-logo :size="52" class="text-[#00b1ef]" />
                     </p>
                     <p class="relative -top-2 block md:hidden">
-                      <ph-whatsapp-logo :size="32" class="text-[#70df3f]" />
+                      <ph-whatsapp-logo :size="32" class="text-[#00b1ef]" />
                     </p>
                   </div>
                 </div>
@@ -647,7 +647,7 @@ textarea::placeholder {
   cursor: pointer;
   height: 0px;
   width: 0px;
-  border: 1px solid #70df3f;
+  border: 1px solid #00b1ef;
   background-color: transparent;
   border-radius: 5px;
 }
@@ -660,7 +660,7 @@ textarea::placeholder {
   height: 16px;
   width: 16px;
   background-color: transparent;
-  border: 1px solid #70df3f;
+  border: 1px solid #00b1ef;
   background-color: transparent;
   border-radius: 4px;
 }
@@ -699,7 +699,7 @@ textarea::placeholder {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
+/* 
 #setaNewsMais {
   position: relative;
   left: 120px;
@@ -742,7 +742,7 @@ textarea::placeholder {
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
   color: #fff;
-}
+} */
 
 .drawLineContTrab {
   z-index: 9999;
@@ -757,7 +757,7 @@ textarea::placeholder {
 .drawLineInnerContTrab {
   width: 2px;
   height: 100%;
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 
 .selectdiv {
@@ -784,7 +784,7 @@ select::-ms-expand {
 .selectdiv select {
   border: none;
   width: 100%;
-  background: #006038;
+  background: #1b3346;
   margin: 0 0 5px 0;
   outline: none;
   -webkit-appearance: none;
@@ -881,13 +881,13 @@ select::-ms-expand {
   transform: translateY(-5px);
 }
 .SETANEWS:hover div:nth-child(1) {
-  color: #70df3f;
+  color: #00b1ef;
 }
 .SETANEWS:hover #seta > div:nth-child(1) {
-  box-shadow: 2px -2px 0 0px #70df3f inset;
+  box-shadow: 2px -2px 0 0px #00b1ef inset;
 }
 .SETANEWS:hover #seta > div:nth-child(2) {
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 #seta {
   position: relative;
