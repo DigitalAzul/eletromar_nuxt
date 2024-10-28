@@ -796,17 +796,17 @@
                   <td
                     class="border-b border-slate-100 p-4 pr-8  dark:border-slate-700 dark:text-slate-400 break-words max-w-[300px]"
                   >
+                  <p >{{s[7]}}</p>
+                  </td>
+                  <td
+                    class="border-b border-slate-100 p-4 pr-8  dark:border-slate-700 dark:text-slate-400 break-words max-w-[300px]"
+                  >
                   <p >{{s[8]}}</p>
                   </td>
                   <td
                     class="border-b border-slate-100 p-4 pr-8  dark:border-slate-700 dark:text-slate-400 break-words max-w-[300px]"
                   >
                   <p >{{s[9]}}</p>
-                  </td>
-                  <td
-                    class="border-b border-slate-100 p-4 pr-8  dark:border-slate-700 dark:text-slate-400 break-words max-w-[300px]"
-                  >
-                  <p >{{s[10]}}</p>
                   </td>
                 </tr>
               </tbody>
@@ -1202,6 +1202,7 @@ async function formRequestCsv(exe) {
       formCsvValido.value = false;
     }else{
       solucaoCsv.value = formataDescicao(r.dados);
+      console.log(solucaoCsv.value);
     }
   });
 }

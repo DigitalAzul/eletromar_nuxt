@@ -216,11 +216,11 @@
       <div COLUNA="1A" id="rolagem" class="zhidden h-[1200px] p-10">
         <div class="realtive w-full">
           <div
-            class="flex h-[600px] w-[600px] flex-row items-center border-2 border-black"
+            class="relative flex h-[600px] w-[600px] flex-row items-center border-2 border-black"
           >
             <!-- ANIMACAO AQUI -->
             <div
-              class="relative flex h-screen w-screen flex-row items-center justify-center"
+              class="relative flex h-screen w-screen flex-row items-center justify-center z-10"
             >
               <div
               id="P-textoEsqID-Form"
@@ -293,7 +293,7 @@
             </div> -->
           </div>
           <div
-            class="flex w-full flex-row items-center justify-start space-x-6 py-4"
+            class="absolute flex w-full flex-row items-center justify-start space-x-6 py-4 z-50"
           >
             <div
               :class="{ 'pointer-events-none select-none opacity-30': playing }"
@@ -313,7 +313,7 @@
       </div>
       <!-- TAB A COLUNA 3A -->
 
-      <div class="h-screen w-full border-2 border-l-2 p-4">
+      <div class="h-screen w-full border-2 border-l-2 p-4 mt-10">
         <div class="p-4 text-center text-3xl">ANIMAÇÕES CADASTRADAS</div>
         <table class="w-full border text-left text-sm font-light">
           <thead
@@ -608,6 +608,7 @@ function play() {
     SEQ = seq;
   }
   stop();
+
   playing.value = true;
   anime2 = setInterval(() => {
     SEQ.forEach((el) => {
