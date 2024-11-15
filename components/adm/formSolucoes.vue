@@ -22,7 +22,7 @@
                 <div>
                   <x-input
                     v-model="solucoesForm.titulo_en"
-                    label="Título:"
+                    label="Título EN:"
                     size="sm"
                     name="titulo"
                     block
@@ -31,7 +31,7 @@
                 <div>
                   <x-input
                     v-model="solucoesForm.titulo_es"
-                    label="Título:"
+                    label="Título ES:"
                     size="sm"
                     name="titulo"
                     block
@@ -128,7 +128,11 @@
                       </p>
                     </div>
                   </div>
-                  <div>
+
+                  <!-- RETIRADO 30 10 2024 -->
+                  <div
+                  v-if="false"
+                  >
                     <span>Video destaque</span>
                     <div
                       class="flex flex-row items-center justify-between space-x-2"
@@ -150,6 +154,8 @@
                       </p>
                     </div>
                   </div>
+
+
                   <div class="p-4 bg-slate-400">
                     <span class="font-semibold">Arquivo DWG</span>
                     <div
@@ -365,7 +371,11 @@
                       </p>
                     </div>
                   </div>
-                  <div>
+
+                  <!-- RETIRADO EM 30 10 2024 -->
+                  <div
+                  v-if="false"
+                  >
                     <span>Video MP4</span>
                     <div
                       class="flex flex-row items-center justify-between space-x-2"
@@ -381,6 +391,8 @@
                       <!-- <p @click="resetProdFORMEdita(3)" class="text-3xl cursor-pointer hover:text-red-400">X</p> -->
                     </div>
                   </div>
+
+
                   <div class="p-4 bg-slate-400">
                     <span class="font-semibold">Arquivo DWG ed</span>
                     <div
@@ -540,7 +552,11 @@
             <img id="imagem-3" class="object-fill" />
           </div>
         </div>
-        <div>
+
+        <!-- RETIRADO 30 10 2024 -->
+        <div
+        v-if="false"
+        >
           <div
             class="flex h-[640px] w-full flex-row items-center justify-center overflow-hidden bg-[#004425] lg:w-[460px]"
           >
@@ -554,6 +570,8 @@
             ></video>
           </div>
         </div>
+
+
       </div>
     </div>
 
@@ -950,12 +968,16 @@ function apendFileEdit() {
     arqData = arq.files[0];
     formSoluImgsEdita.append("2", arqData);
   }
-  arq = null;
-  arq = document.getElementById("videoTag-1b");
-  if (arq.files[0]) {
-    arqData = arq.files[0];
-    formSoluImgsEdita.append("3", arqData);
-  }
+
+  // **** RETIRADO EM 30 10 2024
+  // arq = null;
+  // arq = document.getElementById("videoTag-1b");
+  // if (arq.files[0]) {
+  //   arqData = arq.files[0];
+  //   formSoluImgsEdita.append("3", arqData);
+  // }
+
+
   arq = null;
   arq = document.getElementById("dwgTag-1b");
   if (arq.files[0]) {
@@ -1011,12 +1033,14 @@ function apendFile() {
     arqData = arq.files[0];
     formSoluImgs.append("2", arqData);
   }
-  arq = null;
-  arq = document.getElementById("videoTag");
-  if (arq.files[0]) {
-    arqData = arq.files[0];
-    formSoluImgs.append("3", arqData);
-  }
+
+  // **** RETIRADO EM 30 10 2024
+  //arq = null;
+  //arq = document.getElementById("videoTag");
+  //if (arq.files[0]) {
+  //  arqData = arq.files[0];
+  //  formSoluImgs.append("3", arqData);
+  //}
 
   //ADD FORM JSON
   formSoluImgs.append("json", JSON.stringify(solucoesForm.value));
@@ -1062,6 +1086,10 @@ function resetProdFORM(input) {
 
         document.getElementById("video").src = "";
         document.getElementById("videoTag").value = "";
+        document.getElementById("dwgTag-1").src = "";
+        document.getElementById("dwgTag-1").value = "";
+        document.getElementById("dwgTag-1b").src = "";
+        document.getElementById("dwgTag-1b").value = "";
         break;
         case 6:
         document.getElementById("dwgTag-1").value = "";
@@ -1107,10 +1135,11 @@ function resetProdFORMEdita(input) {
         document.getElementById("imagem-3b").src = "";
         document.getElementById("imagemTag-3b").value = "";
 
-        document.getElementById("imagemTag-1b").src = "";
-        document.getElementById("imagem-1b").value = "";
+       // document.getElementById("imagemTag-1b").src = "";
+       // document.getElementById("imagem-1b").value = "";
 
         document.getElementById("dwgTag-1").value = "";
+        document.getElementById("dwgTag-1b").value = "";
 
         getSolucoes();
         break;

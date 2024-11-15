@@ -58,7 +58,9 @@
             </div>
           </div>
           <!--Seletor de linhas Desk-->
-          <div v-if="!MOBILE">
+          <div v-if="!MOBILE"
+          class="scrollRep h-[1000px]"
+          >
             <div
               class="border-b-[1px] border-t-[1px] border-transparent py-3 pl-6 text-lg font-bold uppercase text-white hover:border-b-[1px] hover:border-t-[1px] hover:border-[#00b1ef] hover:text-[#00b1ef]"
               v-for="(linha, index) in menuLinhas"
@@ -249,7 +251,7 @@ components: {
 const route = useRoute();
 const router = useRouter();
 
-const rota_linha_id = ref(route.query.linha ? route.query.linha : "");
+const rota_linha_id = ref(route.query.linha ? route.query.linha : "1");
 
 let lang = ref("pt");
 const { t, locale } = useI18n();
@@ -311,7 +313,9 @@ function getSolucoesLinhas() {
     params: q,
   }).then((R) => {
     menuLinhas.value = JSON.parse(R);
+    console.log('menuLinhas.value', menuLinhas.value[0].link);
     setPathLinhaCorrente(rota_linha_id.value);
+    setPathLinhaCorrente(rota_linha_id.value ? rota_linha_id.value : menuLinhas.value[0].link );
   });
 }
 
@@ -632,7 +636,7 @@ body * {
   bottom: 0;
   left: 0;
   text-align: left;
-  background-color: #24462b;
+  background-color: #00b1ef;
   transition: opacity 0.5s ease;
   width: 100vw;
   height: 100vh;
@@ -714,6 +718,21 @@ body * {
     height: 10%;
     box-sizing: border-box;
   }
+}
+
+
+.scrollRep {
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+  align-items: center;
+}
+::-webkit-scrollbar-thumb {
+  background: #66ccff;
+  border-radius: 20px;
 }
 </style>
   

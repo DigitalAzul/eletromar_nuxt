@@ -210,7 +210,11 @@ onMounted(() => {
 });
 
 function abrePainel() {
-  painelEsquerdo.value = !painelEsquerdo.value;
+  if(painelEsquerdo.value == true){
+    painelEsquerdo.value = false ;
+  }else{
+    painelEsquerdo.value = true ;
+  }
 }
 </script>
   
