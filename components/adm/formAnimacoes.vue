@@ -76,6 +76,15 @@
             </div>
             <div>
               <x-select
+                v-model="animForm.linha_id"
+                label="categoria"
+                :options="solucaoLinhasOPT"
+                placeholder="categoria"
+                class="w-full"
+              />
+            </div>
+            <div>
+              <x-select
                 size="sm"
                 v-model="animForm.ativo"
                 label="Ativar/Desativar"
@@ -174,6 +183,15 @@
             </div>
             <div>
               <x-select
+                v-model="animForm.linha_id"
+                label="categoria"
+                :options="solucaoLinhasOPT"
+                placeholder="categoria"
+                class="w-full"
+              />
+            </div>
+            <div>
+              <x-select
                 size="sm"
                 v-model="animForm.ativo"
                 label="Ativar/Desativar"
@@ -220,10 +238,10 @@
           >
             <!-- ANIMACAO AQUI -->
             <div
-              class="relative flex h-screen w-screen flex-row items-center justify-center z-10"
+              class="relative z-10 flex h-screen w-screen flex-row items-center justify-center"
             >
               <div
-              id="P-textoEsqID-Form"
+                id="P-textoEsqID-Form"
                 class="textoDescricao ztop-[calc(100vh-600px)] zmd:relative zmd:top-0 zhidden zmd:block absolute z-[999] text-black"
               >
                 {{ animForm.titulo_esquerdo }}
@@ -251,10 +269,10 @@
 
               <!-- ANIMACAO AQUI -->
               <div
-              id="P-textoDirID-Form"
-                class="textoDescricao z-top-6 zmd:relative zmd:top-0 zmd:block zhidden absolute text-black z-[999]"
+                id="P-textoDirID-Form"
+                class="textoDescricao z-top-6 zmd:relative zmd:top-0 zmd:block zhidden absolute z-[999] text-black"
               >
-              {{ animForm.titulo_direito }}
+                {{ animForm.titulo_direito }}
               </div>
             </div>
 
@@ -293,7 +311,7 @@
             </div> -->
           </div>
           <div
-            class="absolute flex w-full flex-row items-center justify-start space-x-6 py-4 z-50"
+            class="absolute z-50 flex w-full flex-row items-center justify-start space-x-6 py-4"
           >
             <div
               :class="{ 'pointer-events-none select-none opacity-30': playing }"
@@ -313,7 +331,7 @@
       </div>
       <!-- TAB A COLUNA 3A -->
 
-      <div class="h-screen w-full border-2 border-l-2 p-4 mt-10">
+      <div class="mt-10 h-screen w-full border-2 border-l-2 p-4">
         <div class="p-4 text-center text-3xl">ANIMAÇÕES CADASTRADAS</div>
         <table class="w-full border text-left text-sm font-light">
           <thead
@@ -324,6 +342,7 @@
               <th scope="col" class="px-6 py-4">Imagem</th>
               <th scope="col" class="px-6 py-4">Ordem</th>
               <th scope="col" class="px-6 py-4">Ativo</th>
+              <th scope="col" class="px-6 py-4">Categoria</th>
               <th scope="col" class="px-6 py-4">Titulo Esquesdo</th>
               <th scope="col" class="px-6 py-4">Tit. Esq. Eixo -X</th>
               <th scope="col" class="px-6 py-4">Titulo Direito</th>
@@ -366,6 +385,9 @@
                 {{ t.ativo == 1 ? "SIM" : "NÃO" }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ t.categoria }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
                 {{ t.titulo_esquerdo }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">
@@ -393,8 +415,8 @@
     </div>
   </div>
 </template>
-  
-  <script setup>
+
+<script setup>
 import { computed } from "vue";
 import {
   createUI,
@@ -424,6 +446,7 @@ let animForm = ref({
   translateEsq: 0,
   translateDir: 0,
   emEdicao: false,
+  linha_id: 0,
 });
 let animFormCopy = ref({
   ativo: "",
@@ -480,7 +503,7 @@ const ORDEM = ref([
 ]);
 
 function editaAnima(a) {
-  console.log(a);
+  console.log('edicao',a);
   emEdicao.value = true;
   animForm.value = { ...a, emEdicao: true };
   animFormCopy.value = { ...a };
@@ -552,6 +575,7 @@ function CompAnimaListener() {
 onMounted(() => {
   // GET ANIMACOES
   getAnimacoes();
+  getLinhas();
 
   // animacoes
   seq = document.querySelectorAll(".anima-b");
@@ -682,8 +706,8 @@ async function submitFormData() {
 
   // VALIDA LENGTH TEXTOS
   if (
-    animForm.value.titulo_esquerdo.length < 5 &&
-    animForm.value.titulo_direito.length < 5
+    animForm.value.titulo_esquerdo.length < 3 &&
+    animForm.value.titulo_direito.length < 3
   ) {
     alert("Textos devem ser maiore que 5 caracteres");
     return;
@@ -707,6 +731,7 @@ async function submitFormData() {
   formDataAnima.append("titulo_direito", animForm.value.titulo_direito);
   formDataAnima.append("translateDir", animForm.value.translateDir);
   formDataAnima.append("ativo", animForm.value.ativo);
+  formDataAnima.append("linha_id", animForm.value.linha_id);
   if (animForm.value.ativo == 2) {
     formDataAnima.append("ordem", "9");
   } else {
@@ -790,6 +815,28 @@ async function getAnimacoes() {
   });
 }
 
+let q = {
+  ativo: "s", // s | n | t
+};
+const solucaoLinhasOPT = ref([]);
+async function getLinhas() {
+  let L = await $fetch("/api/formSolucaoLinhas.php", {
+    method: "GET",
+    params: q,
+  }).then((L) => {
+    let soluTMP = [];
+    if (JSON.parse(L).length > 0) {
+      let LI = JSON.parse(L);
+
+      LI.forEach((L) => {
+        soluTMP.push({ value: L.id, label: L.titulo });
+      });
+    } else {
+      alert("Não há Linhas cadastrados !");
+    }
+    solucaoLinhasOPT.value = soluTMP;
+  });
+}
 async function formRequestAnima() {
   let formdDataTags = new FormData();
   formdDataTags.append("json", JSON.stringify(tagsForm.value));
@@ -833,10 +880,6 @@ function overLay() {
   element.classList.toggle("overLayClass");
 }
 </script>
-  
-
-
-
 
 <style scoped>
 @media screen and (max-width: 1000px) {

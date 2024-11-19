@@ -21,7 +21,7 @@
             
             </div>
             <div
-              @click="solucaoDetalhe(1)"
+              @click="solucaoDetalhe(linha_id1)"
               class="seta right-[15%] ztop-[70%] lg:right-[25%] lg:bottom-[15%]"
             >
               <div></div>
@@ -47,7 +47,7 @@
               <!-- <partes-millenium /> -->
             </div>
             <div
-              @click="solucaoDetalhe(1)"
+              @click="solucaoDetalhe(linha_id2)"
               class="seta right-[15%] ztop-[70%] lg:right-[25%] lg:bottom-[15%]"
             >
               <div></div>
@@ -73,7 +73,7 @@
               <!-- <partes-millenium /> -->
             </div>
             <div
-              @click="solucaoDetalhe(1)"
+              @click="solucaoDetalhe(linha_id3)"
               class="seta right-[15%] ztop-[70%] lg:right-[25%] lg:bottom-[15%]"
             >
               <div></div>
@@ -127,16 +127,19 @@ const titulo_esquerdo1 = ref("")
 const translateEsq1 = ref("")
 const titulo_direito1 = ref("")
 const translateDir1 = ref("")
+const linha_id1 = ref("")
 
 const titulo_esquerdo2 = ref("")
 const translateEsq2 = ref("")
 const translateDir2 = ref("")
 const titulo_direito2 = ref("")
+const linha_id2 = ref("")
 
 const titulo_esquerdo3 = ref("")
 const translateEsq3 = ref("")
 const titulo_direito3 = ref("")
 const translateDir3 = ref("")
+const linha_id3 = ref("")
 
 async function getAnimacoes() {
   let R = await $fetch("/api/formAnima.php", {
@@ -144,7 +147,7 @@ async function getAnimacoes() {
     //    params: queryTagBlog.value,
   }).then((R) => {
     let r = JSON.parse(R);
-   
+   console.log("DSFDSFDSFDFDFDSFSDD",r);
     if (r.dados.length > 0) {
       ANIMACOES.value = r.dados;
       ANIMACOES1.value = r.dados[0];
@@ -152,12 +155,14 @@ async function getAnimacoes() {
       titulo_direito1.value = ANIMACOES1.value.titulo_direito
       translateEsq1.value = ANIMACOES1.value.translateEsq
       translateDir1.value = ANIMACOES1.value.translateDir
+      linha_id1.value = ANIMACOES1.value.linha_id
 
       ANIMACOES2.value = r.dados[1];
       titulo_esquerdo2.value = ANIMACOES2.value.titulo_esquerdo
       titulo_direito2.value = ANIMACOES2.value.titulo_direito
-      translateEsq2.value = ANIMACOES1.value.translateEsq
-      translateDir2.value = ANIMACOES1.value.translateDir
+      translateEsq2.value = ANIMACOES2.value.translateEsq
+      translateDir2.value = ANIMACOES2.value.translateDir
+      linha_id2.value = ANIMACOES2.value.linha_id
 
       ANIMACOES3.value = r.dados[2];
  
@@ -165,6 +170,7 @@ async function getAnimacoes() {
       titulo_direito3.value = ANIMACOES3.value.titulo_direito
       translateEsq3.value = ANIMACOES3.value.translateEsq
       translateDir3.value = ANIMACOES3.value.translateDir
+      linha_id3.value = ANIMACOES3.value.linha_id
 
 
     } else {

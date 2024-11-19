@@ -229,7 +229,7 @@ onMounted(() => {
         <style scoped>
 @media screen and (max-width: 1000px) {
   .textoDescricao {
-    font-size: 30pt;
+    font-size: 20pt;
   }
 
   /* TEXTO ESQUERDO */
@@ -271,12 +271,12 @@ onMounted(() => {
 
 @media screen and (min-width: 1000px) {
   .textoDescricao {
-    font-size: 30pt;
+    font-size: 23pt;
   }
 }
 @media screen and (min-width: 1200px) {
   .textoDescricao {
-    font-size: 40pt;
+    font-size: 33pt;
   }
 
   #textoEsqID {

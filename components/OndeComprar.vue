@@ -1,15 +1,32 @@
 <template>
   <div envelope="OndeComprar">
+
+
     <div
-      class="bg_comprar relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#1b3346]"
+      class="bg_comprar static flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#1b3346]"
     >
+
+    <div class="drawLineOndeComprar">
+      <div
+        class="drawLineInnerOndeComprar"
+        id="drawLineInnerContIDOndeComprar"
+        style="
+          will-change: transform;
+          transform: translate3d(0px, -100%, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+      ></div>
+    </div>
+
+
       <div
         class="container relative mx-auto text-center text-[3rem] font-normal uppercase tracking-[.3em] text-white md:top-20 md:text-6xl"
       >
         {{ $t("confiraasregioes") }}
       </div>
     </div>
-    <div class="bg-[#1b3346] pb-[60px]">
+    <div class="bg-[#1b3346] py-[60px]">
       <div class="space-y-4 pt-[130px] text-center">
         <p class="text-3xl uppercase text-[#00b1ef]">
           {{ $t("representantes") }}
@@ -19,7 +36,7 @@
         </p>
       </div>
 
-      <div id="faixaHorzOndeComprar" class="z-[50]"></div>
+      <!-- <div id="faixaHorzOndeComprar" class="z-[50]"></div> -->
 
       <div class="container mx-auto flex flex-col pb-[10rem] pt-32">
         <div
@@ -110,6 +127,8 @@
 
 <script setup>
 import { XModal } from "@indielayer/ui";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 components: {
   XModal;
@@ -150,12 +169,51 @@ if (estadosCaompara.includes(_UF.value)) {
   vindoDoHome.value = true;
 }
 
+let atualY = ref(-100);
+let ultimaPosicao = ref(0);
 onMounted(() => {
-  // ROTA = useRoute();
-  // resetFormPostBlogQuery();
-  // queryPostBlog.value.post = blog_id;
-  // blogComentariosForm.value.blog_posts_id = blog_id;
-  // getPostsBlog();
+  const tlContTitCont = gsap.timeline({});
+
+
+  ScrollTrigger.create({
+    trigger: ".drawLineOndeComprar",
+    start: "center bottom",
+    end: "+=1000px",
+    onEnter: () => {
+      atualY.value = -100;
+    },
+    onLeave: () => {
+      atualY.value = 100;
+    },
+    onEnterBack: () => {
+      atualY.value = 100;
+    },
+    onUpdate: (self) => setTranslate(self.progress),
+  });
+
+  function setTranslate(pg) {
+    let yInicial = pg;
+    if (yInicial > ultimaPosicao.value) {
+      //pra baixo
+
+      if (atualY.value < 100) {
+        atualY.value += 5;
+
+        drawLineInnerContIDOndeComprar.style.transform = `translate3d(0, ${atualY.value}%, 0)`;
+        
+      } else {
+        atualY.value = 100;
+      }
+    } else {
+      if (atualY.value > -100) {
+        atualY.value -= 5;
+      }
+      
+      drawLineInnerContIDOndeComprar.style.transform = `translate3d(0, ${atualY.value}%, 0)`;
+    }
+
+    ultimaPosicao.value = yInicial;
+  }
 });
 
 let ROTA = ref();
@@ -304,5 +362,21 @@ body * {
 #svg-map a:hover .circle {
   fill: #003399 !important;
   cursor: pointer;
+}
+
+.drawLineOndeComprar {
+  z-index: 9999;
+  position: absolute;
+  left: 50%;
+  bottom: -150px;
+  right: auto;
+  overflow: hidden;
+  width: 2px;
+  height: 220px;
+}
+.drawLineInnerOndeComprar {
+  width: 2px;
+  height: 100%;
+  background-color: #00b1ef;
 }
 </style>
