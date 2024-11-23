@@ -180,7 +180,8 @@
           </div>
           <!--Botão catálogo-->
           <div
-            class="zlg:mt-[70px] zxl:mt-[116px] mb-[2.5rem] mt-20 flex h-[50px] w-[360px] cursor-pointer flex-row items-center justify-center space-x-14 bg-[#72df43] text-xl text-[#115125] sm:w-[390px]"
+          id="baixar_catalogoID"
+            class="zlg:mt-[70px] zxl:mt-[116px] zmb-[2.5rem] mt-20 flex h-[50px] w-[360px] cursor-pointer flex-row items-center justify-center space-x-14 bg-[#00b1ef] text-xl text-[#115125] sm:w-[390px]"
           >
             <div
               @click="catalogosAmostra = !catalogosAmostra"
@@ -197,9 +198,10 @@
               <div></div>
             </div>
           </div>
+
           <div
-          id="baixar_catalogoID"
-            class="mb-[2.5rem] mt-20 flex h-[50px] w-[360px] cursor-pointer flex-row items-center justify-center space-x-14 bg-[#00b1ef] text-xl text-white sm:w-[390px] lg:mt-[70px] xl:mt-[116px]"
+          id="baixar_dwgID"
+            class="mb-[2.5rem] mt-4 flex h-[50px] w-[360px] cursor-pointer flex-row items-center justify-center space-x-14 bg-[#00b1ef] text-xl text-white sm:w-[390px] zlg:mt-[70px] zxl:mt-[116px]"
           >
             <div
               @click="catalogosAmostra = !catalogosAmostra"
@@ -892,6 +894,15 @@ body * {
   box-shadow: 2px -2px 0 0px #0c1a25 inset;
 }
 #baixar_catalogoID:hover > div {
+  color: #0c1a25;
+}
+#baixar_dwgID:hover #seta > div:nth-child(1) {
+  box-shadow: 2px -2px 0 0px #0c1a25 inset;
+}
+#baixar_dwgID:hover #seta > div:nth-child(2) {
+  box-shadow: 2px -2px 0 0px #0c1a25 inset;
+}
+#baixar_dwgID:hover > div {
   color: #0c1a25;
 }
 

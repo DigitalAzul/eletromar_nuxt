@@ -51,7 +51,7 @@
         >
           <div
             @click="clickDownload(index)"
-            class="pdfOverlay absolute left-0 top-0 h-[300px] w-[300px] opacity-0 sm:h-[500px] sm:w-[500px]"
+            class="pdfOverlay xabsolute left-0 top-0 h-[300px] w-[300px] opacity-0 sm:h-[500px] sm:w-[500px]"
           ></div>
           <figure
             class="absolute left-0 top-0 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px]"

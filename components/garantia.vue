@@ -64,11 +64,12 @@
             <div v-for="(g, index) in itemGarantias" :key="index">
               <div class="flex flex-row items-start justify-start space-x-3">
                 <div
-                  class="relative top-4 min-h-[18px] min-w-[18px] rounded-full bg-[#70dc40]"
+                  class="relative top-4 min-h-[18px] min-w-[18px] rounded-full bg-[#00b1ef]"
                 ></div>
                 <p>{{ g.texto }}</p>
               </div>
             </div>
+            
           </div>
           <div
             class="relative -left-[45px] flex min-h-[100px] w-auto flex-row items-center justify-center pt-20 text-start"

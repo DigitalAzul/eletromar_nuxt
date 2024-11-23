@@ -136,7 +136,7 @@
               class="rounded-br-2xl rounded-tl-2xl bg-[#9ade52] px-4 py-2 text-white"
             >
               <a
-                href="https://loja.mectronic-eletromar.com.br/"
+                href="https://www.mectronic.com.br/"
                 target="_blank"
                 class="cursor-pointer font-bold"
                 >MEC-TRONIC

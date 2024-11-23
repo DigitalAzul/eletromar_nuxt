@@ -84,10 +84,10 @@
             >{{ MNU_TOPO_lang[5].titulo }}</a
           >
           <a
-            href="https://www.eletromar.com.br/"
+            href="https://www.mectronic.com.br/"
             target="_blank"
             class="cursor-pointer "
-            >Eletromar</a
+            >Mec-Tronic</a
           >
           <a
             :href="MNU_TOPO_lang[7].rota"
@@ -429,7 +429,7 @@ const MNU_TOPO_pt = ref([
   { titulo: "Blog", rota: "/blog" },
   { titulo: "Onde Comprar", rota: "/comprar" },
   { titulo: "Contato", rota: "/contato" },
-  { titulo: "Eletromar", rota: "/" },
+  { titulo: "Mec-Tronic", rota: "/" },
   { titulo: "Trabalhe Conosco", rota: "/trabalheconosco" },
 ]);
 const MNU_TOPO_en = ref([
@@ -439,7 +439,7 @@ const MNU_TOPO_en = ref([
   { titulo: "Blog", rota: "/blog" },
   { titulo: "Where to buy", rota: "/comprar" },
   { titulo: "Contact", rota: "/contato" },
-  { titulo: "Eletromar", rota: "/" },
+  { titulo: "Mec-Tronic", rota: "/" },
   { titulo: "Work with us", rota: "/trabalheconosco" },
 ]);
 const MNU_TOPO_es = ref([
@@ -449,7 +449,7 @@ const MNU_TOPO_es = ref([
   { titulo: "Blog", rota: "/blog" },
   { titulo: "Donde Comprar", rota: "/comprar" },
   { titulo: "Contacto", rota: "/contato" },
-  { titulo: "Eletromar", rota: "/" },
+  { titulo: "Mec-Tronic", rota: "/" },
   { titulo: "Trabaja con nosotros", rota: "/trabalheconosco" },
 ]);
 

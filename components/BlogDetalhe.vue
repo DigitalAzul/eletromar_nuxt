@@ -141,7 +141,7 @@
           <!-- ERRO QUEBRANDO PÁGINA IMAGENS DO TEXTO ABAIXO NECESSITANDO TER DUAS -->
           <div
             v-if=" getImgBlog[0] "
-            class="blogImgOverlay w-full lg:h-auto lg:w-[595px]"
+            class="blogImgOverlay w-full lg:h-auto lg:w-[50%]"
             @click="
               selecionaImagemGalOverlay(
                 pathBlogImagens + getImgBlog[0].imagem_url
@@ -155,7 +155,7 @@
           </div>
           <div
             v-if=" getImgBlog[1] "
-            class="blogImgOverlay w-full lg:h-auto lg:w-[595px]"
+            class="blogImgOverlay w-full lg:h-auto lg:w-[50%]"
             @click="
               selecionaImagemGalOverlay(
                 pathBlogImagens + getImgBlog[1].imagem_url
