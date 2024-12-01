@@ -26,11 +26,11 @@
             $t("solucoesemdestaque")
           }}</span>
         </div>
-        <div class="H2Conteudo">
+        <!-- <div class="H2Conteudo">
           <span class="text-4xl font-bold uppercase text-white">
             {{ $t("produtosfeitoscomcarinho") }}
           </span>
-        </div>
+        </div> -->
       </div>
       <!-- LISTA PRODUTOS -->
     </div>

@@ -73,7 +73,7 @@
                   {{ MNU_TOPO_lang[1].titulo }}
                 </button>
 
-                <div class="dropdown-content">
+                <div class="dropdown-content p-10">
                   <a
                     v-for="(link, index) in menuLinhas"
                     :key="index"
@@ -987,10 +987,22 @@ html {
   left: -120px;
   top: 70px;
   padding: 24px;
-  background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 9999999;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.dropdown-content:before {
+  content: " ";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  z-index: -1;
+  background-color:rgba(255, 255, 255, .88);
+  border-radius: 30px;
 }
 .dropdown-content-onde-comprar {
   display: none;
