@@ -41,6 +41,9 @@
 
                 <div class="flex w-[90%] flex-row justify-between pt-10">
                   <x-button color="#000" light type="submit"> Salvar </x-button>
+                  <x-button color="#000" light @click="excluirCategoria()">
+                  Excluir
+                </x-button>
                   <x-button @click="resetFormTag()" color="#000" light
                     >Cancelar</x-button
                   >
@@ -184,16 +187,16 @@
   }
   
   async function formRequestCat() {
-    let formdDataTags = new FormData();
-    formdDataTags.append("json", JSON.stringify(catForm.value));
+    let formdDataCat = new FormData();
+    formdDataCat.append("json", JSON.stringify(catForm.value));
     return await $fetch("/api/formCategoriasGet.php", {
       mode: "cors",
       method: "POST",
-      body: formdDataTags,
+      body: formdDataCat,
     }).then((r) => {
       let R = JSON.parse(r);
-      getCategorias();
-      resetFormTag();
+     getCategorias();
+     resetFormTag();
       alert(R.msg);
     });
   }
@@ -205,6 +208,29 @@
     titulo_es: "",
     emEdicao: false
     };
+    getCategorias()
   }
+
+
+  async function excluirCategoria() {
+  let formdExcluirCat = new FormData();
+  formdExcluirCat.append("json", JSON.stringify(catForm.value));
+  return await $fetch("/api/formExcluirCat.php", {
+    mode: "cors",
+    method: "POST",
+    body: formdExcluirCat,
+  }).then((r) => {
+    let R = JSON.parse(r);
+    console.log(R);
+    if (R.codigo == 0) {
+      getCategorias();
+      resetFormTag();
+      alert(R.msg);
+    }else{
+      alert(R.msg);
+
+    }
+  });
+}
   </script>
   

@@ -268,7 +268,7 @@ const urlLocation = "\\ui\\";
 
 onBeforeMount(() => {
   //onst { data: dados } = useFetch("https://localhost/mec/formBlogGET.php");
-  getPostsBlog();
+  getPostsBlog('inicio');
   getCol2Dados();
 });
 let ROTA = ref();
@@ -278,13 +278,13 @@ const modalBlog = ref(false);
 function busarBlog() {
   resetFormPostBlogQuery();
   queryPostBlog.value.q = pesquisaBlog;
-  getPostsBlog();
+  getPostsBlog('');
 }
 function busarBlogPorCategoria(categoria_id) {
   resetFormPostBlogQuery();
   queryPostBlog.value.categoria_id = categoria_id;
 
-  getPostsBlog();
+  getPostsBlog('');
 }
 // animações
 onMounted(() => {
@@ -385,21 +385,23 @@ function maisPosts(arg) {
     queryPostBlog.value.offset -= 4;
   }
 
-  getPostsBlog();
+  getPostsBlog('');
 }
 
 function getPostBlogPorTag(tag) {
   console.log(tag);
   resetFormPostBlogQuery();
   queryPostBlog.value.tag = tag;
-  getPostsBlog();
+  getPostsBlog('');
 }
 
 
 const isFetching = ref(false);
 
-async function getPostsBlog() {
-  queryPostBlog.value.q = "blog_home";
+async function getPostsBlog(inicio) {
+  if(inicio == 'inicio'){
+    queryPostBlog.value.q = "blog_home";
+  }
   isFetching.value = false;
   let R = await $fetch(
     "/api/formBlog.php",
@@ -520,6 +522,7 @@ function blocksToArray() {
 
     //TRADUCAO CATEGORIA
     categoriasBlog.value.map((c,index)=>{
+
 
       if (lang.value == "pt") {
         categoriasBlog.value[index].tituloLang = c.titulo;

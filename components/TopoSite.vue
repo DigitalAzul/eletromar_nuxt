@@ -501,7 +501,7 @@ onMounted(() => {
 const MNU_TOPO_lang = ref([]);
 const MNU_TOPO_pt = ref([
   { titulo: "A EMPRESA", rota: "/empresa" },
-  { titulo: "SOLUÇÕES", rota: "/solucoes" },
+  { titulo: "PRODUTOS", rota: "/solucoes" },
   { titulo: "CATALOGO", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
   { titulo: "ONDE COMPRAR", rota: "/comprar" },
@@ -509,7 +509,7 @@ const MNU_TOPO_pt = ref([
 ]);
 const MNU_TOPO_en = ref([
   { titulo: "THE COMPANY", rota: "/empresa" },
-  { titulo: "SOLUTIONS", rota: "/solucoes" },
+  { titulo: "PRODUCTS", rota: "/solucoes" },
   { titulo: "CATALOG", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
   { titulo: "WHERE TO BUY", rota: "/comprar" },
@@ -517,7 +517,7 @@ const MNU_TOPO_en = ref([
 ]);
 const MNU_TOPO_es = ref([
   { titulo: "LA EMPRESA", rota: "/empresa" },
-  { titulo: "SOLUCIONES", rota: "/solucoes" },
+  { titulo: "PRODUCTOS", rota: "/solucoes" },
   { titulo: "CATALOGAR", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
   { titulo: "DONDE COMPRAR", rota: "/comprar" },

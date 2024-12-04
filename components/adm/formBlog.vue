@@ -827,6 +827,9 @@
                   <x-button color="#000" light @click="formRequest">
                     Salvar
                   </x-button>
+                  <x-button color="#000" light @click="excluirBlog()">
+                    Excluir
+                  </x-button>
                   <x-button @click="resetFormBlog()" color="#000" light
                     >Cancelar</x-button
                   >
@@ -867,6 +870,7 @@
                   <img src="/bd_imagens/blogImg1.png" />
                 </div>
               </div>
+
             </div>
           </x-tab>
           <x-tab value="b" label="PESQUISAR">
@@ -1190,6 +1194,35 @@ const paragrafosBlogData = ref({
     },
   ],
 });
+
+async function excluirBlog(){
+
+  console.log(formBlog.value);
+
+  let blogExcluir = new FormData();
+  blogExcluir.append("blogExcluir", JSON.stringify(formBlog.value));
+
+  overLay();
+  
+  let R = await $fetch("/api/formBlogExcluir.php", {
+    mode: "cors",
+    method: "POST",
+    body: blogExcluir,
+  }).then((R) => {
+    let RS = JSON.parse(R);
+    if (RS.codigo == 0) {
+      overLay();
+      alert(RS.msg);
+      resetFormBlog();
+      resetProdFORMInput(9);
+      
+    } else {
+      overLay();
+      alert(RS.msg);
+    }
+  });
+}
+
 
 function addParagrafoBlog() {
   formBlog.value.descricao.push({

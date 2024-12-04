@@ -1160,8 +1160,8 @@ setaEsqBlogDet {
   transition: all 0.5s ease;
 }
 #setaEsqBlogDet:hover {
-  /* top: calc(50% - 50px);*/
-  background-color: rgba(0, 255, 0, 1);
+  /* top: calc(50% - 50px);
+  background-color: rgba(0, 255, 0, 1);*/
   --border: solid transparent;
   --transform: translateX(50px);
 }
