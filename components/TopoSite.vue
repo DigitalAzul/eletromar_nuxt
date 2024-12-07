@@ -110,19 +110,14 @@
                   {{ MNU_TOPO_lang[4].titulo }}
                 </button>
 
-                <div class="dropdown-content-onde-comprar">
+                <!-- <div class="dropdown-content-onde-comprar">
                   <a
                     href="https://loja.mectronic-eletromar.com.br/"
                     target="_blank"
                     class="py-2 pr-4 text-[11pt] text-[#1b3346] hover:pr-3 hover:font-bold hover:text-[#00b1ef] hover:underline"
-                    >LOJA MEC-TRONIC / ELETROMAR</a
-                  >
-                  <!-- <a
-                href="https://loja.eletromar.com.br/"
-                target="_blank"
-                class="py-2 pr-4 text-[11pt] text-[#0c5938] hover:pr-3 hover:font-bold hover:text-[#9ade52] hover:underline"
-                >LOJA ELETROMAR</a> -->
-                </div>
+                    >LOJA MEC-TRONIC / ELETROMAR</a>
+                  
+                </div> -->
               </a>
             </li>
             <li>
@@ -504,7 +499,8 @@ const MNU_TOPO_pt = ref([
   { titulo: "PRODUTOS", rota: "/solucoes" },
   { titulo: "CATALOGO", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "ONDE COMPRAR", rota: "/comprar" },
+  { titulo: "LOJA MEC-TRONIC / ELETROMAR", rota: "/comprar" },
+ //{ titulo: "ONDE COMPRAR", rota: "/comprar" },
   { titulo: "CONTATO", rota: "/contato" },
 ]);
 const MNU_TOPO_en = ref([
@@ -512,7 +508,7 @@ const MNU_TOPO_en = ref([
   { titulo: "PRODUCTS", rota: "/solucoes" },
   { titulo: "CATALOG", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "WHERE TO BUY", rota: "/comprar" },
+  { titulo: "MEC-TRONIC / ELETROMAR STORE", rota: "/comprar" },
   { titulo: "CONTACT", rota: "/contato" },
 ]);
 const MNU_TOPO_es = ref([
@@ -520,7 +516,7 @@ const MNU_TOPO_es = ref([
   { titulo: "PRODUCTOS", rota: "/solucoes" },
   { titulo: "CATALOGAR", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "DONDE COMPRAR", rota: "/comprar" },
+  { titulo: "TIENDA MEC-TRONIC / ELETROMAR", rota: "/comprar" },
   { titulo: "CONTACTO", rota: "/contato" },
 ]);
 

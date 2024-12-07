@@ -184,7 +184,7 @@
             class="zlg:mt-[70px] zxl:mt-[116px] zmb-[2.5rem] mt-20 flex h-[50px] w-[360px] cursor-pointer flex-row items-center justify-center space-x-14 bg-[#00b1ef] text-xl text-[#115125] sm:w-[390px]"
           >
             <div
-              @click="catalogosAmostra = !catalogosAmostra"
+              @click="clickDownload"
               class="flex h-[50px] flex-row place-items-center text-lg text-white hover:text-[#0c1a25] md:text-xl"
             >
               {{ $t("baixeocatalogo") }}
@@ -204,7 +204,7 @@
             class="mb-[2.5rem] mt-4 flex h-[50px] w-[360px] cursor-pointer flex-row items-center justify-center space-x-14 bg-[#00b1ef] text-xl text-white sm:w-[390px] zlg:mt-[70px] zxl:mt-[116px]"
           >
             <div
-              @click="catalogosAmostra = !catalogosAmostra"
+              @click="clickDownloadDwg"
               class="flex h-[50px] flex-row place-items-center text-lg text-white md:text-xl hover:text-[#0c1a25]"
             >
               {{ $t("baixeodwg") }}

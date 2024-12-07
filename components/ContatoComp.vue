@@ -185,65 +185,63 @@
             </div>
 
             <div
-              class="lnCont relative flex h-[360px] flex-col overflow-hidden"
+              class="lnCont relative flex h-[360px] flex-row overflow-hidden"
             >
-              <div class="sublnCont absolute">
-                <div
-                  class="mt-10 flex flex-col space-y-6 md:flex-row md:space-x-5 md:space-y-0"
-                >
-                  <div class="h-20 w-72 pt-2">
-                    <div ref="root" />
-                  </div>
-                  <div class="h-20 w-auto pl-4 text-xl text-white">
-                    <p>{{ contato.email }}</p>
-                    <p>{{ contato.fone1 }}</p>
-                    <div class="flex flex-row space-x-2">
-                      <p>
-                        {{ contato.fone2 }}
-                      </p>
-                      <p class="relative -top-4 hidden md:block">
-                        <ph-whatsapp-logo :size="52" class="text-[#70df3f]" />
-                      </p>
-                      <p class="relative -top-2 block md:hidden">
-                        <ph-whatsapp-logo :size="32" class="text-[#70df3f]" />
-                      </p>
+              <div class="sublnCont absolute flex flex-col md:flex-row justify-between w-full">
+                <div>
+                  <div class="mt-10 flex flex-col space-y-6 md:flex-row md:space-x-5 md:space-y-0">
+                    <div class="h-20 w-auto text-xl text-white">
+                      <p>{{ contato.email }}</p>
+                      <p>{{ contato.fone1 }}</p>
+                      <div class="flex flex-row space-x-2">
+                        <p>
+                          {{ contato.fone2 }}
+                        </p>
+                        <p class="relative -top-4 hidden md:block">
+                          <ph-whatsapp-logo :size="52" class="text-[#70df3f]" />
+                        </p>
+                        <p class="relative -top-2 block md:hidden">
+                          <ph-whatsapp-logo :size="32" class="text-[#70df3f]" />
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <!-- <GoogleSignInButton
-                  @success="handleLoginSuccess"
-                  @error="handleLoginError"
-                ></GoogleSignInButton>
-                <FacebookSignin
-                    :appId="facebookAppId"
-                    @success="onSignInSuccessFacebook"
-                    @error="onSignInErrorFacebook"
-                    class="text-white cursor-pointer">
-                      <span class="btn-primary">Login com Facebook</span>
-                </FacebookSignin> -->
-                <div
-                  @click="enviaContato()"
-                  class="SETAENVIAR flex flex-row justify-end space-x-14 pr-6 pt-24"
-                >
-                  <div>
-                    {{ $t("enviar") }}
-                  </div>
-                  <div>
-                    <div id="seta">
-                      <div></div>
-                      <div></div>
+
+                  <div
+                    @click="enviaContato()"
+                    class="SETAENVIAR flex flex-row space-x-14 pr-6 pt-24"
+                  >
+                    <div>
+                      {{ $t("enviar") }}
+                    </div>
+                    <div>
+                      <div id="seta">
+                        <div></div>
+                        <div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- <div class="container mx-auto flex pt-24">
-                  <div @click="enviaContato" id="setaNewsMais">
-                    <div></div>
-                    <div></div>
-                    <div>{{ $t("enviar") }}</div>
+                <div class="top-3">
+                  <div
+                    class="daHoverSlide Xabsolute mt-10 w-[300px] cursor-pointer text-[1rem] sm:w-[340px] sm:text-[1.2rem]"
+                  >
+                    <div @click="botaoTrabalheConosco()">
+                      <span @click="botaoTrabalheConosco()" class="capitalize">{{
+                        $t("trabalheconosco")
+                      }}</span>
+                    </div>
+                    <div @click="botaoTrabalheConosco()">
+                      <span class="daspan capitalize" @click="botaoTrabalheConosco()">{{
+                        $t("trabalheconosco")
+                      }}</span>
+                    </div>
                   </div>
-                </div> -->
+                </div>
+
               </div>
+
             </div>
           </form>
         </div>
@@ -254,8 +252,8 @@
     </x-modal>
   </div>
 </template>
-  
-  <script setup>
+
+<script setup>
 import { ref, onMounted } from "vue";
 import { PhWhatsappLogo } from "phosphor-vue";
 import gsap from "gsap";
@@ -264,8 +262,6 @@ import SplitType from "split-type";
 gsap.registerPlugin(ScrollTrigger);
 import { useI18n } from "vue-i18n";
 const i18nLocale = useI18n();
-
-
 
 // REMOVIDO 10-09-2024--21-27 PARA TESTE,  ESTA DANDO ERRO
 //import { useRecaptchaProvider } from "vue-recaptcha";
@@ -291,6 +287,14 @@ const i18nLocale = useI18n();
 components: {
   PhWhatsappLogo;
 }
+
+
+function botaoTrabalheConosco() {
+  //const POST = JSON.stringify(post);
+
+  window.location.assign("/trabalheconosco");
+}
+
 
 const formContato = ref({
   politica: "",
@@ -560,8 +564,8 @@ function setTranslate(pg) {
   ultimaPosicao.value = yInicial;
 }
 </script>
-  
-  <style scoped>
+
+<style scoped>
 body * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
@@ -877,5 +881,53 @@ select::-ms-expand {
   position: absolute;
   pointer-events: none;
 }
+
+.daHoverSlide {
+  display: flex;
+  flex-direction: column;
+  transition: 3s;
+  --width: 100%;
+  height: 60px;
+  background-color: #fff;
+
+  overflow-y: hidden;
+  scroll-snap-type: y mandatory;
+
+  scroll-behavior: smooth;
+}
+.daHoverSlide > div:nth-child(1),
+.daHoverSlide > div:nth-child(2) {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  position: relative;
+  widows: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1.3rem;
+  transition: 0.3s;
+  font-weight: 700;
+  --font-size: 1.6rem;
+  line-height: 2rem;
+}
+.daHoverSlide > div:nth-child(1) {
+  background-color: #00b1ef;
+  border: solid 3px #48ceff;
+  color: #fff;
+}
+.daHoverSlide > div:nth-child(2) {
+  background-color: #fff;
+  color: #00b1ef;
+
+  padding-top: 0px;
+}
+.daHoverSlide:hover > div:nth-child(1) {
+  margin-top: -17%;
+}
+.daHoverSlide:hover > div:nth-child(2) > .daspan {
+  animation-duration: 0.5s;
+
+  animation-name: slidein;
+}
 </style>
-  

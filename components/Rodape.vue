@@ -197,7 +197,9 @@
           {{ $t("registro") }}
         </h1>
         <h3 class="w-60">
+          <a href="https://linktr.ee/mectronic.eletromar" target="_blank">
           <img src="/img/logo-cialdnb-white.webp" alt="" />
+        </a>
         </h3>
       </div>
     </div>
@@ -412,7 +414,7 @@ function atualizaLocale() {
 }
 const MNUPrincipal = ref([
   { titulo: "A Empresa", rota: "/empresa" },
-  { titulo: "Soluções", rota: "/solucoes" },
+  { titulo: "Produtos", rota: "/solucoes" },
   { titulo: "Catalogo", rota: "/catalogo" },
   { titulo: "Blog", rota: "/blog" },
   { titulo: "Onde Comprar", rota: "/comprar" },
@@ -424,7 +426,7 @@ const MNUPrincipal = ref([
 const MNU_TOPO_lang = ref([]);
 const MNU_TOPO_pt = ref([
   { titulo: "A Empresa", rota: "/empresa" },
-  { titulo: "Soluções", rota: "/solucoes" },
+  { titulo: "Produtos", rota: "/solucoes" },
   { titulo: "Catalogo", rota: "/catalogo" },
   { titulo: "Blog", rota: "/blog" },
   { titulo: "Onde Comprar", rota: "/comprar" },
@@ -434,7 +436,7 @@ const MNU_TOPO_pt = ref([
 ]);
 const MNU_TOPO_en = ref([
   { titulo: "The company", rota: "/empresa" },
-  { titulo: "Solutions", rota: "/solucoes" },
+  { titulo: "Products", rota: "/solucoes" },
   { titulo: "Catalog", rota: "/catalogo" },
   { titulo: "Blog", rota: "/blog" },
   { titulo: "Where to buy", rota: "/comprar" },
@@ -444,7 +446,7 @@ const MNU_TOPO_en = ref([
 ]);
 const MNU_TOPO_es = ref([
   { titulo: "La Empresa", rota: "/empresa" },
-  { titulo: "Soluciones", rota: "/solucoes" },
+  { titulo: "Productos", rota: "/solucoes" },
   { titulo: "Catalogar", rota: "/catalogo" },
   { titulo: "Blog", rota: "/blog" },
   { titulo: "Donde Comprar", rota: "/comprar" },
@@ -540,6 +542,7 @@ body * {
 .linksRodape > a:hover {
   color: #00b1ef;
 }
+
 .daHoverSlide {
   display: flex;
   flex-direction: column;

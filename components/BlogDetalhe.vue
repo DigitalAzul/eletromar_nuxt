@@ -128,7 +128,7 @@
             <div class="relative h-auto w-auto">
               <div
                 @click="selecionaImagemGalOverlay()"
-                class="absolute right-0 top-0 z-[99999] flex h-14 w-14 flex-col items-center justify-center rounded-full p-2 text-white"
+                class="absolute right-0 top-0 z-[99999] flex h-14 w-14 flex-col items-center justify-center rounded-full p-2 text-white bg-slate-600 m-2  cursor-pointer"
               >
                 <ph-x :size="32" />
               </div>

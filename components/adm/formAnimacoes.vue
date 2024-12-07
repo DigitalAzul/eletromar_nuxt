@@ -30,17 +30,31 @@
       </div>
     </div>
 
-    <div COLUNA="1" class="h-screen w-[500px] border-r-2 p-6">
+    <div COLUNA="1" class="h-screen w-[400px] border-r-2 p-6">
       <div class="p-4 text-center text-3xl">ANIMAÇÃO</div>
 
       <div v-if="emEdicao == false" class="w-[400px] pt-10">
-        <form>
-          <div class="flex flex-col space-y-3">
+        <form class="w-[400px]">
+          <div class="flex flex-col space-y-3 w-[360px]">
             <div class="border p-3">
               <x-input
                 class="w-[90%]"
                 v-model="animForm.titulo_esquerdo"
-                label="TEXTO LADO ESQUERDO"
+                label="TEXTO LADO ESQUERDO - PT"
+                size="sm"
+                name="nome"
+              />
+              <x-input
+                class="w-[90%] pt-2"
+                v-model="animForm.titulo_esquerdo_en"
+                label="TEXTO LADO ESQUERDO - EN"
+                size="sm"
+                name="nome"
+              />
+              <x-input
+                class="w-[90%] pt-2"
+                v-model="animForm.titulo_esquerdo_es"
+                label="TEXTO LADO ESQUERDO - ES"
                 size="sm"
                 name="nome"
               />
@@ -59,7 +73,21 @@
               <x-input
                 class="w-[90%]"
                 v-model="animForm.titulo_direito"
-                label="TEXTO LADO DIREITO"
+                label="TEXTO LADO DIREITO - PT"
+                size="sm"
+                name="nome"
+              />
+              <x-input
+                class="w-[90%] pt-2"
+                v-model="animForm.titulo_direito_en"
+                label="TEXTO LADO DIREITO - EN"
+                size="sm"
+                name="nome"
+              />
+              <x-input
+                class="w-[90%] pt-2"
+                v-model="animForm.titulo_direito_es"
+                label="TEXTO LADO DIREITO - ES"
                 size="sm"
                 name="nome"
               />
@@ -147,7 +175,21 @@
               <x-input
                 class="w-[90%]"
                 v-model="animForm.titulo_esquerdo"
-                label="TEXTO LADO ESQUERDO"
+                label="TEXTO LADO ESQUERDO - PT"
+                size="sm"
+                name="nome"
+              />
+              <x-input
+                class="w-[90%] pt-2"
+                v-model="animForm.titulo_esquerdo_en"
+                label="TEXTO LADO ESQUERDO - EN"
+                size="sm"
+                name="nome"
+              />
+              <x-input
+                class="w-[90%] pt-2"
+                v-model="animForm.titulo_esquerdo_es"
+                label="TEXTO LADO ESQUERDO - ES"
                 size="sm"
                 name="nome"
               />
@@ -167,6 +209,20 @@
                 class="w-[90%]"
                 v-model="animForm.titulo_direito"
                 label="TEXTO LADO DIREITO"
+                size="sm"
+                name="nome"
+              />
+              <x-input
+                class="w-[90%] pt-2"
+                v-model="animForm.titulo_direito_en"
+                label="TEXTO LADO DIREITO - EN"
+                size="sm"
+                name="nome"
+              />
+              <x-input
+                class="w-[90%] pt-2"
+                v-model="animForm.titulo_direito_es"
+                label="TEXTO LADO DIREITO - ES"
                 size="sm"
                 name="nome"
               />
@@ -242,7 +298,7 @@
             >
               <div
                 id="P-textoEsqID-Form"
-                class="textoDescricao ztop-[calc(100vh-600px)] zmd:relative zmd:top-0 zhidden zmd:block absolute z-[999] text-black"
+                class="textoDescricao ztop-[calc(100vh-600px)] zmd:relative zmd:top-0 zhidden zmd:block absolute right-[50%] z-[999] text-black text-right min-w-[800px]"
               >
                 {{ animForm.titulo_esquerdo }}
               </div>
@@ -270,7 +326,7 @@
               <!-- ANIMACAO AQUI -->
               <div
                 id="P-textoDirID-Form"
-                class="textoDescricao z-top-6 zmd:relative zmd:top-0 zmd:block zhidden absolute z-[999] text-black"
+                class="textoDescricao z-top-6 zmd:relative zmd:top-0 zmd:block zhidden absolute left-[50%] z-[999] text-black text-left min-w-[800px]"
               >
                 {{ animForm.titulo_direito }}
               </div>
@@ -331,9 +387,9 @@
       </div>
       <!-- TAB A COLUNA 3A -->
 
-      <div class="mt-10 h-screen w-full border-2 border-l-2 p-4">
+      <div class="mt-10 h-screen  p-4 w-full">
         <div class="p-4 text-center text-3xl">ANIMAÇÕES CADASTRADAS</div>
-        <table class="w-full border text-left text-sm font-light">
+        <table class="w-11/12 border text-left text-sm font-light">
           <thead
             class="border-b bg-slate-200 font-medium dark:border-neutral-500"
           >
@@ -344,8 +400,12 @@
               <th scope="col" class="px-6 py-4">Ativo</th>
               <th scope="col" class="px-6 py-4">Categoria</th>
               <th scope="col" class="px-6 py-4">Titulo Esquesdo</th>
+              <th scope="col" class="px-6 py-4">Titulo Esquesdo EN</th>
+              <th scope="col" class="px-6 py-4">Titulo Esquesdo ES</th>
               <th scope="col" class="px-6 py-4">Tit. Esq. Eixo -X</th>
               <th scope="col" class="px-6 py-4">Titulo Direito</th>
+              <th scope="col" class="px-6 py-4">Titulo Direito EN</th>
+              <th scope="col" class="px-6 py-4">Titulo Direito ES</th>
               <th scope="col" class="px-6 py-4">Tit. Dir. Eixo +X</th>
               <th scope="col" class="px-6 py-4">Pasta <br />media/anima/</th>
               <th scope="col" class="px-6 py-4">Ações</th>
@@ -391,10 +451,22 @@
                 {{ t.titulo_esquerdo }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ t.titulo_esquerdo_en }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ t.titulo_esquerdo_es }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
                 {{ t.translateEsq }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">
                 {{ t.titulo_direito }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ t.titulo_direito_en }}
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                {{ t.titulo_direito_es }}
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">
                 {{ t.translateDir }}
@@ -443,6 +515,10 @@ let animForm = ref({
   pasta: "",
   titulo_direito: "",
   titulo_esquerdo: "",
+  titulo_direito_en: "",
+  titulo_direito_es: "",
+  titulo_esquerdo_en: "",
+  titulo_esquerdo_es: "",
   translateEsq: 0,
   translateDir: 0,
   emEdicao: false,
@@ -455,6 +531,10 @@ let animFormCopy = ref({
   pasta: "",
   titulo_direito: "",
   titulo_esquerdo: "",
+  titulo_direito_en: "",
+  titulo_direito_es: "",
+  titulo_esquerdo_en: "",
+  titulo_esquerdo_es: "",
   translateEsq: 0,
   translateDir: 0,
   emEdicao: false,
@@ -706,12 +786,43 @@ async function submitFormData() {
 
   // VALIDA LENGTH TEXTOS
   if (
-    animForm.value.titulo_esquerdo.length < 3 &&
-    animForm.value.titulo_direito.length < 3
+    animForm.value.titulo_esquerdo.length < 3  
   ) {
     alert("Textos devem ser maiore que 5 caracteres");
     return;
   }
+  if (
+    animForm.value.titulo_esquerdo_en.length < 3  
+  ) {
+    alert("Textos devem ser maiore que 5 caracteres");
+    return;
+  }
+  if (
+    animForm.value.titulo_esquerdo_es.length < 3  
+  ) {
+    alert("Textos devem ser maiore que 5 caracteres");
+    return;
+  }
+  if (
+    animForm.value.titulo_direito.length < 3  
+  ) {
+    alert("Textos devem ser maiore que 5 caracteres");
+    return;
+  }
+  if (
+    animForm.value.titulo_direito_en.length < 3  
+  ) {
+    alert("Textos devem ser maiore que 5 caracteres");
+    return;
+  }
+  if (
+    animForm.value.titulo_direito_es.length < 3  
+  ) {
+    alert("Textos devem ser maiore que 5 caracteres");
+    return;
+  }
+  
+
 
   // VALIDA FORMDATA 30 ARQUIVOS
   if (animForm.value.emEdicao == false) {
@@ -728,7 +839,11 @@ async function submitFormData() {
 
   formDataAnima.append("titulo_esquerdo", animForm.value.titulo_esquerdo);
   formDataAnima.append("translateEsq", animForm.value.translateEsq);
+  formDataAnima.append("titulo_esquerdo_en", animForm.value.titulo_esquerdo_en);
+  formDataAnima.append("titulo_esquerdo_es", animForm.value.titulo_esquerdo_es);
   formDataAnima.append("titulo_direito", animForm.value.titulo_direito);
+  formDataAnima.append("titulo_direito_en", animForm.value.titulo_direito_en);
+  formDataAnima.append("titulo_direito_es", animForm.value.titulo_direito_es);
   formDataAnima.append("translateDir", animForm.value.translateDir);
   formDataAnima.append("ativo", animForm.value.ativo);
   formDataAnima.append("linha_id", animForm.value.linha_id);

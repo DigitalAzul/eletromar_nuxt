@@ -8,7 +8,7 @@
     >
       <div
         id="P-textoEsqID-Segundo"
-        class="textoDescricao ztop-[calc(100vh-600px)] zmd:relative zmd:top-0 hidden md:block absolute text-white"
+        class="textoDescricao ztop-[calc(100vh-600px)] zmd:relative zmd:top-0 hidden md:block absolute text-white text-right min-w-[800px] right-[50%]"
       >
         {{ titulo_esquerdo }}
       </div>
@@ -28,7 +28,7 @@
       <!-- ANIMACAO AQUI -->
       <div
         id="P-textoDirID-Segundo"
-        class="textoDescricao z-top-6 zmd:relative zmd:top-0 md:block hidden absolute text-white"
+        class="textoDescricao z-top-6 zmd:relative zmd:top-0 md:block hidden absolute text-white text-left min-w-[800px] left-[50%]"
       >
         {{ titulo_direito }}
       </div>

@@ -1,12 +1,9 @@
 <template>
   <div
-    class="zbox-border flex h-[100vh] flex-col zitems-center zjustify-center overflow-clip"
+    class="zbox-border zitems-center zjustify-center flex h-[100vh] flex-col overflow-clip"
   >
     <div class="wrapper">
       <div id="slider">
-
-        
-
         <div class="slide flex flex-col items-center justify-center">
           <div class="slide-wrapper">
             <div class="img-wrapper">
@@ -14,15 +11,18 @@
             </div>
 
             <div
-              class="envelopeAnima absolute 
-              top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
+              class="envelopeAnima absolute top-[3%] mx-auto flex h-[calc(100vh-30px)] w-screen flex-row items-center justify-center"
             >
-            <explosao-primeiro :titulo_esquerdo='titulo_esquerdo1' :titulo_direito='titulo_direito1' :translateEsq1='translateEsq1' :translateDir1='translateDir1'/>
-            
+              <explosao-primeiro
+                :titulo_esquerdo="titulo_esquerdo1"
+                :titulo_direito="titulo_direito1"
+                :translateEsq1="translateEsq1"
+                :translateDir1="translateDir1"
+              />
             </div>
             <div
               @click="solucaoDetalhe(linha_id1)"
-              class="seta right-[15%] ztop-[70%] lg:right-[25%] lg:bottom-[15%]"
+              class="seta ztop-[70%] right-[15%] lg:bottom-[15%] lg:right-[25%]"
             >
               <div></div>
               <div></div>
@@ -30,8 +30,6 @@
             </div>
           </div>
         </div>
-
-
 
         <div class="slide flex flex-col items-center justify-center">
           <div class="slide-wrapper">
@@ -40,15 +38,19 @@
             </div>
 
             <div
-              class="envelopeAnima absolute 
-              top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
+              class="envelopeAnima absolute top-[3%] mx-auto flex h-[calc(100vh-30px)] w-screen flex-row items-center justify-center"
             >
-            <explosao-segundo :titulo_esquerdo='titulo_esquerdo2' :titulo_direito='titulo_direito2' :translateEsq='translateEsq2' :translateDir='translateDir2'/>
+              <explosao-segundo
+                :titulo_esquerdo="titulo_esquerdo2"
+                :titulo_direito="titulo_direito2"
+                :translateEsq="translateEsq2"
+                :translateDir="translateDir2"
+              />
               <!-- <partes-millenium /> -->
             </div>
             <div
               @click="solucaoDetalhe(linha_id2)"
-              class="seta right-[15%] ztop-[70%] lg:right-[25%] lg:bottom-[15%]"
+              class="seta ztop-[70%] right-[15%] lg:bottom-[15%] lg:right-[25%]"
             >
               <div></div>
               <div></div>
@@ -56,7 +58,6 @@
             </div>
           </div>
         </div>
-
 
         <div class="slide flex flex-col items-center justify-center">
           <div class="slide-wrapper">
@@ -65,16 +66,19 @@
             </div>
 
             <div
-              class="envelopeAnima absolute 
-              top-[3%] mx-auto  flex w-screen h-[calc(100vh-30px)] flex-row items-center justify-center"
+              class="envelopeAnima absolute top-[3%] mx-auto flex h-[calc(100vh-30px)] w-screen flex-row items-center justify-center"
             >
-           
-            <explosao-terceiro :titulo_esquerdo='titulo_esquerdo3' :titulo_direito='titulo_direito3' :translateEsq='translateEsq3' :translateDir='translateDir3'/>
+              <explosao-terceiro
+                :titulo_esquerdo="titulo_esquerdo3"
+                :titulo_direito="titulo_direito3"
+                :translateEsq="translateEsq3"
+                :translateDir="translateDir3"
+              />
               <!-- <partes-millenium /> -->
             </div>
             <div
               @click="solucaoDetalhe(linha_id3)"
-              class="seta right-[15%] ztop-[70%] lg:right-[25%] lg:bottom-[15%]"
+              class="seta ztop-[70%] right-[15%] lg:bottom-[15%] lg:right-[25%]"
             >
               <div></div>
               <div></div>
@@ -82,9 +86,6 @@
             </div>
           </div>
         </div>
-
-
-        
 
         <nav id="navigation">
           <div class="bullet"></div>
@@ -97,8 +98,10 @@
 </template>
 
 <script setup>
-  import { useNuxtApp } from '#app';
+import { useNuxtApp } from "#app";
 import { onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+const i18nLocale = useI18n();
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -107,39 +110,36 @@ gsap.config({
   trialWarn: false,
 });
 
-let nuxtApp = ref()
+let nuxtApp = ref();
 
 async function solucaoDetalhe(linhaID) {
-
-
-  await nuxtApp.value.$fb.track("track","Click banner "+ linhaID)
+  await nuxtApp.value.$fb.track("track", "Click banner " + linhaID);
 
   window.location.assign("/solucoes?linha=" + linhaID);
 }
-
 
 let ANIMACOES = ref([]);
 let ANIMACOES1 = ref([]);
 let ANIMACOES2 = ref([]);
 let ANIMACOES3 = ref([]);
 
-const titulo_esquerdo1 = ref("")
-const translateEsq1 = ref("")
-const titulo_direito1 = ref("")
-const translateDir1 = ref("")
-const linha_id1 = ref("")
+const titulo_esquerdo1 = ref("");
+const translateEsq1 = ref("");
+const titulo_direito1 = ref("");
+const translateDir1 = ref("");
+const linha_id1 = ref("");
 
-const titulo_esquerdo2 = ref("")
-const translateEsq2 = ref("")
-const translateDir2 = ref("")
-const titulo_direito2 = ref("")
-const linha_id2 = ref("")
+const titulo_esquerdo2 = ref("");
+const translateEsq2 = ref("");
+const translateDir2 = ref("");
+const titulo_direito2 = ref("");
+const linha_id2 = ref("");
 
-const titulo_esquerdo3 = ref("")
-const translateEsq3 = ref("")
-const titulo_direito3 = ref("")
-const translateDir3 = ref("")
-const linha_id3 = ref("")
+const titulo_esquerdo3 = ref("");
+const translateEsq3 = ref("");
+const titulo_direito3 = ref("");
+const translateDir3 = ref("");
+const linha_id3 = ref("");
 
 async function getAnimacoes() {
   let R = await $fetch("/api/formAnima.php", {
@@ -147,58 +147,107 @@ async function getAnimacoes() {
     //    params: queryTagBlog.value,
   }).then((R) => {
     let r = JSON.parse(R);
-   console.log("DSFDSFDSFDFDFDSFSDD",r);
+    console.log("aaaaaaaaaaaaaaaa", r);
     if (r.dados.length > 0) {
       ANIMACOES.value = r.dados;
       ANIMACOES1.value = r.dados[0];
-      titulo_esquerdo1.value = ANIMACOES1.value.titulo_esquerdo
-      titulo_direito1.value = ANIMACOES1.value.titulo_direito
-      translateEsq1.value = ANIMACOES1.value.translateEsq
-      translateDir1.value = ANIMACOES1.value.translateDir
-      linha_id1.value = ANIMACOES1.value.linha_id
+      titulo_esquerdo1.value = ANIMACOES1.value.titulo_esquerdo;
+      titulo_direito1.value = ANIMACOES1.value.titulo_direito;
+      translateEsq1.value = ANIMACOES1.value.translateEsq;
+      translateDir1.value = ANIMACOES1.value.translateDir;
+      linha_id1.value = ANIMACOES1.value.linha_id;
 
       ANIMACOES2.value = r.dados[1];
-      titulo_esquerdo2.value = ANIMACOES2.value.titulo_esquerdo
-      titulo_direito2.value = ANIMACOES2.value.titulo_direito
-      translateEsq2.value = ANIMACOES2.value.translateEsq
-      translateDir2.value = ANIMACOES2.value.translateDir
-      linha_id2.value = ANIMACOES2.value.linha_id
+      titulo_esquerdo2.value = ANIMACOES2.value.titulo_esquerdo;
+      titulo_direito2.value = ANIMACOES2.value.titulo_direito;
+      translateEsq2.value = ANIMACOES2.value.translateEsq;
+      translateDir2.value = ANIMACOES2.value.translateDir;
+      linha_id2.value = ANIMACOES2.value.linha_id;
 
       ANIMACOES3.value = r.dados[2];
- 
-      titulo_esquerdo3.value = ANIMACOES3.value.titulo_esquerdo
-      titulo_direito3.value = ANIMACOES3.value.titulo_direito
-      translateEsq3.value = ANIMACOES3.value.translateEsq
-      translateDir3.value = ANIMACOES3.value.translateDir
-      linha_id3.value = ANIMACOES3.value.linha_id
 
-
+      titulo_esquerdo3.value = ANIMACOES3.value.titulo_esquerdo;
+      titulo_direito3.value = ANIMACOES3.value.titulo_direito;
+      translateEsq3.value = ANIMACOES3.value.translateEsq;
+      translateDir3.value = ANIMACOES3.value.translateDir;
+      linha_id3.value = ANIMACOES3.value.linha_id;
     } else {
       ANIMACOES.value = [];
     }
   });
 }
 
-onMounted(()=>{
-  getAnimacoes()
-})
+let lang = ref("pt");
+const { t, locale } = useI18n();
+onMounted(() => {
+  atualizaLocale();
+});
+
+watch(i18nLocale.locale, () => {
+  atualizaLocale();
+  blocksToArray();
+});
+function atualizaLocale() {
+  locale.value = localStorage.getItem("lang");
+  lang.value = localStorage.getItem("lang");
+}
+
+function blocksToArray() {
+  if (lang.value == "pt") {
+    ANIMACOES1.value = ANIMACOES.value[0];
+    titulo_esquerdo1.value = ANIMACOES1.value.titulo_esquerdo;
+    titulo_direito1.value = ANIMACOES1.value.titulo_direito;
+
+    ANIMACOES2.value = ANIMACOES.value[1];
+    titulo_esquerdo2.value = ANIMACOES2.value.titulo_esquerdo;
+    titulo_direito2.value = ANIMACOES2.value.titulo_direito;
+
+    ANIMACOES3.value = ANIMACOES.value[2];
+    titulo_esquerdo3.value = ANIMACOES3.value.titulo_esquerdo;
+    titulo_direito3.value = ANIMACOES3.value.titulo_direito;
+  }
+  if (lang.value == "en") {
+    ANIMACOES1.value = ANIMACOES.value[0];
+    titulo_esquerdo1.value = ANIMACOES1.value.titulo_esquerdo_en;
+    titulo_direito1.value = ANIMACOES1.value.titulo_direito_en;
+
+    ANIMACOES2.value = ANIMACOES.value[1];
+    titulo_esquerdo2.value = ANIMACOES2.value.titulo_esquerdo_en;
+    titulo_direito2.value = ANIMACOES2.value.titulo_direito_en;
+
+    ANIMACOES3.value = ANIMACOES.value[2];
+    titulo_esquerdo3.value = ANIMACOES3.value.titulo_esquerdo_en;
+    titulo_direito3.value = ANIMACOES3.value.titulo_direito_en;
+  }
+  if (lang.value == "es") {
+    ANIMACOES1.value = ANIMACOES.value[0];
+    titulo_esquerdo1.value = ANIMACOES1.value.titulo_esquerdo_es;
+    titulo_direito1.value = ANIMACOES1.value.titulo_direito_es;
+
+    ANIMACOES2.value = ANIMACOES.value[1];
+    titulo_esquerdo2.value = ANIMACOES2.value.titulo_esquerdo_es;
+    titulo_direito2.value = ANIMACOES2.value.titulo_direito_es;
+
+    ANIMACOES3.value = ANIMACOES.value[2];
+    titulo_esquerdo3.value = ANIMACOES3.value.titulo_esquerdo_es;
+    titulo_direito3.value = ANIMACOES3.value.titulo_direito_es;
+  }
+}
 
 onMounted(() => {
+  getAnimacoes();
+});
 
+onMounted(() => {
   //TSTE FACEBOOK
-  nuxtApp.value = useNuxtApp()
+  nuxtApp.value = useNuxtApp();
   //nuxtApp.value.$fb.enable()
-  nuxtApp.value.$fb.init()
+  nuxtApp.value.$fb.init();
 
   //nuxtApp.$fb('track', 'Purchase', {currency: "USD", value: 30.00});
 
-
-
-
-
   // SET VIDEO CONTENT
-  const video_inst = ref(document.getElementById("proj_vid-1"))
-
+  const video_inst = ref(document.getElementById("proj_vid-1"));
 
   let tl = gsap.timeline({
     scrollTrigger: {
@@ -698,7 +747,7 @@ onMounted(() => {
 .img-wrapper {
   width: 100%;
   height: 100%;
-  background: #1b3346
+  background: #1b3346;
 }
 .img-wrapperVid {
   width: 100%;

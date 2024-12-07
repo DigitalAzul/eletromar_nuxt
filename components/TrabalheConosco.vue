@@ -198,10 +198,9 @@
 
             <div class="lnCont">
               <div
-                class="sublnCont mt-10 flex flex-col space-y-6 md:flex-row md:space-x-5 md:space-y-0"
+                class="sublnCont mt-10 flex flex-col space-y-6 md:flex-row md:space-y-0"
               >
-                <div class="h-20 w-72 pt-2"><div ref="root" /></div>
-                <div class="h-20 w-auto pl-4 text-xl text-white">
+                <div class="h-20 w-auto text-xl text-white">
                   <p>{{ contato.email }}</p>
                   <p>{{ contato.fone1 }}</p>
                   <div class="flex flex-row space-x-2">
@@ -217,6 +216,7 @@
                   </div>
                 </div>
               </div>
+              
             </div>
 
             <div
@@ -248,8 +248,8 @@
     </x-modal>
   </div>
 </template>
-    
-    <script setup>
+
+<script setup>
 import { ref, onMounted } from "vue";
 import { PhWhatsappLogo } from "phosphor-vue";
 import gsap from "gsap";
@@ -555,8 +555,8 @@ onMounted(() => {
   getSetores();
 });
 </script>
-    
-    <style scoped>
+
+<style scoped>
 body * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
@@ -909,4 +909,3 @@ select::-ms-expand {
   background-color: #fff;
 }
 </style>
-    
