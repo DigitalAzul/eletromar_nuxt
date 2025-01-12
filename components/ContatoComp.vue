@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="flex w-full flex-col lg:flex-row lg:space-x-14">
-              <div class="w-full">
+              <div class="w-1/2">
                 <div
                   class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
                 >
@@ -77,10 +77,12 @@
                     class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
                   >
                     <div class="selectdiv h-[10px] w-full">
-                      <select class="w-full" @change="setUf($event)">
-                        <option selected>{{ $t("seueestado") }}</option>
+                      <select class="w-full" @change="setContinente($event)">
+                        <option selected>
+                          {{ $t("seueestado") }} Continente
+                        </option>
                         <option
-                          v-for="(uf, index) in estadosOptions"
+                          v-for="(uf, index) in ContinentesOptions"
                           :key="index"
                         >
                           {{ uf.text }}
@@ -90,36 +92,95 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- <div
-                  class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
-                >
-                  <div
-                    class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef]"
-                  >
-                    <input
-                      v-model="formContato.uf"
-                      class="h-10 w-full bg-transparent"
-                      type="text"
-                      :placeholder="$t('seueestado')"
-                    />
-                  </div>
-                </div> -->
-              </div>
-              <div class="w-full">
                 <div
                   class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
                 >
                   <div
-                    class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef]"
+                    class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
                   >
-                    <input
-                      v-model="formContato.cidade"
-                      class="h-10 w-full bg-transparent"
-                      type="text"
-                      :placeholder="$t('suacidade')"
-                    />
+                    <div 
+                    :class="{'opacity-30 pointer-events-none': PaisesOptions.length == 0 }"
+                    class="selectdiv h-[10px] w-full "
+                    >
+                      <select class="w-full" @change="setPais($event)">
+                        <option selected>País {{ $t("seueestado") }}</option>
+                        <option
+                          v-for="(uf, index) in PaisesOptions"
+                          :key="index"
+                        >
+                          {{ uf.text }}
+                        </option>
+                      </select>
+                      <div for="" class="setaPraBaixo"></div>
+                    </div>
                   </div>
+                </div>
+              </div>
+
+              <div class="flex w-1/2 flex-col">
+                <div
+                  class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
+                >
+                  <div
+                  
+                    class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
+                  >
+                    <div 
+                    :class="{'opacity-30 pointer-events-none': EstadosOptions.length == 0 }"
+                    class="selectdiv h-[10px] w-full">
+                      <select class="w-full" @change="setEstado($event)">
+                        <option selected>Estado {{ $t("seueestado") }}</option>
+                        <option
+                          v-for="(uf, index) in EstadosOptions"
+                          :key="index"
+                        >
+                          {{ uf.text }}
+                        </option>
+                      </select>
+                      <div for="" class="setaPraBaixo"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full">
+                  <div
+                    class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
+                  >
+                    <div
+                      class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
+                    >
+                      <div 
+                      :class="{'opacity-30 pointer-events-none': CidadesOptions.length == 0 }"
+                      class="selectdiv h-[10px] w-full">
+                        <select class="w-full" @change="setCidade($event)">
+                          <option selected>
+                            Cidade {{ $t("seueestado") }}
+                          </option>
+                          <option
+                            v-for="(uf, index) in CidadesOptions"
+                            :key="index"
+                          >
+                            {{ uf.text }}
+                          </option>
+                        </select>
+                        <div for="" class="setaPraBaixo"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div
+                    class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
+                  >
+                    <div
+                      class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef]"
+                    >
+                      <input
+                        v-model="formContato.cidade"
+                        class="h-10 w-full bg-transparent"
+                        type="text"
+                        :placeholder="$t('suacidade')"
+                      />
+                    </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -187,9 +248,13 @@
             <div
               class="lnCont relative flex h-[360px] flex-row overflow-hidden"
             >
-              <div class="sublnCont absolute flex flex-col md:flex-row justify-between w-full">
+              <div
+                class="sublnCont absolute flex w-full flex-col justify-between md:flex-row"
+              >
                 <div>
-                  <div class="mt-10 flex flex-col space-y-6 md:flex-row md:space-x-5 md:space-y-0">
+                  <div
+                    class="mt-10 flex flex-col space-y-6 md:flex-row md:space-x-5 md:space-y-0"
+                  >
                     <div class="h-20 w-auto text-xl text-white">
                       <p>{{ contato.email }}</p>
                       <p>{{ contato.fone1 }}</p>
@@ -228,20 +293,22 @@
                     class="daHoverSlide Xabsolute mt-10 w-[300px] cursor-pointer text-[1rem] sm:w-[340px] sm:text-[1.2rem]"
                   >
                     <div @click="botaoTrabalheConosco()">
-                      <span @click="botaoTrabalheConosco()" class="capitalize">{{
-                        $t("trabalheconosco")
-                      }}</span>
+                      <span
+                        @click="botaoTrabalheConosco()"
+                        class="capitalize"
+                        >{{ $t("trabalheconosco") }}</span
+                      >
                     </div>
                     <div @click="botaoTrabalheConosco()">
-                      <span class="daspan capitalize" @click="botaoTrabalheConosco()">{{
-                        $t("trabalheconosco")
-                      }}</span>
+                      <span
+                        class="daspan capitalize"
+                        @click="botaoTrabalheConosco()"
+                        >{{ $t("trabalheconosco") }}</span
+                      >
                     </div>
                   </div>
                 </div>
-
               </div>
-
             </div>
           </form>
         </div>
@@ -288,13 +355,11 @@ components: {
   PhWhatsappLogo;
 }
 
-
 function botaoTrabalheConosco() {
   //const POST = JSON.stringify(post);
 
   window.location.assign("/trabalheconosco");
 }
-
 
 const formContato = ref({
   politica: "",
@@ -323,26 +388,157 @@ function atualizaLocale() {
 }
 const contato = ref({
   email: "contato@mectronic-eletromar.com.br",
-  fone1: "(81) 2138.7200",
-  fone2: "(81) 99278-7518",
+  fone1: "+55 (81) 2138.7200",
+  fone2: "+55 (81) 99278-7518",
 });
 let Y = -100;
 let ease = 0.5;
 let atualY = ref(-100);
 let ultimaPosicao = ref(0);
 
-function setUf(event) {
+const ContinentesOptions = ref([
+  { text: "South America", value: "6255150" },
+  { text: "Africa", value: "6255146" },
+  { text: "Antarctica", value: "6255152" },
+  { text: "Europe", value: "6255148" },
+  { text: "North America", value: "6255149" },
+  { text: "Oceania", value: "Oceania" },
+]);
+
+const PaisesOptions = ref([]);
+const EstadosOptions = ref([]);
+const CidadesOptions = ref([]);
+
+
+
+function setContinente(event) {
+
+  const pais = ContinentesOptions.value.find(
+    (o) => o.text == event.target.value
+  );
+
+  // resetes
+  formContato.value.pais = ""
+  PaisesOptions.value = []
+  formContato.value.uf = ""
+  EstadosOptions.value = []
+  formContato.value.cidade = ""
+  CidadesOptions.value = []
+
+
+  formContato.value.continente = event.target.value;
+  getPaises(pais.value);
+}
+
+
+function setPais(event) {
+  console.log('PAIS',event.target.value, PaisesOptions);
+  const pais = PaisesOptions.value.find(
+    (o) => o.text == event.target.value
+  );
+
+    // resetes
+  formContato.value.uf = ""
+  EstadosOptions.value = []
+  formContato.value.cidade = ""
+
+
+  formContato.value.pais = event.target.value;
+  getEstados(pais.value);
+}
+function setEstado(event) {
+  console.log(event.target.value);
+  const estado = EstadosOptions.value.find(
+    (o) => o.text == event.target.value
+  );
+
+    // resetes
+  formContato.value.cidade = ""
+
+
   formContato.value.uf = event.target.value;
+  getCidades(estado.value);
+}
+function setCidade(event) {
+  console.log(event.target.value);
+  formContato.value.cidade = event.target.value;
+}
+
+
+async function getPaises(continenteID) {
+  console.log('get pais', continenteID);
+  // get paises
+  //http://www.geonames.org/childrenJSON?geonameId=6255150&callback=listPlaces&style=long&noCacheIE=1736693942234
+
+  await $fetch(`http://www.geonames.org/childrenJSON?geonameId=${continenteID}`, {
+    method: "GET",
+  }).then((response) => {
+    //let RS = JSON.parse(R);
+    PaisesOptions.value = []
+    response.geonames.map((p) => {
+      PaisesOptions.value.push({
+        text: p.countryName,
+        value: p.countryId,
+      });
+    });
+    console.log(response, PaisesOptions.value);
+   // getEstados();
+  });
+}
+async function getEstados(paisID) {
+  console.log('get estados', paisID);
+  // get estados
+  //http://www.geonames.org/childrenJSON?geonameId=3469034&callback=listPlaces&style=long&noCacheIE=1736693989369
+
+  await $fetch(`http://www.geonames.org/childrenJSON?geonameId=${paisID}`, {
+    method: "GET",
+  }).then((response) => {
+    //let RS = JSON.parse(R);
+
+    EstadosOptions.value = []
+
+    response.geonames.map((p) => {
+      EstadosOptions.value.push({
+        text: p.adminName1,
+        value: p.geonameId,
+      });
+    });
+    console.log('ESTADOS',response, EstadosOptions.value);
+    //getCidades();
+  });
+}
+async function getCidades(estadoID) {
+  console.log('get CIDADES', estadoID);
+  // get estados
+  //http://www.geonames.org/childrenJSON?geonameId=3665474&callback=listPlaces&style=long&noCacheIE=1736694812187
+
+  await $fetch(`http://www.geonames.org/childrenJSON?geonameId=${estadoID}`, {
+    method: "GET",
+  }).then((response) => {
+    //let RS = JSON.parse(R);
+
+    CidadesOptions.value = []
+
+    response.geonames.map((p) => {
+      CidadesOptions.value.push({
+        text: p.name,
+        value: p.geonameId,
+      });
+    });
+    console.log(response, CidadesOptions.value);
+  });
 }
 
 let formContatoValido = ref({
   mensagem: false,
-  cidade: false,
   uf: false,
   email: false,
   nome: false,
   empresa: false,
   cnpj: false,
+  continente: false,
+  pais: false,
+  cidade: false,
 });
 
 function validateEmail(email) {
@@ -351,53 +547,116 @@ function validateEmail(email) {
 }
 const modalContato = ref(false);
 const modalContatoTXT = ref("");
+
 function ValidaformContato() {
   let RTX = false;
 
-  if (formContato.value.nome.length > 8) formContatoValido.value.nome = true;
-  else formContatoValido.value.nome = false;
+  try {
+    if (formContato.value.politica) formContato.value.politica = 1;
+    else formContato.value.politica = 0;
+  } catch (error) {
+    formContato.value.politica = 0;
+  }
 
-  if (formContato.value.empresa.length > 8)
-    formContatoValido.value.empresa = true;
-  else formContatoValido.value.empresa = false;
+  try {
+    if (formContato.value.nome.length > 3) formContatoValido.value.nome = true;
+    else formContatoValido.value.nome = false;
+  } catch (error) {
+    formContatoValido.value.nome = false;
+  }
 
-  if (formContato.value.mensagem.length > 8)
-    formContatoValido.value.mensagem = true;
-  else formContatoValido.value.mensagem = false;
+  try {
+    if (formContato.value.empresa.length > 3)
+      formContatoValido.value.empresa = true;
+    else formContatoValido.value.empresa = false;
+  } catch (error) {
+    formContatoValido.value.empresa = false;
+  }
 
-  if (validateEmail(formContato.value.email))
-    formContatoValido.value.email = true;
-  else formContatoValido.value.email = false;
+  try {
+    if (formContato.value.mensagem.length > 8)
+      formContatoValido.value.mensagem = true;
+    else formContatoValido.value.mensagem = false;
+  } catch (error) {
+    formContatoValido.value.mensagem = false
+  }
 
-  if (formContato.value.cidade.length > 3)
-    formContatoValido.value.cidade = true;
-  else formContatoValido.value.cidade = false;
+  try {
+    if (validateEmail(formContato.value.email))
+      formContatoValido.value.email = true;
+    else formContatoValido.value.email = false;
+  } catch (error) {
+    formContatoValido.value.email = false;
+  }
 
-  if (formContato.value.cnpj.toString().length == 14)
-    formContatoValido.value.cnpj = true;
-  else formContatoValido.value.cnpj = false;
+  try {
+    if (formContato.value.continente.length > 3)
+      formContatoValido.value.continente = true;
+    else formContatoValido.value.continente = false;
+  } catch (error) {
+    formContatoValido.value.continente = false;
+  }
+  try {
+    if (formContato.value.pais.length > 3)
+      formContatoValido.value.pais = true;
+    else formContatoValido.value.pais = false;
+  } catch (error) {
+    formContatoValido.value.pais = false;
+  }
+  // try {
+  //   if (formContato.value.estado.length > 3)
+  //     formContatoValido.value.estado = true;
+  //   else formContatoValido.value.estado = false;
+  // } catch (error) {
+  //   formContatoValido.value.estado = false;
+  // }
 
-  if (formContato.value.uf.length > 3) formContatoValido.value.uf = true;
-  else formContatoValido.value.uf = false;
+  try {
+    if (formContato.value.cidade.length > 3)
+      formContatoValido.value.cidade = true;
+    else formContatoValido.value.cidade = false;
+  } catch (error) {
+    formContatoValido.value.cidade = false;
+  }
 
+  try {
+    if (formContato.value.cnpj.toString().length > 3)
+      formContatoValido.value.cnpj = true;
+    else formContatoValido.value.cnpj = false;
+  } catch (error) {
+    formContatoValido.value.cnpj = false;
+  }
+
+  try {
+    if (formContato.value.uf.length > 3) formContatoValido.value.uf = true;
+    else formContatoValido.value.uf = false;
+  } catch (error) {
+    formContatoValido.value.uf = false
+  }
+
+let contFalse = 0
   Object.keys(formContatoValido.value).forEach((key) => {
-    if (formContatoValido.value[key] == false) RTX = false;
+    if (formContatoValido.value[key] == false) {
+      RTX = false;
+      contFalse +=1
+    }
     else RTX = true;
   });
-  return RTX;
+  console.log('formContatoValido.value',formContatoValido.value);
+  return contFalse;
 }
 
 const formContatoBody = new FormData();
 async function enviaContato() {
-  if (!captchaValido.value) {
-    modalContato.value = true;
-    modalContatoTXT.value = "Clique na caixa de verificação do Captcha!";
-    return;
-  }
+  // if (!captchaValido.value) {
+  //   modalContato.value = true;
+  //   modalContatoTXT.value = "Clique na caixa de verificação do Captcha!";
+  //   return;
+  // }
 
   const V = ValidaformContato();
-  console.log(V);
-  if (V == false) {
+
+  if (V > 0) {
     modalContato.value = true;
     modalContatoTXT.value = "Preencha os campos Requeridos!";
     return;
@@ -451,6 +710,7 @@ const estadosOptions = ref([
   { text: "Sergipe", value: "SE" },
   { text: "Tocantins", value: "TO" },
 ]);
+
 // onMounted(() => {
 //   const { data, error } = useFetch("api/formUfs.php");
 //   estadosOptions.value = data;

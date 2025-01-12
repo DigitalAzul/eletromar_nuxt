@@ -103,16 +103,21 @@
                     >
                       Nome
                     </th>
-
-                    <th
-                      class="border-b p-4 pb-3 pr-8 pt-0 text-left font-medium text-slate-400 dark:border-slate-600 dark:text-slate-200"
-                    >
-                      Menssagem
-                    </th>
                     <th
                       class="border-b p-4 pb-3 pr-8 pt-0 text-left font-medium text-slate-400 dark:border-slate-600 dark:text-slate-200"
                     >
                       Email
+                    </th>
+
+                    <th
+                      class="border-b p-4 pb-3 pr-8 pt-0 text-left font-medium text-slate-400 dark:border-slate-600 dark:text-slate-200"
+                    >
+                      Continente
+                    </th>
+                    <th
+                      class="border-b p-4 pb-3 pr-8 pt-0 text-left font-medium text-slate-400 dark:border-slate-600 dark:text-slate-200"
+                    >
+                      Pais
                     </th>
                     <th
                       class="border-b p-4 pb-3 pr-8 pt-0 text-left font-medium text-slate-400 dark:border-slate-600 dark:text-slate-200"
@@ -146,7 +151,7 @@
                     <td
                       class="border-b border-slate-100 p-4 pr-8 text-slate-500 dark:border-slate-700 dark:text-slate-400"
                     >
-                      {{ cont.CNPJ }}
+                      {{ cont.cnpj }}
                     </td>
                     <td
                       class="border-b border-slate-100 p-4 pr-8 text-slate-500 dark:border-slate-700 dark:text-slate-400"
@@ -157,12 +162,17 @@
                     <td
                       class="border-b border-slate-100 p-4 pr-8 text-slate-500 dark:border-slate-700 dark:text-slate-400"
                     >
-                      {{ cont.mensagem }}
+                      {{ cont.email }}
                     </td>
                     <td
                       class="border-b border-slate-100 p-4 pr-8 text-slate-500 dark:border-slate-700 dark:text-slate-400"
                     >
-                      {{ cont.email }}
+                      {{ cont.continente }}
+                    </td>
+                    <td
+                      class="border-b border-slate-100 p-4 pr-8 text-slate-500 dark:border-slate-700 dark:text-slate-400"
+                    >
+                      {{ cont.pais }}
                     </td>
                     <td
                       class="border-b border-slate-100 p-4 pr-8 text-slate-500 dark:border-slate-700 dark:text-slate-400"
@@ -292,6 +302,7 @@ async function getContatos() {
       if(queryContato.value.q == "por_uf"){
         contatos.value = [];
         contatos.value = CON.dados;
+        console.log(CON.dados);
       }
     } else {
       alert(CON.msg);
