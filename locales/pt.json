@@ -43,6 +43,8 @@
   "seunome": "Seu nome*",
   "seuemail": "Seu email*",
   "seueestado": "Seu  estado*",
+  "continente": "Continente*",
+  "pais": "Pais*",
   "suacidade": "Sua cidade*",
   "suaempresa": "Sua empresa*",
   "empresa": "empresa",

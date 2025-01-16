@@ -68,8 +68,9 @@
                 />
               </div>
             </div>
+            
             <div class="flex w-full flex-col lg:flex-row lg:space-x-14">
-              <div class="w-1/2">
+              <div class="lg:w-1/2 w-full">
                 <div
                   class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
                 >
@@ -79,7 +80,7 @@
                     <div class="selectdiv h-[10px] w-full">
                       <select class="w-full" @change="setContinente($event)">
                         <option selected>
-                          {{ $t("seueestado") }} Continente
+                          {{ $t("continente") }}
                         </option>
                         <option
                           v-for="(uf, index) in ContinentesOptions"
@@ -103,7 +104,7 @@
                     class="selectdiv h-[10px] w-full "
                     >
                       <select class="w-full" @change="setPais($event)">
-                        <option selected>País {{ $t("seueestado") }}</option>
+                        <option selected>{{ $t("pais") }}</option>
                         <option
                           v-for="(uf, index) in PaisesOptions"
                           :key="index"
@@ -117,7 +118,7 @@
                 </div>
               </div>
 
-              <div class="flex w-1/2 flex-col">
+              <div class="flex w-full lg:w-1/2 flex-col">
                 <div
                   class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
                 >
@@ -129,7 +130,7 @@
                     :class="{'opacity-30 pointer-events-none': EstadosOptions.length == 0 }"
                     class="selectdiv h-[10px] w-full">
                       <select class="w-full" @change="setEstado($event)">
-                        <option selected>Estado {{ $t("seueestado") }}</option>
+                        <option selected>{{ $t("seueestado") }}</option>
                         <option
                           v-for="(uf, index) in EstadosOptions"
                           :key="index"
@@ -152,8 +153,7 @@
                       :class="{'opacity-30 pointer-events-none': CidadesOptions.length == 0 }"
                       class="selectdiv h-[10px] w-full">
                         <select class="w-full" @change="setCidade($event)">
-                          <option selected>
-                            Cidade {{ $t("seueestado") }}
+                          <option selected>{{ $t("suacidade") }}
                           </option>
                           <option
                             v-for="(uf, index) in CidadesOptions"
@@ -185,7 +185,7 @@
               </div>
             </div>
 
-            <div class="flex flex-row space-x-14">
+            <div class="flex lg:flex-row lg:space-x-14 flex-col">
               <div
                 class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
               >
@@ -402,7 +402,7 @@ const ContinentesOptions = ref([
   { text: "Antarctica", value: "6255152" },
   { text: "Europe", value: "6255148" },
   { text: "North America", value: "6255149" },
-  { text: "Oceania", value: "Oceania" },
+  { text: "Oceania", value: "6255151" },
 ]);
 
 const PaisesOptions = ref([]);
@@ -464,13 +464,13 @@ function setCidade(event) {
   formContato.value.cidade = event.target.value;
 }
 
-
+//http://api.geonames.org/children?geonameId=6255150&username=dazl&hierarchy=tourism
 async function getPaises(continenteID) {
   console.log('get pais', continenteID);
   // get paises
   //http://www.geonames.org/childrenJSON?geonameId=6255150&callback=listPlaces&style=long&noCacheIE=1736693942234
 
-  await $fetch(`http://www.geonames.org/childrenJSON?geonameId=${continenteID}`, {
+  await $fetch(`http://api.geonames.org/childrenJSON?geonameId=${continenteID}&username=dazl`, {
     method: "GET",
   }).then((response) => {
     //let RS = JSON.parse(R);
@@ -490,7 +490,7 @@ async function getEstados(paisID) {
   // get estados
   //http://www.geonames.org/childrenJSON?geonameId=3469034&callback=listPlaces&style=long&noCacheIE=1736693989369
 
-  await $fetch(`http://www.geonames.org/childrenJSON?geonameId=${paisID}`, {
+  await $fetch(`http://api.geonames.org/childrenJSON?geonameId=${paisID}&username=dazl`, {
     method: "GET",
   }).then((response) => {
     //let RS = JSON.parse(R);
@@ -512,7 +512,7 @@ async function getCidades(estadoID) {
   // get estados
   //http://www.geonames.org/childrenJSON?geonameId=3665474&callback=listPlaces&style=long&noCacheIE=1736694812187
 
-  await $fetch(`http://www.geonames.org/childrenJSON?geonameId=${estadoID}`, {
+  await $fetch(`http://api.geonames.org/childrenJSON?geonameId=${estadoID}&username=dazl`, {
     method: "GET",
   }).then((response) => {
     //let RS = JSON.parse(R);

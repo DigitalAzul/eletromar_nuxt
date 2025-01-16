@@ -42,6 +42,8 @@
   "seunome": "Your name*",
   "seuemail": "Your email*",
   "seueestado": "Your state*",
+  "continente": "Continent*",
+  "pais": "Country*",
   "suacidade": "Your city*",
   "suaempresa": "Your company*",
   "empresa": "company",
