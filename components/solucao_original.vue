@@ -1,4 +1,5 @@
 <template>
+  <!-- ORIGINAL -- SOLUCAO -->
   <div envelope="solucoesHome">
     <div class="drawLineContSolu">
       <div
@@ -22,7 +23,7 @@
         {{ $t("solucoes") }}
       </div>
     </div>
-    <div class="bg-[#1b3346] py-[60px] pb-[150px]">
+    <div class="bg-[#1b3346] py-[60px]">
       <div
         id="slucoesHomeTitID"
         class="space-y-4 overflow-hidden pt-[130px] text-center"
@@ -39,77 +40,155 @@
         </div>
       </div>
 
-      <!-- GRID DE PRODUTOS texto e produtos RETIDANDOPRA TESTES-->
+      <!-- GRID DE PRODUTOS texto e produtos -->
 
-      <!-- ALTeracao 2025 -->
-      <div class="relative container mx-auto flex flex-col pt-32 lg:flex-row">
-        <!-- v-show="MOBILE == false" -->
-        <div
-          id="produtosDestaqueID"
-          class="container mx-auto flex flex-row flex-nowrap justify-center overflow-hidden px-0 xl:px-[100px]"
-        >
+      <div
+        class="container mx-auto flex flex-col justify-center pb-10 pt-32 lg:flex-row lg:pb-32"
+      >
+        <div class="h-[200px] w-full lg:h-[1000px] xl:w-[340px] 2xl:w-1/3">
           <div
-            class="gridProdutos flex flex-col px-6 z_hidden z_grid-cols-[repeat(auto-fill,_minmax(350px,_1fr))] py-40 lg:grid lg:grid-cols-[repeat(3,_minmax(400px,_1fr))]"
+            @click="selectedLinhas()"
+            class="flex flex-row justify-center py-4 pt-3 text-center text-xl font-bold uppercase text-white"
           >
-          <!-- :class="{
-            '-ml-[2px] -mt-[2px] border-[2px] border-white':
-              item.tituloLang,
-          }" -->
-            <!-- PRODUTO -->
+            <div>{{ $t("nossaslinhas") }}</div>
             <div
-              v-for="(item, index) in produtosDestaque"
+              v-if="MOBILE"
+              :class="{ 'animate-bounce': !menuDestaqueToggle }"
+            >
+              <ph-arrow-down :size="22" class="relative left-5 top-1" />
+            </div>
+          </div>
+          <!--Seletor de linhas Desk-->
+          <div v-if="!MOBILE"
+          class="scrollRep h-[1000px]"
+          >
+            <div
+              class="border-b-[1px] border-t-[1px] border-transparent py-3 pl-6 text-lg font-bold uppercase text-white hover:border-b-[1px] hover:border-t-[1px] hover:border-[#00b1ef] hover:text-[#00b1ef]"
+              v-for="(linha, index) in menuLinhas"
               :key="index"
-              class="prodHome z-50 -ml-[2px] -mt-[2px] h-full w-full border-[2px] border-white"
-              @click="solucaoLinha(item.id)"
-              @mouseenter="playVideo(item.id)"
-              @mouseleave="pauseVideo(item.id)"
             >
               <div
-                class="relative flex min-h-[750px] flex-col items-center overflow-hidden pt-16"
+                @click="getSolucoesDestaquesLinhas(0, linha.id, false)"
+                class="cursor-pointer"
               >
-                <div class="w-[385px] opacity-60">
-                  <div class="verdadeiro relative h-[350px] overflow-clip">
-                    <video
-                      v-if="item.id != videoPlayCorrenteID"
-                      :src="
-                        pathSolucoes + '\linhas_destaque\\' + item.link + '.mp4'
-                      "
-                      muted
-                      stop
-                      class="absolute left-0 top-0 w-[385px] p-1"
-                      type="video/mp4"
-                    ></video>
-                    <video
-                      :id="item.id"
-                      :src="
-                        pathSolucoes + '\linhas_destaque\\' + item.link + '.mp4'
-                      "
-                      loop
-                      muted
-                      playsinline
-                      class="absolute left-0 top-0 w-[385px] p-1"
-                      :class="{ 'opacity-0': item.id != videoPlayCorrenteID }"
-                      type="video/mp4"
-                    ></video>
-                  </div>
-                </div>
+                {{ linha.titulo }}
+              </div>
+            </div>
+          </div>
+          <!--Seletor de linhas Mob-->
+          <div
+            v-if="MOBILE && menuDestaqueToggle"
+            class="xhidden flex-col space-y-3 px-6 pr-4 pt-10 lg:flex"
+            :class="{
+              'h-[300px] overflow-y-auto bg-[#1b3346] text-center': MOBILE,
+            }"
+          >
+            <div
+              class="border-b-[1px] border-t-[1px] border-transparent py-3 text-lg font-bold uppercase text-white hover:border-b-[1px] hover:border-t-[1px] hover:border-[#00b1ef] hover:text-[#00b1ef]"
+              v-for="(linha, index) in menuLinhas"
+              :key="index"
+            >
+              <div
+                @click="getSolucoesDestaquesLinhas(0, linha.id, false)"
+                class="cursor-pointer"
+              >
+                {{ linha.titulo }}
+              </div>
+            </div>
+          </div>
+          <x-modal v-model="modalLinhas"> Carregando...! </x-modal>
+          <!--Seletor de linhas Mob-->
+          <!-- <div class="container mx-auto block w-full px-5 pt-10 lg:hidden">
+            <select
+              @change="getSolucoesDestaquesLinhasDoSelect(0, $event)"
+              id="linhasSelect"
+              class="h-14 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+            >
+              <option
+                class="text-black"
+                v-for="(linha, index) in menuLinhas"
+                :key="index"
+              >
+                {{ linha.titulo }}
+              </option>
+            </select>
+          </div> -->
+        </div>
 
-                <div class="space-y-5 px-10 pt-10 text-center">
-                  <h1 class="text-3xl font-semibold">{{ item.titulo }}</h1>
-                  <div class="flex flex-col -space-y-0">
-                    <div class="text-base tracking-tighter sm:text-lg">
-                      {{ item.tituloLang }} item.tituloLang
-                    </div>
-                    <!-- <span 
-                v-for="(d, index) in item.descricaoLang" :key="index"
-                class="text-base sm:text-lg tracking-tighter">
-                  {{ d }}
-                </span> -->
-                  </div>
+        <div
+          id="solucoesHomeID"
+          v-if="!menuDestaqueToggle"
+          class="flex h-auto w-full flex-col flex-nowrap items-center justify-center overflow-hidden pt-10 lg:w-[950px]"
+        >
+          <div class="gridProdutos z-10 w-full px-5">
+            <!-- PRODUTO -->
+            <div
+              @click="solucaoDetalhe(item.id)"
+              v-for="(item, index) in produtosDestaque"
+              :key="index"
+              class="prodSolu z-50 mb-0 h-full w-full lg:mb-12"
+            >
+              <div
+                :class="{
+                  ' -mt-[2px] h-[620px] items-center border-[1px] border-[#c3d3cb] text-white hover:text-[#00b1ef]':
+                    item.titulo,
+                }"
+                class="relative flex flex-col items-center justify-center pt-12 hover:bg-[#0c1a25]"
+              >
+                <div
+                  class="relative flex h-[640px] w-full flex-row items-center justify-center lg:w-[300px]"
+                >
+                  <img
+                    :src="
+                      pathSolucoes +
+                      '\\' +
+                      pathLinhaCorrente.path +
+                      '\\' +
+                      item.img_1
+                    "
+                    alt=""
+                    width="195"
+                    height="320"
+                    class="object-fill"
+                  />
+                  <img
+                    v-if="item.img_2"
+                    :src="
+                      pathSolucoes +
+                      '\\' +
+                      pathLinhaCorrente.path +
+                      '\\' +
+                      item.img_2
+                    "
+                    alt=""
+                    width="195"
+                    height="320"
+                    class="invisible object-fill"
+                  />
+                  <img
+                    v-else
+                    :src="
+                      pathSolucoes +
+                      '\\' +
+                      pathLinhaCorrente.path +
+                      '\\' +
+                      item.img_1
+                    "
+                    alt=""
+                    width="195"
+                    height="320"
+                    class="object-fill"
+                  />
                 </div>
-                <div class="py-10">
-                  <div class="flex flex-row space-x-14">
-                    <div class="-mt-[10px] text-[1.5rem]">
+                <div class="space-y-5 px-10 pt-7 text-center">
+                  <h1 class="text-3xl font-semibold uppercase">
+                    {{ item.titulo }}
+                  </h1>
+                  <h3 class="text-lg">{{ $t("codigo") }} {{ item.codigo }}</h3>
+                </div>
+                <div class="items-center pb-14 pt-6 lg:bottom-10">
+                  <div class="flex flex-row space-x-12 space-y-3">
+                    <div @click="teste()" class="pt-1 text-[1.425rem]">
                       {{ $t("saibamais") }}
                     </div>
                     <div>
@@ -124,51 +203,44 @@
             </div>
           </div>
 
-          
-          
+          <div
+            v-if="produtosDestaque.length > 0"
+            class="text-g mb-[8.5rem] mt-28 flex h-[3rem] w-[260px] cursor-pointer flex-col items-center justify-center bg-[#00b1ef] text-[1.2rem] text-[#1b3346] sm:w-[450px]"
+            @click="
+              (offSetPagina += 9),
+                getSolucoesDestaquesLinhas(offSetPagina, null, true)
+            "
+          >
+            {{ $t("carregarmaisprodutos") }}
+          </div>
         </div>
-        <!-- PAGINACAO -->
-        <div class="hidden">
-          <input type="radio" name="radioDestq-bt" id="radioDestq1" />
-          <input type="radio" name="radioDestq-bt" id="radioDestq2" />
-          <input type="radio" name="radioDestq-bt" id="radioDestq3" />
+        <!-- MODAL -->
+        <label class="btn" for="modal-1"></label>
+        <input class="modal-state" id="modal-1" type="checkbox" />
+        <div class="modal">
+          <label class="modal__bg" for="modal-1"></label>
+          <div class="modal__inner">
+            <label class="modal__close" for="modal-1"></label>
+
+            <p class="pt-10 text-center text-2xl text-[#00b1ef]">
+              {{ $t("semmaisparaexibir") }}
+            </p>
+          </div>
         </div>
-        <div
-          class="manual-nav bottom-[60px] lg:bottom-[80px] flex flex-row items-center justify-center space-x-3"
-        >
-          <label
-            for="radio1"
-            class="manual-bt-destaque"
-            id="manualDestaque-bt1"
-            @click="getSolucoesDestaques(0), setBanner(1)"
-          ></label>
-          <label
-            for="radio2"
-            class="manual-bt-destaque"
-            id="manualDestaque-bt2"
-            @click="getSolucoesDestaques(9), setBanner(2)"
-          ></label>
-          <label
-            for="radio3"
-            class="manual-bt-destaque"
-            id="manualDestaque-bt3"
-            @click="getSolucoesDestaques(19), setBanner(3)"
-          ></label>
-        </div>
-        <!-- PAGINACAO -->
-
-
-
+        <!-- MODAL -->
+        <x-modal v-model="show1">
+          {{ $t("semmaisparaexibir") }}
+        </x-modal>
       </div>
-
     </div>
   </div>
 </template>
-
-<script setup>
+  
+  <script setup>
 import { XModal } from "@indielayer/ui";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PhArrowDown } from "phosphor-vue";
 import { onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 gsap.registerPlugin(ScrollTrigger);
@@ -190,7 +262,6 @@ onMounted(() => {
 
 watch(i18nLocale.locale, () => {
   atualizaLocale();
-  blocksToArray();
 });
 function atualizaLocale() {
   locale.value = localStorage.getItem("lang");
@@ -243,11 +314,9 @@ function getSolucoesLinhas() {
     params: q,
   }).then((R) => {
     menuLinhas.value = JSON.parse(R);
-    console.log("menuLinhas.value", menuLinhas.value[0].link);
+    console.log('menuLinhas.value', menuLinhas.value[0].link);
     setPathLinhaCorrente(rota_linha_id.value);
-    setPathLinhaCorrente(
-      rota_linha_id.value ? rota_linha_id.value : menuLinhas.value[0].link
-    );
+    setPathLinhaCorrente(rota_linha_id.value ? rota_linha_id.value : menuLinhas.value[0].link );
   });
 }
 
@@ -370,8 +439,6 @@ let querySolucoesLinhas = {
 const produtosDestaque = ref([]);
 let offSetPagina = 0;
 onBeforeMount(() => {
-  // ALTERAÇÃO JEAN
-  getSolucoesDestaques(0);
   if (rota_linha_id.value > 0) {
     querySolucoesLinhas.linha_id = rota_linha_id.value;
     getSolucoesDestaquesLinhas(offSetPagina, null);
@@ -402,7 +469,6 @@ function setPathLinhaCorrente(linha_id) {
   });
 }
 function getSolucoesDestaquesLinhas(pagina, linha_id, push) {
-  return;
   let R = null;
   setPathLinhaCorrente(linha_id);
 
@@ -457,221 +523,9 @@ function solucaoDetalhe(solucaoCOD) {
 }
 //   ROTA.push({ path: "/solucaodetalhes", query: { solucao: solucaoID } });
 // }
-
-// ALTERAÇÃO JEAN
-let linhaVisivel = ref(false);
-onMounted(() => {
-  let mm = gsap.matchMedia();
-
-  let ultimaPosicao = 0;
-  let Y = -100;
-  let ease = 0;
-  setTimeout(() => {
-    /// ANIMAÇÃO
-    mm.add("(min-width: 1024px)", () => {
-      const produtosDestaqueGS = gsap.utils.toArray(".prodHome");
-      produtosDestaqueGS.forEach((prodDestaq, i) => {
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#produtosDestaqueID",
-            start: "top center",
-            end: "bottom top",
-            toggleActions: "play restart play reverse",
-          },
-        });
-
-        tl.from(prodDestaq, {
-          duration: 1.5,
-          ease: "power2",
-          stagger: {
-            amount: (i + 1) * 0.3,
-          },
-          y: 100 * (i + 1) * 10,
-          x: 100 * (i + 1) * 10,
-          rotationZ: "-180deg",
-          scale: 0.1,
-          opacity: 0,
-        });
-      });
-    });
-
-    /// ANIMAÇÃO
-  }, 3000);
-
-  //setTranslate(-100);
-  function setTranslate(yPos) {
-    drawLineInnerContID.style.transform = `translate3d(0, ${yPos}%, 0)`;
-    if (Y < -100) Y = -100;
-    if (Y > 100) Y = 100;
-  }
-
-  window.addEventListener("scroll", () => {
-    let { scrollY } = window;
-    let yInicial = window.scrollY;
-
-    if (linhaVisivel == true) {
-      if (yInicial > ultimaPosicao) {
-        //pra baixo
-
-        if (Y >= -100) {
-          Y += 7 * ease;
-
-          setTranslate(Y);
-        }
-      } else {
-        // pra cima
-
-        if (Y >= -100) {
-          Y -= 7 * ease;
-          setTranslate(Y);
-        }
-      }
-    }
-
-    ultimaPosicao = yInicial;
-  });
-});
-
-const videoPlayCorrenteID = ref("");
-const Stime = ref(null);
-function playVideo(videoID) {
-  let VID = null;
-
-  videoPlayCorrenteID.value = videoID;
-  document.getElementById(videoID).play();
-  VID = document.getElementById(videoID);
-
-  //  setTimeout(() => {
-  // }, 500);
-
-  document.getElementById(videoID).play();
-}
-function pauseVideo(videoID) {
-  videoPlayCorrenteID.value = null;
-  clearTimeout(Stime.value);
-  let VID = null;
-  VID = document.getElementById(videoID);
-  //  if (VID) {
-  document.getElementById(videoID).currentTime = 0;
-  document.getElementById(videoID).pause();
-  //  }
-}
-
-onBeforeMount(() => {
-  getWindowSize();
-  window.addEventListener("resize", getWindowSize);
-  getWindowSize();
-  function getWindowSize() {
-    if (process.client) {
-      windowWidth.value = document.documentElement.clientWidth;
-      //    windowHeight.value = document.documentElement.clientHeight;
-      if (windowWidth.value <= 1023) {
-        MOBILE.value = true;
-        console.log(windowWidth.value, true);
-      } else {
-        MOBILE.value = false;
-      }
-    }
-  }
-});
-
-// LANGUAGE
-function blocksToArray() {
-  console.log("pt", lang.value);
-  if (lang.value == "pt") {
-    try {
-      produtosDestaque.value.map((p, index) => {
-        produtosDestaque.value[index].tituloLang = p.descricao;
-        //produtosDestaque.value[index].descricaoLang = p.descricao.split("#");
-      });
-    } catch (error) {}
-  } else if (lang.value == "en") {
-    try {
-      produtosDestaque.value.map((p, index) => {
-        produtosDestaque.value[index].tituloLang = p.descricao_en;
-        //produtosDestaque.value[index].descricaoLang = p.descricao_en.split("#");
-      });
-    } catch (error) {}
-  } else {
-    try {
-      produtosDestaque.value.map((p, index) => {
-        produtosDestaque.value[index].tituloLang = p.descricao_es;
-        //produtosDestaque.value[index].descricaoLang = p.descricao_es.split("#");
-      });
-    } catch (error) {}
-  }
-}
-// LANGUAGE
-
-onBeforeMount(() => {
-  getSolucoesDestaques(0);
-  if (1 == 2) {
-    let destaqueProd = setInterval(function () {
-      avancaBanner();
-    }, 3000);
-  }
-  function avancaBanner() {
-    countBanner.value++;
-    if (countBanner.value > 3) {
-      countBanner.value = 1;
-    }
-
-    document
-      .getElementById("manualDestaque-bt1")
-      .classList.remove("radioAtivo");
-    document
-      .getElementById("manualDestaque-bt2")
-      .classList.remove("radioAtivo");
-    document
-      .getElementById("manualDestaque-bt3")
-      .classList.remove("radioAtivo");
-
-    document.getElementById("radioDestq" + countBanner.value).checked = true;
-    document
-      .getElementById("manualDestaque-bt" + countBanner.value)
-      .classList.add("radioAtivo");
-  }
-});
-
-async function getSolucoesDestaques(pagina) {
-  let R = null;
-  let querySolucoes = {
-    q: "destaque_home",
-    offset: pagina,
-    qpag: 9,
-    c: "",
-  };
-
-  R = $fetch(
-    "/api/formSolucoes.php",
-
-    {
-      method: "GET",
-      params: querySolucoes,
-    }
-  ).then((R) => {
-    if (JSON.parse(R).length > 0) {
-      produtosDestaque.value = JSON.parse(R);
-
-      console.log("produtosDestaque.value", JSON.parse(R));
-      //evita scroll ao iniciar a pagina
-      if (pagina != 0) {
-        document.getElementById("produtosDestaqueID").scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest",
-        });
-      }
-      blocksToArray();
-    } else {
-      produtosDestaque.value = [];
-    }
-  });
-}
-// ALTERAÇÃO JEAN
 </script>
-
-<style scoped>
+  
+  <style scoped>
 body * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
@@ -686,25 +540,13 @@ body * {
   background-color: #70df3f;
 }
 
-/* .gridProdutos {
+.gridProdutos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
-*/
 
 .gridProdutos > div:hover {
   cursor: pointer;
-} 
-
-/* ALTERAÇÃO JEAN */
-.gridProdutos {
-  --display: xgrid; 
-  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
-}
-.gridProdutos > div:hover {
-  background-color: #00b1ef;
-  transition-delay: 0.15s;
-  transition: all 0.1s;
 }
 
 #seta {
@@ -879,6 +721,7 @@ body * {
   }
 }
 
+
 .scrollRep {
   overflow-y: auto;
 }
@@ -892,61 +735,5 @@ body * {
   background: #66ccff;
   border-radius: 20px;
 }
-
-.gridProdutos {
-  --display: grid;
-
-  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
-}
-.gridProdutos > div:hover {
-  background-color: #00b1ef;
-  transition-delay: 0.15s;
-  transition: all 0.1s;
-}
-
-.prodHome {
-  text-align: center;
-  color: #fff;
-}
-
-.prodHome:hover {
-  cursor: pointer;
-  color: #1b3346;
-}
-.prodHome:hover > div > div:nth-child(1) {
-  opacity: 1 !important;
-}
-.prodHome:hover > div > div:nth-child(2) > h3 {
-  text-decoration: underline;
-}
-.prodHome:hover > div > div > div > div > #seta > div:nth-child(1) {
-  box-shadow: 2px -2px 0 1px #1b3346 inset;
-}
-.prodHome:hover > div > div > div > div > #seta > div:nth-child(2) {
-  background-color: #1b3346;
-}
-.prodHome:hover > div > div > div > div > #seta > div:nth-child(2) {
-  background-color: #1b3346;
-}
-
-/* NAVEGAÇÃO BT */
-.radioAtivo {
-  width: 48px !important;
-  background-color: #00b1ef !important;
-}
-.manual-nav {
-  position: absolute;
-  width: 100%;
-}
-.manual-bt-destaque {
-  cursor: pointer;
-  transition: 1s;
-  width: 16px;
-  height: 16px;
-  border-radius: 16px;
-  background-color: #ffffff;
-}
-.manual-bt-destaque:hover {
-  background-color: #00b1ef;
-}
 </style>
+  

@@ -34,6 +34,7 @@
       </div>
       <!-- LISTA PRODUTOS -->
     </div>
+    
     <div class="container mx-auto flex flex-col pt-32 lg:flex-row">
       <!-- MOBILE -->
       <!--Carrosel detalhe produtos -->
@@ -230,9 +231,8 @@
 </template>
   
   <script setup>
-import { ref, onBeforeMount, onMounted } from "vue";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { onBeforeMount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 const i18nLocale = useI18n();
 
@@ -270,7 +270,6 @@ function blocksToArray() {
   if (lang.value == "pt") {
     try {
       produtosDestaque.value.map((p, index) => {
-        
         produtosDestaque.value[index].tituloLang = p.descricao;
         //produtosDestaque.value[index].descricaoLang = p.descricao.split("#");
       });
@@ -348,6 +347,7 @@ onBeforeMount(() => {
       //    windowHeight.value = document.documentElement.clientHeight;
       if (windowWidth.value <= 1023) {
         MOBILE.value = true;
+        console.log(windowWidth.value, true);
       } else {
         MOBILE.value = false;
       }
@@ -545,7 +545,7 @@ async function getSolucoesDestaques(pagina) {
   ).then((R) => {
     if (JSON.parse(R).length > 0) {
       produtosDestaque.value = JSON.parse(R);
-
+      console.log('produtosDestaque.value', JSON.parse(R));
       //evita scroll ao iniciar a pagina
       if (pagina != 0) {
         document.getElementById("produtosDestaqueID").scrollIntoView({
