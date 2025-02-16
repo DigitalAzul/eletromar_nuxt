@@ -212,19 +212,19 @@
         for="radio1"
         class="manual-bt-destaque"
         id="manualDestaque-bt1"
-        @click="getSolucoesDestaques(0), setBanner(1)"
+        @click="getSolucoesDestaques(0, false), setBanner(1)"
       ></label>
       <label
         for="radio2"
         class="manual-bt-destaque"
         id="manualDestaque-bt2"
-        @click="getSolucoesDestaques(9), setBanner(2)"
+        @click="getSolucoesDestaques(9, false), setBanner(2)"
       ></label>
       <label
         for="radio3"
         class="manual-bt-destaque"
         id="manualDestaque-bt3"
-        @click="getSolucoesDestaques(19), setBanner(3)"
+        @click="getSolucoesDestaques(1, false), setBanner(3)"
       ></label>
     </div>
   </div>
@@ -471,7 +471,7 @@ onMounted(() => {
 });
 
 onBeforeMount(() => {
-  getSolucoesDestaques(0);
+  getSolucoesDestaques(0, true);
   if (1 == 2) {
     let destaqueProd = setInterval(function () {
       avancaBanner();
@@ -526,7 +526,7 @@ function solucaoLinha(linhaID) {
 // BUSCA MAIS SOLUCOES DESTAQUES
 /// INICIA DADOS PRA PRODUTOS DESTAQUES
 const pathSolucoes = "\\media\\solucoes\\";
-async function getSolucoesDestaques(pagina) {
+async function getSolucoesDestaques(pagina, inicial) {
   let R = null;
   let querySolucoes = {
     q: "destaque_home",
@@ -547,7 +547,7 @@ async function getSolucoesDestaques(pagina) {
       produtosDestaque.value = JSON.parse(R);
       console.log('produtosDestaque.value', JSON.parse(R));
       //evita scroll ao iniciar a pagina
-      if (pagina != 0) {
+      if (!inicial) {
         document.getElementById("produtosDestaqueID").scrollIntoView({
           behavior: "smooth",
           block: "start",

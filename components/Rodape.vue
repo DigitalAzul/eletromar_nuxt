@@ -7,13 +7,11 @@
       class="absolute bottom-[450px] right-[10%] z-0 h-[600px] w-[1100px]"
     >
       <div class="relative">
-        <div class="absolute right-0 top-5 opacity-30  ">
+        <div class="absolute right-0 top-5 opacity-30">
           <img src="/img/eletromar_borda.png" />
-
         </div>
-        <div class="right-28 hidden lg:block absolute top-[50px]  ">
+        <div class="absolute right-28 top-[50px] hidden lg:block">
           <img src="/img/eletromar_cheio.png" />
-
         </div>
       </div>
     </div>
@@ -34,31 +32,31 @@
           <a
             :href="MNU_TOPO_lang[0].rota"
             target="_top"
-            class="m_title cursor-pointer lowercase "
+            class="m_title cursor-pointer lowercase"
             >{{ MNU_TOPO_lang[0].titulo }}</a
           >
           <a
             :href="MNU_TOPO_lang[1].rota"
             target="_top"
-            class="cursor-pointer "
+            class="cursor-pointer"
             >{{ MNU_TOPO_lang[1].titulo }}</a
           >
           <a
             :href="MNU_TOPO_lang[2].rota"
             target="_top"
-            class="cursor-pointer "
+            class="cursor-pointer"
             >{{ MNU_TOPO_lang[2].titulo }}</a
           >
           <a
             :href="MNU_TOPO_lang[3].rota"
             target="_top"
-            class="cursor-pointer "
+            class="cursor-pointer"
             >{{ MNU_TOPO_lang[3].titulo }}</a
           >
           <div class="flex cursor-pointer flex-col">
             <div
               @click="toggleOndeComprar()"
-              class="flex cursor-pointer flex-col "
+              class="flex cursor-pointer flex-col"
             >
               {{ MNU_TOPO_lang[4].titulo }}
             </div>
@@ -66,7 +64,7 @@
               <a
                 href="https://loja.mectronic.com.br/"
                 target="_blank"
-                class="cursor-pointer pl-4 text-base "
+                class="cursor-pointer pl-4 text-base"
                 >Mec-Tronic / Eletromar</a
               >
 
@@ -78,22 +76,18 @@
               > -->
             </div>
           </div>
-          <a
-            :href="MNU_TOPO_lang[5].rota"
-            class="cursor-pointer "
-            >{{ MNU_TOPO_lang[5].titulo }}</a
-          >
+          <a :href="MNU_TOPO_lang[5].rota" class="cursor-pointer">{{
+            MNU_TOPO_lang[5].titulo
+          }}</a>
           <a
             href="https://www.mectronic.com.br/"
             target="_blank"
-            class="cursor-pointer "
+            class="cursor-pointer"
             >Mec-Tronic</a
           >
-          <a
-            :href="MNU_TOPO_lang[7].rota"
-            class="cursor-pointer "
-            >{{ MNU_TOPO_lang[7].titulo }}</a
-          >
+          <a :href="MNU_TOPO_lang[7].rota" class="cursor-pointer">{{
+            MNU_TOPO_lang[7].titulo
+          }}</a>
 
           <!-- 
           <a href="">A Empresa</a>
@@ -132,31 +126,24 @@
           <a
             href="/garantias"
             target="_top"
-            class="cursor-pointer capitalize "
+            class="cursor-pointer capitalize"
             >{{ $t("termosgarantia") }}</a
           >
-          <a
-            href="/politica"
-            target="_top"
-            class="cursor-pointer capitalize "
-            >{{ $t("politicaqualidade") }}</a
-          >
-          <a
-            href="/meio-ambiente"
-            class="cursor-pointer capitalize "
-            >{{ $t("meioambiente") }}</a
-          >
+          <a href="/politica" target="_top" class="cursor-pointer capitalize">{{
+            $t("politicaqualidade")
+          }}</a>
+          <a href="/meio-ambiente" class="cursor-pointer capitalize">{{
+            $t("meioambiente")
+          }}</a>
           <a
             href="https://web.whatsapp.com/send?phone=5581992787518"
             target="_blank"
             >SAC</a
           >
-          <a href="/faq" class="cursor-pointer ">FAQ</a>
-          <a
-            href="/sociais"
-            class="cursor-pointer capitalize "
-            >{{ $t("programassociais") }}</a
-          >
+          <a href="/faq" class="cursor-pointer">FAQ</a>
+          <a href="/sociais" class="cursor-pointer capitalize">{{
+            $t("programassociais")
+          }}</a>
         </div>
       </div>
 
@@ -198,9 +185,34 @@
         </h1>
         <h3 class="w-60">
           <a href="https://linktr.ee/mectronic.eletromar" target="_blank">
-          <img src="/img/logo-cialdnb-white.webp" alt="" />
-        </a>
+            <img src="/img/logo-cialdnb-white.webp" alt="" />
+          </a>
         </h3>
+
+        <h1
+          class="pt-8 text-xl font-medium uppercase tracking-wider text-[#00b1ef]"
+        >
+          {{ $t("CONTATO") }}
+        </h1>
+        <div
+          class="mt-6 flex flex-col space-y-6 md:flex-row md:space-x-5 md:space-y-0"
+        >
+          <div class="h-20 w-auto text-xl text-white">
+            <p class="w-[400px] text-lg lg:text-lg">{{ contato.email }}</p>
+            <p class="text-lg">{{ contato.fone1 }}</p>
+            <div class="flex flex-row space-x-2g">
+              <p class="text-lg">
+                {{ contato.fone2 }}
+              </p>
+              <p class="relative -top-4 hidden md:block pl-3">
+                <ph-whatsapp-logo :size="52" class="text-[#70df3f]" />
+              </p>
+              <p class="relative -top-2 block md:hidden pl-3">
+                <ph-whatsapp-logo :size="32" class="text-[#70df3f]" />
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -226,20 +238,21 @@
     </div>
   </div>
 </template>
-    
+
 <script setup>
-import { ref } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+gsap.registerPlugin(ScrollTrigger);
 const i18nLocale = useI18n();
 
 import {
-  PhCopyright,
   PhArrowCircleUp,
-  PhInstagramLogo,
+  PhCopyright,
   PhFacebookLogo,
+  PhInstagramLogo,
+  PhWhatsappLogo,
 } from "phosphor-vue";
 
 import { Loader } from "@googlemaps/js-api-loader";
@@ -249,6 +262,12 @@ components: {
   PhInstagramLogo;
   PhFacebookLogo;
 }
+
+const contato = ref({
+  email: "contato@mectronic-eletromar.com.br",
+  fone1: "+55 (81) 2138.7200",
+  fone2: "+55 (81) 99278-7518",
+});
 
 onMounted(() => {
   function hide(elem) {
@@ -477,7 +496,7 @@ function botaoComprar() {
   window.location.assign("/comprar");
 }
 </script>
-    
+
 <style scoped>
 body * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -604,14 +623,14 @@ body * {
 
 .eletroTx {
   -webkit-text-stroke: 4px black;
-        color: white;
-        font-size: 15rem;
+  color: white;
+  font-size: 15rem;
 }
 .bg_rodape {
-background-image: url("/img/fd_rodape.png");
-background-size: cover;
+  background-image: url("/img/fd_rodape.png");
+  background-size: cover;
 
-/* background-position-x: -300px; */
+  /* background-position-x: -300px; */
   /* background: radial-gradient(
     96.76% 96.76% at 62.8% 3.24%,
     #26442c 0%,
