@@ -22,7 +22,7 @@
         {{ $t("solucoes") }}
       </div>
     </div>
-    <div class="bg-[#1b3346] py-[60px] pb-[150px]">
+    <div class="bg-[#1b3346] py-[60px]">
       <div
         id="slucoesHomeTitID"
         class="space-y-4 overflow-hidden pt-[130px] text-center"
@@ -39,25 +39,21 @@
         </div>
       </div>
 
-      <!-- GRID DE PRODUTOS texto e produtos RETIDANDOPRA TESTES-->
-
       <!-- ALTeracao 2025 -->
-      <div class="relative container mx-auto flex flex-col pt-32 lg:flex-row">
+      <div
+      v-if="videosAtivos"
+       class="container relative mx-auto flex flex-col pt-32 lg:flex-row">
         <!-- v-show="MOBILE == false" -->
         <div
           id="produtosDestaqueID"
           class="container mx-auto flex flex-row flex-nowrap justify-center overflow-hidden px-0 xl:px-[100px]"
         >
           <div
-            class="gridProdutos flex flex-col px-6 z_hidden z_grid-cols-[repeat(auto-fill,_minmax(350px,_1fr))] py-40 lg:grid lg:grid-cols-[repeat(3,_minmax(400px,_1fr))]"
+            class="gridProdutosAnimacoes z_hidden z_grid-cols-[repeat(auto-fill,_minmax(350px,_1fr))] flex flex-col px-6 py-40 lg:grid lg:grid-cols-[repeat(3,_minmax(400px,_1fr))]"
           >
-          <!-- :class="{
-            '-ml-[2px] -mt-[2px] border-[2px] border-white':
-              item.tituloLang,
-          }" -->
             <!-- PRODUTO -->
             <div
-              v-for="(item, index) in produtosDestaque"
+              v-for="(item, index) in produtosDestaqueAnimacoes"
               :key="index"
               class="prodHome z-50 -ml-[2px] -mt-[2px] h-full w-full border-[2px] border-white"
               @click="solucaoLinha(item.id)"
@@ -123,9 +119,6 @@
               </div>
             </div>
           </div>
-
-          
-          
         </div>
         <!-- PAGINACAO -->
         <div class="hidden">
@@ -134,7 +127,7 @@
           <input type="radio" name="radioDestq-bt" id="radioDestq3" />
         </div>
         <div
-          class="manual-nav bottom-[60px] lg:bottom-[80px] flex flex-row items-center justify-center space-x-3"
+          class="manual-nav bottom-[60px] flex flex-row items-center justify-center space-x-3 lg:bottom-[80px]"
         >
           <label
             for="radio1"
@@ -156,10 +149,185 @@
           ></label>
         </div>
         <!-- PAGINACAO -->
-
-
-
       </div>
+      <!-- ALTeracao 2025 -->
+
+      <!-- GRID DE PRODUTOS texto e produtos -->
+      <div
+      v-if="!videosAtivos"
+        class="container mx-auto flex flex-col justify-center pb-10 pt-32 lg:flex-row lg:pb-32"
+      >
+        <div class="h-[200px] w-full lg:h-[1000px] xl:w-[340px] 2xl:w-1/3">
+          <div
+            @click="selectedLinhas()"
+            class="flex flex-row justify-center py-4 pt-3 text-center text-xl font-bold uppercase text-white"
+          >
+            <div>{{ $t("nossaslinhas") }}</div>
+            <div
+              v-if="MOBILE"
+              :class="{ 'animate-bounce': !menuDestaqueToggle }"
+            >
+              <ph-arrow-down :size="22" class="relative left-5 top-1" />
+            </div>
+          </div>
+          <!--Seletor de linhas Desk-->
+          <div v-if="!MOBILE" class="scrollRep h-[1000px]">
+            <div
+              class="border-b-[1px] border-t-[1px] border-transparent py-3 pl-6 text-lg font-bold uppercase text-white hover:border-b-[1px] hover:border-t-[1px] hover:border-[#00b1ef] hover:text-[#00b1ef]"
+              v-for="(linha, index) in menuLinhas"
+              :key="index"
+            >
+              <div
+                @click="getSolucoesDestaquesLinhas(0, linha.id, false)"
+                class="cursor-pointer"
+              >
+                {{ linha.titulo }}
+              </div>
+            </div>
+          </div>
+          <!--Seletor de linhas Mob-->
+          <div
+            v-if="MOBILE && menuDestaqueToggle"
+            class="xhidden flex-col space-y-3 px-6 pr-4 pt-10 lg:flex"
+            :class="{
+              'h-[300px] overflow-y-auto bg-[#1b3346] text-center': MOBILE,
+            }"
+          >
+            <div
+              class="border-b-[1px] border-t-[1px] border-transparent py-3 text-lg font-bold uppercase text-white hover:border-b-[1px] hover:border-t-[1px] hover:border-[#00b1ef] hover:text-[#00b1ef]"
+              v-for="(linha, index) in menuLinhas"
+              :key="index"
+            >
+              <div
+                @click="getSolucoesDestaquesLinhas(0, linha.id, false)"
+                class="cursor-pointer"
+              >
+                {{ linha.titulo }}
+              </div>
+            </div>
+          </div>
+          <x-modal v-model="modalLinhas"> Carregando...! </x-modal>
+          
+        </div>
+
+        <div
+          id="solucoesHomeID"
+          v-if="!menuDestaqueToggle"
+          class="flex h-auto w-full flex-col flex-nowrap items-center justify-center overflow-hidden pt-10 lg:w-[950px]"
+        >
+          <div class="gridProdutos z-10 w-full px-5">
+            <!-- PRODUTO -->
+            <div
+              @click="solucaoDetalhe(item.id)"
+              v-for="(item, index) in produtosDestaque"
+              :key="index"
+              class="prodSolu z-50 mb-0 h-full w-full lg:mb-12"
+            >
+              <div
+                :class="{
+                  ' -mt-[2px] h-[620px] items-center border-[1px] border-[#c3d3cb] text-white hover:text-[#00b1ef]':
+                    item.titulo,
+                }"
+                class="relative flex flex-col items-center justify-center pt-12 hover:bg-[#0c1a25]"
+              >
+                <div
+                  class="relative flex h-[640px] w-full flex-row items-center justify-center lg:w-[300px]"
+                >
+                  <img
+                    :src="
+                      pathSolucoes +
+                      '\\' +
+                      pathLinhaCorrente.path +
+                      '\\' +
+                      item.img_1
+                    "
+                    alt=""
+                    width="195"
+                    height="320"
+                    class="object-fill"
+                  />
+                  <img
+                    v-if="item.img_2"
+                    :src="
+                      pathSolucoes +
+                      '\\' +
+                      pathLinhaCorrente.path +
+                      '\\' +
+                      item.img_2
+                    "
+                    alt=""
+                    width="195"
+                    height="320"
+                    class="invisible object-fill"
+                  />
+                  <img
+                    v-else
+                    :src="
+                      pathSolucoes +
+                      '\\' +
+                      pathLinhaCorrente.path +
+                      '\\' +
+                      item.img_1
+                    "
+                    alt=""
+                    width="195"
+                    height="320"
+                    class="object-fill"
+                  />
+                </div>
+                <div class="space-y-5 px-10 pt-7 text-center">
+                  <h1 class="text-3xl font-semibold uppercase">
+                    {{ item.titulo }}
+                  </h1>
+                  <h3 class="text-lg">{{ $t("codigo") }} {{ item.codigo }}</h3>
+                </div>
+                <div class="items-center pb-14 pt-6 lg:bottom-10">
+                  <div class="flex flex-row space-x-12 space-y-3">
+                    <div @click="teste()" class="pt-1 text-[1.425rem]">
+                      {{ $t("saibamais") }}
+                    </div>
+                    <div>
+                      <div id="seta">
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            v-if="produtosDestaque.length > 0"
+            class="text-g mb-[8.5rem] mt-28 flex h-[3rem] w-[260px] cursor-pointer flex-col items-center justify-center bg-[#00b1ef] text-[1.2rem] text-[#1b3346] sm:w-[450px]"
+            @click="
+              (offSetPagina += 9),
+                getSolucoesDestaquesLinhas(offSetPagina, null, true)
+            "
+          >
+            {{ $t("carregarmaisprodutos") }}
+          </div>
+        </div>
+        <!-- MODAL -->
+        <label class="btn" for="modal-1"></label>
+        <input class="modal-state" id="modal-1" type="checkbox" />
+        <div class="modal">
+          <label class="modal__bg" for="modal-1"></label>
+          <div class="modal__inner">
+            <label class="modal__close" for="modal-1"></label>
+
+            <p class="pt-10 text-center text-2xl text-[#00b1ef]">
+              {{ $t("semmaisparaexibir") }}
+            </p>
+          </div>
+        </div>
+        <!-- MODAL -->
+        <x-modal v-model="show1">
+          {{ $t("semmaisparaexibir") }}
+        </x-modal>
+      </div>
+
 
     </div>
   </div>
@@ -169,6 +337,7 @@
 import { XModal } from "@indielayer/ui";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PhArrowDown } from "phosphor-vue";
 import { onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 gsap.registerPlugin(ScrollTrigger);
@@ -180,6 +349,7 @@ components: {
 const route = useRoute();
 const router = useRouter();
 
+
 const rota_linha_id = ref(route.query.linha ? route.query.linha : "1");
 
 let lang = ref("pt");
@@ -190,7 +360,6 @@ onMounted(() => {
 
 watch(i18nLocale.locale, () => {
   atualizaLocale();
-  blocksToArray();
 });
 function atualizaLocale() {
   locale.value = localStorage.getItem("lang");
@@ -368,10 +537,9 @@ let querySolucoesLinhas = {
   c: "",
 };
 const produtosDestaque = ref([]);
+
 let offSetPagina = 0;
 onBeforeMount(() => {
-  // ALTERAÇÃO JEAN
-  getSolucoesDestaques(0, true);
   if (rota_linha_id.value > 0) {
     querySolucoesLinhas.linha_id = rota_linha_id.value;
     getSolucoesDestaquesLinhas(offSetPagina, null);
@@ -402,7 +570,6 @@ function setPathLinhaCorrente(linha_id) {
   });
 }
 function getSolucoesDestaquesLinhas(pagina, linha_id, push) {
-  return;
   let R = null;
   setPathLinhaCorrente(linha_id);
 
@@ -458,79 +625,63 @@ function solucaoDetalhe(solucaoCOD) {
 //   ROTA.push({ path: "/solucaodetalhes", query: { solucao: solucaoID } });
 // }
 
-// ALTERAÇÃO JEAN
-let linhaVisivel = ref(false);
-onMounted(() => {
-  let mm = gsap.matchMedia();
+// alter 2025 videos destaques
+function solucaoLinha(linhaID) {
+  window.location.assign("/solucoes?linha=" + linhaID);
+}
+const videosAtivos = ref(route.query.linha ? false : true); // se há query linha então da hidde em animações
+const produtosDestaqueAnimacoes = ref([]);
+async function getSolucoesDestaques(pagina, inicial) {
+  let R = null;
+  let querySolucoes = {
+    q: "destaque_home",
+    offset: pagina,
+    qpag: 9,
+    c: "",
+  };
 
-  let ultimaPosicao = 0;
-  let Y = -100;
-  let ease = 0;
-  setTimeout(() => {
-    /// ANIMAÇÃO
-    mm.add("(min-width: 1024px)", () => {
-      const produtosDestaqueGS = gsap.utils.toArray(".prodHome");
-      produtosDestaqueGS.forEach((prodDestaq, i) => {
-        let tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#produtosDestaqueID",
-            start: "top center",
-            end: "bottom top",
-            toggleActions: "play restart play reverse",
-          },
-        });
+  R = $fetch(
+    "/api/formSolucoes.php",
 
-        tl.from(prodDestaq, {
-          duration: 1.5,
-          ease: "power2",
-          stagger: {
-            amount: (i + 1) * 0.3,
-          },
-          y: 100 * (i + 1) * 10,
-          x: 100 * (i + 1) * 10,
-          rotationZ: "-180deg",
-          scale: 0.1,
-          opacity: 0,
-        });
-      });
-    });
-
-    /// ANIMAÇÃO
-  }, 3000);
-
-  //setTranslate(-100);
-  function setTranslate(yPos) {
-    drawLineInnerContID.style.transform = `translate3d(0, ${yPos}%, 0)`;
-    if (Y < -100) Y = -100;
-    if (Y > 100) Y = 100;
-  }
-
-  window.addEventListener("scroll", () => {
-    let { scrollY } = window;
-    let yInicial = window.scrollY;
-
-    if (linhaVisivel == true) {
-      if (yInicial > ultimaPosicao) {
-        //pra baixo
-
-        if (Y >= -100) {
-          Y += 7 * ease;
-
-          setTranslate(Y);
-        }
-      } else {
-        // pra cima
-
-        if (Y >= -100) {
-          Y -= 7 * ease;
-          setTranslate(Y);
-        }
-      }
+    {
+      method: "GET",
+      params: querySolucoes,
     }
+  ).then((R) => {
+    if (JSON.parse(R).length > 0) {
+      produtosDestaqueAnimacoes.value = JSON.parse(R);
 
-    ultimaPosicao = yInicial;
+      console.log("produtosDestaqueAnimacoes.value", JSON.parse(R));
+      //evita scroll ao iniciar a pagina
+      if (!inicial) {
+        document.getElementById("produtosDestaqueID").scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+      }
+      blocksToArray();
+    } else {
+      produtosDestaqueAnimacoes.value = [];
+    }
   });
+}
+onBeforeMount(() => {
+  // ALTERAÇÃO JEAN
+  getSolucoesDestaques(0, true);
+  if (rota_linha_id.value > 0) {
+    querySolucoesLinhas.linha_id = rota_linha_id.value;
+    getSolucoesDestaquesLinhas(offSetPagina, null);
+    querySolucoesLinhas.q = "destaqueLinha_home";
+  } else {
+    querySolucoesLinhas.q = "";
+    querySolucoesLinhas.offset = 0;
+    querySolucoesLinhas.qpag = 9;
+
+    getSolucoesDestaquesLinhas(offSetPagina, 0);
+  }
 });
+// alteração grid produtos
 
 const videoPlayCorrenteID = ref("");
 const Stime = ref(null);
@@ -556,119 +707,7 @@ function pauseVideo(videoID) {
   document.getElementById(videoID).pause();
   //  }
 }
-
-onBeforeMount(() => {
-  getWindowSize();
-  window.addEventListener("resize", getWindowSize);
-  getWindowSize();
-  function getWindowSize() {
-    if (process.client) {
-      windowWidth.value = document.documentElement.clientWidth;
-      //    windowHeight.value = document.documentElement.clientHeight;
-      if (windowWidth.value <= 1023) {
-        MOBILE.value = true;
-        console.log(windowWidth.value, true);
-      } else {
-        MOBILE.value = false;
-      }
-    }
-  }
-});
-
-// LANGUAGE
-function blocksToArray() {
-  console.log("pt", lang.value);
-  if (lang.value == "pt") {
-    try {
-      produtosDestaque.value.map((p, index) => {
-        produtosDestaque.value[index].tituloLang = p.descricao;
-        //produtosDestaque.value[index].descricaoLang = p.descricao.split("#");
-      });
-    } catch (error) {}
-  } else if (lang.value == "en") {
-    try {
-      produtosDestaque.value.map((p, index) => {
-        produtosDestaque.value[index].tituloLang = p.descricao_en;
-        //produtosDestaque.value[index].descricaoLang = p.descricao_en.split("#");
-      });
-    } catch (error) {}
-  } else {
-    try {
-      produtosDestaque.value.map((p, index) => {
-        produtosDestaque.value[index].tituloLang = p.descricao_es;
-        //produtosDestaque.value[index].descricaoLang = p.descricao_es.split("#");
-      });
-    } catch (error) {}
-  }
-}
-// LANGUAGE
-
-onBeforeMount(() => {
-  getSolucoesDestaques(0, true);
-  if (1 == 2) {
-    let destaqueProd = setInterval(function () {
-      avancaBanner();
-    }, 3000);
-  }
-  function avancaBanner() {
-    countBanner.value++;
-    if (countBanner.value > 3) {
-      countBanner.value = 1;
-    }
-
-    document
-      .getElementById("manualDestaque-bt1")
-      .classList.remove("radioAtivo");
-    document
-      .getElementById("manualDestaque-bt2")
-      .classList.remove("radioAtivo");
-    document
-      .getElementById("manualDestaque-bt3")
-      .classList.remove("radioAtivo");
-
-    document.getElementById("radioDestq" + countBanner.value).checked = true;
-    document
-      .getElementById("manualDestaque-bt" + countBanner.value)
-      .classList.add("radioAtivo");
-  }
-});
-
-async function getSolucoesDestaques(pagina, inicial) {
-  let R = null;
-  let querySolucoes = {
-    q: "destaque_home",
-    offset: pagina,
-    qpag: 9,
-    c: "",
-  };
-
-  R = $fetch(
-    "/api/formSolucoes.php",
-
-    {
-      method: "GET",
-      params: querySolucoes,
-    }
-  ).then((R) => {
-    if (JSON.parse(R).length > 0) {
-      produtosDestaque.value = JSON.parse(R);
-
-      console.log("produtosDestaque.value", JSON.parse(R));
-      //evita scroll ao iniciar a pagina
-      if (!inicial) {
-        document.getElementById("produtosDestaqueID").scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest",
-        });
-      }
-      blocksToArray();
-    } else {
-      produtosDestaque.value = [];
-    }
-  });
-}
-// ALTERAÇÃO JEAN
+// alter 2025 videos destaques
 </script>
 
 <style scoped>
@@ -683,28 +722,16 @@ body * {
   bottom: 0;
   width: 3px;
   height: 220px;
-  background-color: #70df3f;
+  background-color: #00b1ef;
 }
 
-/* .gridProdutos {
+.gridProdutos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
-*/
 
 .gridProdutos > div:hover {
   cursor: pointer;
-} 
-
-/* ALTERAÇÃO JEAN */
-.gridProdutos {
-  --display: xgrid; 
-  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
-}
-.gridProdutos > div:hover {
-  background-color: #00b1ef;
-  transition-delay: 0.15s;
-  transition: all 0.1s;
 }
 
 #seta {
@@ -734,9 +761,9 @@ body * {
 }
 
 .prodSolu:hover {
-  --background-color: #24462b;
+  --background-color: #0c1a25;
   cursor: pointer;
-  color: #71df43;
+  color: #00b1ef;
 }
 .prodSolu:hover > div > div:nth-child(2) > h3 {
   text-decoration: underline;
@@ -893,12 +920,13 @@ body * {
   border-radius: 20px;
 }
 
-.gridProdutos {
+
+.gridProdutosAnimacoes {
   --display: grid;
 
   /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
 }
-.gridProdutos > div:hover {
+.gridProdutosAnimacoes > div:hover {
   background-color: #00b1ef;
   transition-delay: 0.15s;
   transition: all 0.1s;

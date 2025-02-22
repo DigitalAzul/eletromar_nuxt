@@ -105,7 +105,7 @@
                 class="py-2 hover:cursor-pointer hover:text-[#99DF52]"
                 >{{ MNU_TOPO_lang[4].titulo }}
               </a> -->
-              <a :href="MNU_TOPO_lang[4].rota" class="dropdown">
+              <a :href="MNU_TOPO_lang[4].rota" class="dropdown" target="_blank">
                 <button class="dropbtn py-2 hover:text-[#00b1ef]">
                   {{ MNU_TOPO_lang[4].titulo }}
                 </button>
@@ -499,7 +499,7 @@ const MNU_TOPO_pt = ref([
   { titulo: "PRODUTOS", rota: "/solucoes" },
   { titulo: "CATALOGO", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "LOJA MEC-TRONIC / ELETROMAR", rota: "/comprar" },
+  { titulo: "LOJA MEC-TRONIC / ELETROMAR", rota: "https://loja.mectronic-eletromar.com.br/" },
  //{ titulo: "ONDE COMPRAR", rota: "/comprar" },
   { titulo: "CONTATO", rota: "/contato" },
 ]);
@@ -508,7 +508,7 @@ const MNU_TOPO_en = ref([
   { titulo: "PRODUCTS", rota: "/solucoes" },
   { titulo: "CATALOG", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "MEC-TRONIC / ELETROMAR STORE", rota: "/comprar" },
+  { titulo: "MEC-TRONIC / ELETROMAR STORE", rota: "https://loja.mectronic-eletromar.com.br/" },
   { titulo: "CONTACT", rota: "/contato" },
 ]);
 const MNU_TOPO_es = ref([
@@ -516,7 +516,7 @@ const MNU_TOPO_es = ref([
   { titulo: "PRODUCTOS", rota: "/solucoes" },
   { titulo: "CATALOGAR", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "TIENDA MEC-TRONIC / ELETROMAR", rota: "/comprar" },
+  { titulo: "TIENDA MEC-TRONIC / ELETROMAR", rota: "https://loja.mectronic-eletromar.com.br/" },
   { titulo: "CONTACTO", rota: "/contato" },
 ]);
 
@@ -849,7 +849,7 @@ html {
   text-indent: -9999px;
   width: 175px;
   height: 50px;
-  background: url("/img/logo-eletromar.png");
+  background: url("/img/logo-eletromar-escuro.png");
   background-size: 175px 50px;
 }
 #logoMect-mobFechado {

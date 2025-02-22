@@ -201,6 +201,29 @@
                 class="sublnCont mt-10 flex flex-col space-y-6 md:flex-row md:space-y-0"
               >
                 <div class="h-20 w-auto text-xl text-white">
+                  <p class="w-[345px] text-lg lg:text-lg">
+                    {{ contato.email }}
+                  </p>
+                  <p class="text-lg">{{ contato.fone1 }}</p>
+                  <div class="space-x-2g flex flex-row">
+                    <a
+                      class="flex w-[400px] flex-row gap-1"
+                      :href="contato.whatsApp"
+                      target="_blank"
+                    >
+                      <p class="text-lg">
+                        {{ contato.fone2 }}
+                      </p>
+                      <p class="relative -top-4 hidden pl-3 md:block">
+                        <ph-whatsapp-logo :size="52" class="text-[#70df3f]" />
+                      </p>
+                      <p class="relative -top-2 block pl-3 md:hidden">
+                        <ph-whatsapp-logo :size="32" class="text-[#70df3f]" />
+                      </p>
+                    </a>
+                  </div>
+                </div>
+                <!-- <div class="h-20 w-auto text-xl text-white">
                   <p>{{ contato.email }}</p>
                   <p>{{ contato.fone1 }}</p>
                   <div class="flex flex-row space-x-2">
@@ -214,9 +237,8 @@
                       <ph-whatsapp-logo :size="32" class="text-[#00b1ef]" />
                     </p>
                   </div>
-                </div>
+                </div> -->
               </div>
-              
             </div>
 
             <div
@@ -250,11 +272,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { PhWhatsappLogo } from "phosphor-vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitType from "split-type";
+import { PhWhatsappLogo } from "phosphor-vue";
+import { onMounted, ref } from "vue";
 gsap.registerPlugin(ScrollTrigger);
 
 import { XModal } from "@indielayer/ui";
@@ -323,8 +344,9 @@ const catalogos = ref([
 ]);
 const contato = ref({
   email: "contato@mectronic-eletromar.com.br",
-  fone1: "(81) 2138.7200",
-  fone2: "(81) 99278-7518",
+  fone1: "+55 (81) 2138.7200",
+  fone2: "+55 0800 727 0507",
+  whatsApp: "https://web.whatsapp.com/send?phone=5508007270507",
 });
 const estadosOptions = ref([
   { text: "Acre", value: "AC" },

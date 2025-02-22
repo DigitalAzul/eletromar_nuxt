@@ -16,7 +16,7 @@
       </div>
     </div>
     <div
-      class="container z-10 mx-auto flex h-full w-full flex-col items-center space-y-16 py-20 lg:h-[790px] lg:flex-row lg:space-x-5 lg:space-y-0 lg:px-20 lg:py-0"
+      class="container z-10 mx-auto flex h-full w-full flex-col lg:items-center pl-10 space-y-16 py-20 lg:h-[790px] lg:flex-row lg:space-x-5 lg:space-y-0 lg:px-20 lg:py-0"
     >
       <div
         class="paraDireita w-[300px] py-10 pb-0 sm:w-[350px] lg:min-h-[450px] lg:py-0 lg:pb-0"
@@ -135,11 +135,7 @@
           <a href="/meio-ambiente" class="cursor-pointer capitalize">{{
             $t("meioambiente")
           }}</a>
-          <a
-            href="https://web.whatsapp.com/send?phone=5581992787518"
-            target="_blank"
-            >SAC</a
-          >
+          <a :href="contato.whatsApp" target="_blank">SAC</a>
           <a href="/faq" class="cursor-pointer">FAQ</a>
           <a href="/sociais" class="cursor-pointer capitalize">{{
             $t("programassociais")
@@ -194,14 +190,26 @@
         >
           {{ $t("CONTATO") }}
         </h1>
+
         <div
           class="mt-6 flex flex-col space-y-6 md:flex-row md:space-x-5 md:space-y-0"
         >
           <div class="h-20 w-auto text-xl text-white">
-            <p class="w-[400px] text-lg lg:text-lg">{{ contato.email }}</p>
+            <p class="w-[345px] text-lg lg:text-lg">{{ contato.email }}</p>
             <p class="text-lg">{{ contato.fone1 }}</p>
-            <div class="flex flex-row space-x-2g">
-              <p class="text-lg">
+            <div class="space-x-2g flex flex-row">
+              <a class="w-[400px] flex flex-row gap-1" :href="contato.whatsApp" target="_blank">
+                <p class="text-lg">
+                  {{ contato.fone2 }}
+                </p>
+                <p class="relative -top-4 hidden pl-3 md:block">
+                  <ph-whatsapp-logo :size="52" class="text-[#70df3f]" />
+                </p>
+                <p class="relative -top-2 block pl-3 md:hidden">
+                  <ph-whatsapp-logo :size="32" class="text-[#70df3f]" />
+                </p>
+              </a>
+              <!-- <p class="text-lg">
                 {{ contato.fone2 }}
               </p>
               <p class="relative -top-4 hidden md:block pl-3">
@@ -209,10 +217,11 @@
               </p>
               <p class="relative -top-2 block md:hidden pl-3">
                 <ph-whatsapp-logo :size="32" class="text-[#70df3f]" />
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -266,7 +275,8 @@ components: {
 const contato = ref({
   email: "contato@mectronic-eletromar.com.br",
   fone1: "+55 (81) 2138.7200",
-  fone2: "+55 (81) 99278-7518",
+  fone2: "+55 0800 727 0507",
+  whatsApp: "https://web.whatsapp.com/send?phone=5508007270507",
 });
 
 onMounted(() => {

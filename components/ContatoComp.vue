@@ -68,9 +68,9 @@
                 />
               </div>
             </div>
-            
+
             <div class="flex w-full flex-col lg:flex-row lg:space-x-14">
-              <div class="lg:w-1/2 w-full">
+              <div class="w-full lg:w-1/2">
                 <div
                   class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
                 >
@@ -99,9 +99,12 @@
                   <div
                     class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
                   >
-                    <div 
-                    :class="{'opacity-30 pointer-events-none': PaisesOptions.length == 0 }"
-                    class="selectdiv h-[10px] w-full "
+                    <div
+                      :class="{
+                        'pointer-events-none opacity-30':
+                          PaisesOptions.length == 0,
+                      }"
+                      class="selectdiv h-[10px] w-full"
                     >
                       <select class="w-full" @change="setPais($event)">
                         <option selected>{{ $t("pais") }}</option>
@@ -118,17 +121,20 @@
                 </div>
               </div>
 
-              <div class="flex w-full lg:w-1/2 flex-col">
+              <div class="flex w-full flex-col lg:w-1/2">
                 <div
                   class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
                 >
                   <div
-                  
                     class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
                   >
-                    <div 
-                    :class="{'opacity-30 pointer-events-none': EstadosOptions.length == 0 }"
-                    class="selectdiv h-[10px] w-full">
+                    <div
+                      :class="{
+                        'pointer-events-none opacity-30':
+                          EstadosOptions.length == 0,
+                      }"
+                      class="selectdiv h-[10px] w-full"
+                    >
                       <select class="w-full" @change="setEstado($event)">
                         <option selected>{{ $t("seueestado") }}</option>
                         <option
@@ -149,12 +155,15 @@
                     <div
                       class="sublnCont absolute mr-8 w-full border-b border-[#00b1ef] py-4"
                     >
-                      <div 
-                      :class="{'opacity-30 pointer-events-none': CidadesOptions.length == 0 }"
-                      class="selectdiv h-[10px] w-full">
+                      <div
+                        :class="{
+                          'pointer-events-none opacity-30':
+                            CidadesOptions.length == 0,
+                        }"
+                        class="selectdiv h-[10px] w-full"
+                      >
                         <select class="w-full" @change="setCidade($event)">
-                          <option selected>{{ $t("suacidade") }}
-                          </option>
+                          <option selected>{{ $t("suacidade") }}</option>
                           <option
                             v-for="(uf, index) in CidadesOptions"
                             :key="index"
@@ -185,7 +194,7 @@
               </div>
             </div>
 
-            <div class="flex lg:flex-row lg:space-x-14 flex-col">
+            <div class="flex flex-col lg:flex-row lg:space-x-14">
               <div
                 class="lnCont relative flex h-16 w-full flex-row overflow-hidden py-10 pb-11"
               >
@@ -256,6 +265,35 @@
                     class="mt-10 flex flex-col space-y-6 md:flex-row md:space-x-5 md:space-y-0"
                   >
                     <div class="h-20 w-auto text-xl text-white">
+                      <p class="w-[345px] text-lg lg:text-lg">
+                        {{ contato.email }}
+                      </p>
+                      <p class="text-lg">{{ contato.fone1 }}</p>
+                      <div class="space-x-2g flex flex-row">
+                        <a
+                          class="flex w-[400px] flex-row gap-1"
+                          :href="contato.whatsApp"
+                          target="_blank"
+                        >
+                          <p class="text-lg">
+                            {{ contato.fone2 }}
+                          </p>
+                          <p class="relative -top-4 hidden pl-3 md:block">
+                            <ph-whatsapp-logo
+                              :size="52"
+                              class="text-[#70df3f]"
+                            />
+                          </p>
+                          <p class="relative -top-2 block pl-3 md:hidden">
+                            <ph-whatsapp-logo
+                              :size="32"
+                              class="text-[#70df3f]"
+                            />
+                          </p>
+                        </a>
+                      </div>
+                    </div>
+                    <!-- <div class="h-20 w-auto text-xl text-white">
                       <p>{{ contato.email }}</p>
                       <p>{{ contato.fone1 }}</p>
                       <div class="flex flex-row space-x-2">
@@ -269,7 +307,7 @@
                           <ph-whatsapp-logo :size="32" class="text-[#70df3f]" />
                         </p>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
 
                   <div
@@ -321,13 +359,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { PhWhatsappLogo } from "phosphor-vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PhWhatsappLogo } from "phosphor-vue";
 import SplitType from "split-type";
-gsap.registerPlugin(ScrollTrigger);
+import { onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
+gsap.registerPlugin(ScrollTrigger);
 const i18nLocale = useI18n();
 
 // REMOVIDO 10-09-2024--21-27 PARA TESTE,  ESTA DANDO ERRO
@@ -389,7 +427,8 @@ function atualizaLocale() {
 const contato = ref({
   email: "contato@mectronic-eletromar.com.br",
   fone1: "+55 (81) 2138.7200",
-  fone2: "+55 (81) 99278-7518",
+  fone2: "+55 0800 727 0507",
+  whatsApp: "https://web.whatsapp.com/send?phone=5508007270507",
 });
 let Y = -100;
 let ease = 0.5;
@@ -409,52 +448,41 @@ const PaisesOptions = ref([]);
 const EstadosOptions = ref([]);
 const CidadesOptions = ref([]);
 
-
-
 function setContinente(event) {
-
   const pais = ContinentesOptions.value.find(
     (o) => o.text == event.target.value
   );
 
   // resetes
-  formContato.value.pais = ""
-  PaisesOptions.value = []
-  formContato.value.uf = ""
-  EstadosOptions.value = []
-  formContato.value.cidade = ""
-  CidadesOptions.value = []
-
+  formContato.value.pais = "";
+  PaisesOptions.value = [];
+  formContato.value.uf = "";
+  EstadosOptions.value = [];
+  formContato.value.cidade = "";
+  CidadesOptions.value = [];
 
   formContato.value.continente = event.target.value;
   getPaises(pais.value);
 }
 
-
 function setPais(event) {
-  console.log('PAIS',event.target.value, PaisesOptions);
-  const pais = PaisesOptions.value.find(
-    (o) => o.text == event.target.value
-  );
+  console.log("PAIS", event.target.value, PaisesOptions);
+  const pais = PaisesOptions.value.find((o) => o.text == event.target.value);
 
-    // resetes
-  formContato.value.uf = ""
-  EstadosOptions.value = []
-  formContato.value.cidade = ""
-
+  // resetes
+  formContato.value.uf = "";
+  EstadosOptions.value = [];
+  formContato.value.cidade = "";
 
   formContato.value.pais = event.target.value;
   getEstados(pais.value);
 }
 function setEstado(event) {
   console.log(event.target.value);
-  const estado = EstadosOptions.value.find(
-    (o) => o.text == event.target.value
-  );
+  const estado = EstadosOptions.value.find((o) => o.text == event.target.value);
 
-    // resetes
-  formContato.value.cidade = ""
-
+  // resetes
+  formContato.value.cidade = "";
 
   formContato.value.uf = event.target.value;
   getCidades(estado.value);
@@ -466,15 +494,18 @@ function setCidade(event) {
 
 //http://api.geonames.org/children?geonameId=6255150&username=dazl&hierarchy=tourism
 async function getPaises(continenteID) {
-  console.log('get pais', continenteID);
+  console.log("get pais", continenteID);
   // get paises
   //http://www.geonames.org/childrenJSON?geonameId=6255150&callback=listPlaces&style=long&noCacheIE=1736693942234
 
-  await $fetch(`http://api.geonames.org/childrenJSON?geonameId=${continenteID}&username=dazl`, {
-    method: "GET",
-  }).then((response) => {
+  await $fetch(
+    `http://api.geonames.org/childrenJSON?geonameId=${continenteID}&username=dazl`,
+    {
+      method: "GET",
+    }
+  ).then((response) => {
     //let RS = JSON.parse(R);
-    PaisesOptions.value = []
+    PaisesOptions.value = [];
     response.geonames.map((p) => {
       PaisesOptions.value.push({
         text: p.countryName,
@@ -482,20 +513,23 @@ async function getPaises(continenteID) {
       });
     });
     console.log(response, PaisesOptions.value);
-   // getEstados();
+    // getEstados();
   });
 }
 async function getEstados(paisID) {
-  console.log('get estados', paisID);
+  console.log("get estados", paisID);
   // get estados
   //http://www.geonames.org/childrenJSON?geonameId=3469034&callback=listPlaces&style=long&noCacheIE=1736693989369
 
-  await $fetch(`http://api.geonames.org/childrenJSON?geonameId=${paisID}&username=dazl`, {
-    method: "GET",
-  }).then((response) => {
+  await $fetch(
+    `http://api.geonames.org/childrenJSON?geonameId=${paisID}&username=dazl`,
+    {
+      method: "GET",
+    }
+  ).then((response) => {
     //let RS = JSON.parse(R);
 
-    EstadosOptions.value = []
+    EstadosOptions.value = [];
 
     response.geonames.map((p) => {
       EstadosOptions.value.push({
@@ -503,21 +537,24 @@ async function getEstados(paisID) {
         value: p.geonameId,
       });
     });
-    console.log('ESTADOS',response, EstadosOptions.value);
+    console.log("ESTADOS", response, EstadosOptions.value);
     //getCidades();
   });
 }
 async function getCidades(estadoID) {
-  console.log('get CIDADES', estadoID);
+  console.log("get CIDADES", estadoID);
   // get estados
   //http://www.geonames.org/childrenJSON?geonameId=3665474&callback=listPlaces&style=long&noCacheIE=1736694812187
 
-  await $fetch(`http://api.geonames.org/childrenJSON?geonameId=${estadoID}&username=dazl`, {
-    method: "GET",
-  }).then((response) => {
+  await $fetch(
+    `http://api.geonames.org/childrenJSON?geonameId=${estadoID}&username=dazl`,
+    {
+      method: "GET",
+    }
+  ).then((response) => {
     //let RS = JSON.parse(R);
 
-    CidadesOptions.value = []
+    CidadesOptions.value = [];
 
     response.geonames.map((p) => {
       CidadesOptions.value.push({
@@ -578,7 +615,7 @@ function ValidaformContato() {
       formContatoValido.value.mensagem = true;
     else formContatoValido.value.mensagem = false;
   } catch (error) {
-    formContatoValido.value.mensagem = false
+    formContatoValido.value.mensagem = false;
   }
 
   try {
@@ -597,8 +634,7 @@ function ValidaformContato() {
     formContatoValido.value.continente = false;
   }
   try {
-    if (formContato.value.pais.length > 3)
-      formContatoValido.value.pais = true;
+    if (formContato.value.pais.length > 3) formContatoValido.value.pais = true;
     else formContatoValido.value.pais = false;
   } catch (error) {
     formContatoValido.value.pais = false;
@@ -631,18 +667,17 @@ function ValidaformContato() {
     if (formContato.value.uf.length > 3) formContatoValido.value.uf = true;
     else formContatoValido.value.uf = false;
   } catch (error) {
-    formContatoValido.value.uf = false
+    formContatoValido.value.uf = false;
   }
 
-let contFalse = 0
+  let contFalse = 0;
   Object.keys(formContatoValido.value).forEach((key) => {
     if (formContatoValido.value[key] == false) {
       RTX = false;
-      contFalse +=1
-    }
-    else RTX = true;
+      contFalse += 1;
+    } else RTX = true;
   });
-  console.log('formContatoValido.value',formContatoValido.value);
+  console.log("formContatoValido.value", formContatoValido.value);
   return contFalse;
 }
 
