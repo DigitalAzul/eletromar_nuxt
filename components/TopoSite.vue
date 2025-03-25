@@ -73,14 +73,25 @@
                   {{ MNU_TOPO_lang[1].titulo }}
                 </button>
 
-                <div class="dropdown-content p-10">
-                  <a
-                    v-for="(link, index) in menuLinhas"
-                    :key="index"
-                    :href="'/solucoes/?linha=' + link.id"
-                    class="py-2 pr-4 text-[11pt] text-[#1b3346] hover:pr-3 hover:font-bold hover:text-[#00b1ef] hover:underline"
-                    >{{ link.titulo }}</a
-                  >
+                <div class="dropdown-content w-[800px] p-10">
+                  <div class="flex flex-col">
+                    <a
+                      v-for="(link, index) in menuLinhasCol1"
+                      :key="index"
+                      :href="'/solucoes/?linha=' + link.id"
+                      class="py-2 pr-4 text-[11pt] text-[#1b3346] hover:pr-3 hover:font-bold hover:text-[#00b1ef] hover:underline"
+                      >{{ link.titulo }}</a
+                    >
+                  </div>
+                  <div class="flex flex-col">
+                    <a
+                      v-for="(link, index) in menuLinhasCol2"
+                      :key="index"
+                      :href="'/solucoes/?linha=' + link.id"
+                      class="py-2 pr-4 text-[11pt] text-[#1b3346] hover:pr-3 hover:font-bold hover:text-[#00b1ef] hover:underline"
+                      >{{ link.titulo }}</a
+                    >
+                  </div>
                 </div>
               </a>
             </li>
@@ -387,8 +398,8 @@
     <!-- MENU MOBILE -->
   </div>
 </template>
-  
-  <script setup>
+
+<script setup>
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 const i18nLocale = useI18n();
@@ -499,8 +510,11 @@ const MNU_TOPO_pt = ref([
   { titulo: "PRODUTOS", rota: "/solucoes" },
   { titulo: "CATALOGO", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "LOJA MEC-TRONIC / ELETROMAR", rota: "https://loja.mectronic-eletromar.com.br/" },
- //{ titulo: "ONDE COMPRAR", rota: "/comprar" },
+  {
+    titulo: "LOJA MEC-TRONIC / ELETROMAR",
+    rota: "https://loja.mectronic-eletromar.com.br/",
+  },
+  //{ titulo: "ONDE COMPRAR", rota: "/comprar" },
   { titulo: "CONTATO", rota: "/contato" },
 ]);
 const MNU_TOPO_en = ref([
@@ -508,7 +522,10 @@ const MNU_TOPO_en = ref([
   { titulo: "PRODUCTS", rota: "/solucoes" },
   { titulo: "CATALOG", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "MEC-TRONIC / ELETROMAR STORE", rota: "https://loja.mectronic-eletromar.com.br/" },
+  {
+    titulo: "MEC-TRONIC / ELETROMAR STORE",
+    rota: "https://loja.mectronic-eletromar.com.br/",
+  },
   { titulo: "CONTACT", rota: "/contato" },
 ]);
 const MNU_TOPO_es = ref([
@@ -516,7 +533,10 @@ const MNU_TOPO_es = ref([
   { titulo: "PRODUCTOS", rota: "/solucoes" },
   { titulo: "CATALOGAR", rota: "/catalogo" },
   { titulo: "BLOG", rota: "/blog" },
-  { titulo: "TIENDA MEC-TRONIC / ELETROMAR", rota: "https://loja.mectronic-eletromar.com.br/" },
+  {
+    titulo: "TIENDA MEC-TRONIC / ELETROMAR",
+    rota: "https://loja.mectronic-eletromar.com.br/",
+  },
   { titulo: "CONTACTO", rota: "/contato" },
 ]);
 
@@ -585,6 +605,9 @@ let q = {
   ativo: "s", // s | n | t
 };
 let menuLinhas = ref([]);
+let menuLinhasCol1 = ref([]);
+let menuLinhasCol2 = ref([]);
+
 function getSolucoesLinhas() {
   let R = null;
 
@@ -593,7 +616,17 @@ function getSolucoesLinhas() {
     params: q,
   }).then((R) => {
     menuLinhas.value = JSON.parse(R);
-    menuLinhas.value.map((m, index) => {});
+
+    let isPar = menuLinhas.value.length % 2 == 0 ? true : false;
+    let divisor = Math.floor(menuLinhas.value.length / 2);
+    divisor = isPar ? divisor : divisor + 1;
+    menuLinhas.value.map((m, index) => {
+      if (index <= divisor - 1) {
+        menuLinhasCol1.value.push(m);
+      } else {
+        menuLinhasCol2.value.push(m);
+      }
+    });
   });
 }
 const catalogos = ref();
@@ -992,12 +1025,12 @@ html {
 .dropdown-content:before {
   content: " ";
   position: absolute;
-  top: 0; 
+  top: 0;
   left: 0;
-  width: 100%; 
-  height: 100%;  
+  width: 100%;
+  height: 100%;
   z-index: -1;
-  background-color:rgba(255, 255, 255, .88);
+  background-color: rgba(255, 255, 255, 0.88);
   border-radius: 30px;
 }
 .dropdown-content-onde-comprar {
