@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     // EM DEV ;; target: "https://www.global.adm.br",
     devProxy: {
       "/api": {
-        target: "http://192.168.0.19/mec",
+        target: "http://192.168.0.100/mec",
         //target: "/api/",
         changeOrigin: true,
         prependPath: true,

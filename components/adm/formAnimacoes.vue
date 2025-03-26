@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div COLUNA="1" class="h-screen w-[400px] border-r-2 p-6">
+    <div COLUNA="1" class="h-screen min-w-[480px] overflow-x-scroll border-r-2 p-6">
       <div class="p-4 text-center text-3xl">ANIMAÇÃO</div>
 
       <div v-if="emEdicao == false" class="w-[400px] pt-10">
@@ -489,16 +489,15 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
 import {
   createUI,
-  XButton,
   XAlert,
-  XTextarea,
+  XButton,
+  XSelect,
   XTab,
   XTabGroup,
   XTable,
-  XSelect,
+  XTextarea,
 } from "@indielayer/ui";
 components: {
   createUI, XButton, XAlert, XTextarea, XTab, XTabGroup, XTable, XSelect;
@@ -786,39 +785,39 @@ async function submitFormData() {
 
   // VALIDA LENGTH TEXTOS
   if (
-    animForm.value.titulo_esquerdo.length < 3  
+    animForm.value.titulo_esquerdo.length < 1  
   ) {
-    alert("Textos devem ser maiore que 5 caracteres");
+    alert("Textos devem ser maiore que 1 caracteres");
     return;
   }
   if (
-    animForm.value.titulo_esquerdo_en.length < 3  
+    animForm.value.titulo_esquerdo_en.length < 1  
   ) {
-    alert("Textos devem ser maiore que 5 caracteres");
+    alert("Textos devem ser maiore que 1 caracteres");
     return;
   }
   if (
-    animForm.value.titulo_esquerdo_es.length < 3  
+    animForm.value.titulo_esquerdo_es.length < 1  
   ) {
-    alert("Textos devem ser maiore que 5 caracteres");
+    alert("Textos devem ser maiore que 1 caracteres");
     return;
   }
   if (
-    animForm.value.titulo_direito.length < 3  
+    animForm.value.titulo_direito.length < 1  
   ) {
-    alert("Textos devem ser maiore que 5 caracteres");
+    alert("Textos devem ser maiore que 1 caracteres");
     return;
   }
   if (
-    animForm.value.titulo_direito_en.length < 3  
+    animForm.value.titulo_direito_en.length < 1  
   ) {
-    alert("Textos devem ser maiore que 5 caracteres");
+    alert("Textos devem ser maiore que 1 caracteres");
     return;
   }
   if (
-    animForm.value.titulo_direito_es.length < 3  
+    animForm.value.titulo_direito_es.length < 1  
   ) {
-    alert("Textos devem ser maiore que 5 caracteres");
+    alert("Textos devem ser maiore que 1 caracteres");
     return;
   }
   

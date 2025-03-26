@@ -2,7 +2,7 @@
   <div class="mx-auto flex h-screen flex-row overflow-hidden">
     <div
       @click="abrePainel()"
-      class="relative flex h-screen w-4 flex-row items-center bg-black"
+      class="absolute top-0 left-0 flex h-screen w-4 flex-row items-center bg-black"
     >
       <p class="absolute -left-[15px] text-white">
         <svg
