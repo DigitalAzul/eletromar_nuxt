@@ -55,6 +55,12 @@
             </div>
             <div
               class="h-[40px] w-full cursor-pointer border-1 pl-6 pt-2 hover:bg-slate-500 hover:text-white"
+              @click="ativarForm('FormBgBanner')"
+            >
+              Background Banners
+            </div>
+            <div
+              class="h-[40px] w-full cursor-pointer border-1 pl-6 pt-2 hover:bg-slate-500 hover:text-white"
               @click="ativarForm('FormBlogAutor')"
             >
               Blog Autor
@@ -150,8 +156,9 @@
 
     <div class="h-screen w-screen">
       <div v-if="formAtivo == 'FormAnimacoes'"><AdmFormAnimacoes /></div>
-      <div v-if="formAtivo == 'FormBlog'"><AdmFormBlog /></div>
+      <div v-if="formAtivo == 'FormBlog'" class="ml-4"><AdmFormBlog /></div>
       <div v-if="formAtivo == 'FormCat'"><AdmFormCategoriasBlog /></div>
+      <div v-if="formAtivo == 'FormBgBanner'"><AdmFormBgBanner /></div>
       <div v-if="formAtivo == 'FormTags'"><AdmFormTags /></div>
       <div v-if="formAtivo == 'FormBlogImagens'"><AdmFormBlogImagens /></div>
       <div v-if="formAtivo == 'FormBlogAutor'"><AdmFormBlogAutor /></div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative flex h-screen w-full flex-row">
     <div
       id="overlayID"
       class="absolute left-0 top-0 z-[9999] hidden h-screen w-screen opacity-0 backdrop-blur-md"
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div
-      class="flex max-h-screen flex-row justify-center space-x-3 overflow-x-auto overflow-y-hidden p-6"
+      class="flex max-h-screen w-[99%] ml-4 flex-row justify-center space-x-3 overflow-x-auto overflow-y-hidden p-6"
     >
       <div
         v-if="false"
@@ -1061,19 +1061,19 @@
 
 
 <script setup>
-import { onMounted } from "vue";
-import { Carousel, Input } from "flowbite-vue";
 import {
   createUI,
-  XButton,
   XAlert,
-  XTextarea,
+  XButton,
+  XPopover,
   XSelect,
   XTab,
   XTabGroup,
   XTable,
-  XPopover,
+  XTextarea,
 } from "@indielayer/ui";
+import { Carousel } from "flowbite-vue";
+import { onMounted } from "vue";
 import Editor from "~/components/Editor.vue";
 
 components: {
@@ -1658,6 +1658,7 @@ async function getPostsBlog() {
       } else {
         blogPosts.value = [];
         alert("Sem resultados pra pesquisa !");
+        overLay();
       }
     }
   });

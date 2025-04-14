@@ -127,13 +127,13 @@ descricao varchar(256),
 ordem int
 );
 ALTER TABLE solucao_linhas
-ADD descricao varchar(255);
+ADD descricao text;
 
 ALTER TABLE solucao_linhas
-ADD descricao_en varchar(255);
+ADD descricao_en text;
 
 ALTER TABLE solucao_linhas
-ADD descricao_es varchar(255);
+ADD descricao_es text;
 
 ALTER TABLE solucao_linhas
 ADD ativo boolean;
