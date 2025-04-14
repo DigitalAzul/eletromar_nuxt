@@ -1,0 +1,33 @@
+1,Disjuntores MW,mw,1
+8,Interruptores Diferenciais CD Inviole,interruptoresdiferenciaiscdinviole,2
+14,Supressores de Surto SPM,supressoresdesurtospm,3
+38,Lacres,lacres,4
+2,Disjuntores JW,jw,5
+9,Interruptores Diferenciais JD,interruptorediferenciaisjd,6
+6,Disjuntores DQE,dqe,7
+15,Supressores de Surto JSPD,supressoresdesurtojspd,8
+3,Disjuntores J6W,j6w,9
+11,Interruptores Diferenciais J6D,interruptoresdiferenciaishagerj6d,10
+7,Disjuntores Hager MU,hagermu,11
+16,Supressor de Surto Hager SPM,supressordesurtohagerspm,13
+4,Disjuntores JTW,jtw,14
+5,Disjuntores MUVW,muvw,15
+36,Interruptor DiferÃªncial JDA,interruptordiferencialjda,16
+37,Interruptor DiferÃªncial JWDA,interruptordiferencialjwda,17
+19,Disjuntor de Caixa Moldada CA / CAH,disjuntordecaixamoldadaca_cah,18
+29,Caixas de VDI e DistribuiÃ§Ã£o Vision,Caixas_vdi_e_vision,20
+23,Camuï¬‚agem para Caixas,camuflagem_caixas,21
+21,Cadeado,cadeado,22
+31,Suporte Barramento,suportebarramento,23
+22,Barramento para neutro e/ou terra,barramento,24
+35,Isolador de Pinos,isoladordepinos,25
+20,Pentes de ligaÃ§Ã£o,pentes_de_ligacao,26
+24,Bornes,bornes,27
+39,Caixa MultiLig,caixamultiLig,28
+27,Contatores,contatores,29
+28,Chave MagnÃ©tica EletrÃ´nica,chave_magnetica,30
+30,Tomada Industrial,tomadaindustrial,31
+18,Chave Boia UKY,chaveboia,32
+33,Fita Isolante Max,fitaisolantemax,33
+34,Fita Isolante Pro 20,fitaisolantepro20,34
+32,Fita Isolante Auto FusÃ£o,fitaisolanteautofusao,36
